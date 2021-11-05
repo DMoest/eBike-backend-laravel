@@ -9,6 +9,19 @@ class City extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are guarded from mass assignable.
+     *
+     * @var string[]
+     */
+    protected $guarded = ['id'];
+
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
     protected $fillable = [
         'name',
         'country'

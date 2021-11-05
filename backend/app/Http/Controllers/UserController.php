@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+//use Illuminate\Http\Request;
 use App\Models\User;
 
 
@@ -18,13 +19,14 @@ class UserController extends Controller
      */
     final public function getUsers(): object
     {
-        return User::all();
+        return json_encode(User::all());
     }
 
 
     /**
      * @method getUser()
-     * @description Getter method to return specific user from user ID.
+     * @description Getter method to return specific user from database.
+     * @param User $user
      * @return string
      */
     final public function getUser(User $user): string

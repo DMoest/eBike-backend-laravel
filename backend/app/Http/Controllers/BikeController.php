@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+//use Illuminate\Http\Request;
 use App\Models\Bike;
 
 
@@ -14,20 +15,21 @@ class BikeController extends Controller
     /**
      * @method getBikes()
      * @description Getter method to request all bikes from database.
-     * @return Bike
+     * @return string
      */
-    final public function getBikes()
+    final public function getBikes(): string
     {
-        return Bike::all();
+        return json_encode(Bike::all());
     }
 
 
     /**
      *
      * @param Bike $bike
-     * @return false|string
+     * @return string
      */
-    final public function getBike(Bike $bike) {
+    final public function getBike(Bike $bike): string
+    {
         return json_encode([
             'id' => $bike['id'],
             'status' => $bike['status'],

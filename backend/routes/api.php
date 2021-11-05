@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\StationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,17 +23,36 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+/**
+ * Index route.
+ */
 Route::get('/', function () {
-    echo "INDEX ROUTE: .....";
+    return json_encode([
+        'Index route' => "/   (this route)",
+        'Cities route' => "/city",
+        'City route' => "/city/city_id",
+        'Stations route' => "/station",
+        'Station route' => "/station/station_id",
+        'Bikes route' => "/bike",
+        'Bike route' => "/bike/bike_id",
+        'Users route' => "/user",
+        'User route' => "/user/user_id"
+    ]);
 });
-
 
 
 /**
  * City routes.
  */
-Route::get('/city', [BikeController::class, 'getCities'])->name('cities');
-Route::get('/city/{city}', [BikeController::class, 'getCity'])->name('city');
+Route::get('/city', [CityController::class, 'getCities'])->name('cities');
+Route::get('/city/{city}', [CityController::class, 'getCity'])->name('city');
+
+
+/**
+ * Station routes.
+ */
+Route::get('/station', [StationController::class, 'getStations'])->name('stations');
+Route::get('/station/{station}', [StationController::class, 'getStation'])->name('station');
 
 
 /**

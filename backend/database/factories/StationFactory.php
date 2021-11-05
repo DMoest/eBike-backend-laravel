@@ -14,7 +14,10 @@ class StationFactory extends Factory
     public function definition()
     {
         return [
-
+            'capacity' => $this->faker->numberBetween(10, 20),
+            'active' => $this->faker->numberBetween(5, 10),
+            'adress' => $this->faker->streetAddress(),
+            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Malmö", "Karlskrona", "Västerås", "Umeå"]),
         ];
     }
 }
