@@ -13,6 +13,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(100)->create();
+        \App\Models\Bike::factory(250)->create();
+
+
+        \App\Models\City::create([
+            'name' => 'Stockholm',
+            'country' => 'Sverige'
+        ]);
+
+        \App\Models\City::create([
+            'name' => 'Göteborg',
+            'country' => 'Sverige'
+        ]);
+
+        \App\Models\City::create([
+            'name' => 'Malmö',
+            'country' => 'Sverige'
+        ]);
+
+        \App\Models\City::create([
+            'name' => 'Karlskrona',
+            'country' => 'Sverige'
+        ]);
+
+        \App\Models\City::create([
+            'name' => 'Västerås',
+            'country' => 'Sverige'
+        ]);
+
+        \App\Models\City::create([
+            'name' => 'Umeå',
+            'country' => 'Sverige'
+        ]);
     }
 }

@@ -16,7 +16,7 @@ class BikeFactory extends Factory
         return [
             'status' => $this->faker->randomElement(["in_service", "in_repair", "broken", "lost", "out_of_service"]),
             'active' => $this->faker->boolean(),
-            'city' => $this->faker->city(),
+            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Malmö", "Karlskrona", "Västerås", "Umeå"]),
             'longitude' => $this->faker->longitude(),
             'latitude' => $this->faker->latitude()
         ];
