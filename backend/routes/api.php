@@ -41,4 +41,4 @@ Route::get('/bikes', function (Request $request) {
  * User Routes.
  */
 Route::get('/user', [UserController::class, 'getUsers'])->name('users');
-Route::get('/user/{id}', [UserController::class, 'getUser'])->name('user');
+Route::get('/user/{user}', [UserController::class, 'getUser'])->name('user');
