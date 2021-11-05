@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBikeTable extends Migration
+class CreateBikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,18 @@ class CreateBikeTable extends Migration
      */
     public function up()
     {
-        Schema::create('bike', function (Blueprint $table) {
-            $table->id()->autoIncrement()->unique();
+        Schema::create('bikes', function (Blueprint $table) {
+            $table->id();
             $table->string('status');
-            $table->string('long');
-            $table->string('lat');
+            $table->boolean('active');
             $table->string('city');
+            $table->string('longitude');
+            $table->string('latitude');
+            $table->foreignId('city_id')->nullable(); // ÄNDRA SENARE SOM ICKE NULL....
+
+//            $table->decimal('longitude', 10, 7);
+//            $table->decimal('latitude', 11, 8);
+
             $table->timestamps();
         });
     }
@@ -30,6 +36,6 @@ class CreateBikeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bike');
+        Schema::dropIfExists('bikes');
     }
 }
