@@ -20,7 +20,7 @@ class CreateBikesTable extends Migration
             $table->string('city');
             $table->string('longitude');
             $table->string('latitude');
-            $table->foreignId('city_id')->nullable(); // ÄNDRA SENARE SOM ICKE NULL....
+            $table->foreignId('city_id')->nullable(); // TODO - ÄNDRA SENARE SOM ICKE NULL....
 
 //            $table->decimal('longitude', 10, 7);
 //            $table->decimal('latitude', 11, 8);

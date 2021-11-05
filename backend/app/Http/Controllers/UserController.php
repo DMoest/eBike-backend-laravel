@@ -7,7 +7,7 @@ use App\Models\User;
 
 /**
  * User Controller class.
- * Makes request calls to fetch data from database.
+ * Request data related to Bike class.
  */
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
      * @description Getter method to request all users from database.
      * @return User[]|\Illuminate\Database\Eloquent\Collection
      */
-    final public function getUsers()
+    final public function getUsers(): object
     {
         return User::all();
     }
@@ -25,9 +25,9 @@ class UserController extends Controller
     /**
      * @method getUser()
      * @description Getter method to return specific user from user ID.
-     * @return array
+     * @return string
      */
-    final public function getUser(User $user)
+    final public function getUser(User $user): string
     {
         return json_encode([
             'id' => $user['id'],
