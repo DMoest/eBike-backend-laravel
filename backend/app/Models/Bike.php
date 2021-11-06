@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Bike extends Model
 {
     use HasFactory;
@@ -24,11 +25,21 @@ class Bike extends Model
      * @var string[]
      */
     protected $fillable = [
+        'city_id',
         'status',
         'active',
-        'city',
         'longitude',
-        'latitude',
-        'city_id'
+        'latitude'
     ];
+
+
+    /**
+     * @method city()
+     * @description Relation mapping, a bike belong to a city.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    final public function city(): object
+    {
+        return $this->belongsTo(City::class);
+    }
 }

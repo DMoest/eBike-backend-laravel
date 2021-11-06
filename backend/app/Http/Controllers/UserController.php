@@ -15,9 +15,9 @@ class UserController extends Controller
     /**
      * @method getUsers()
      * @description Getter method to request all users from database.
-     * @return User[]|\Illuminate\Database\Eloquent\Collection
+     * @return string
      */
-    final public function getUsers(): object
+    final public function getUsers(): string
     {
         return json_encode(User::all());
     }
@@ -31,14 +31,6 @@ class UserController extends Controller
      */
     final public function getUser(User $user): string
     {
-        return json_encode([
-            'id' => $user['id'],
-            'firstname' => $user['firstname'],
-            'lastname' => $user['lastname'],
-            'adress' => $user['adress'],
-            'city' => $user['city'],
-            'phone' => $user['phone'],
-            'email' => $user['email'],
-        ]);
+        return json_encode($user);
     }
 }

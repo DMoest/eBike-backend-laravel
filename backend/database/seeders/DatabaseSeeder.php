@@ -19,32 +19,38 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\City::create([
-            'name' => 'Stockholm',
+            'id' => 1,
+            'city_name' => 'Stockholm',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-            'name' => 'Göteborg',
+            'id' => 2,
+            'city_name' => 'Göteborg',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-            'name' => 'Malmö',
+            'id' => 3,
+            'city_name' => 'Malmö',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-            'name' => 'Karlskrona',
+            'id' => 4,
+            'city_name' => 'Karlskrona',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-            'name' => 'Västerås',
+            'id' => 5,
+            'city_name' => 'Västerås',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-            'name' => 'Umeå',
+            'id' => 6,
+            'city_name' => 'Umeå',
             'country' => 'Sverige'
         ]);
     }

@@ -44,26 +44,27 @@ Route::get('/', function () {
 /**
  * City routes.
  */
-Route::get('/city', [CityController::class, 'getCities'])->name('cities');
-Route::get('/city/{city}', [CityController::class, 'getCity'])->name('city');
+Route::get('/city', [CityController::class, 'getCities']);
+Route::get('/city/{city}', [CityController::class, 'getCity']);
 
 
 /**
  * Station routes.
  */
-Route::get('/station', [StationController::class, 'getStations'])->name('stations');
-Route::get('/station/{station}', [StationController::class, 'getStation'])->name('station');
+Route::get('/station', [StationController::class, 'getStations']);
+Route::get('/station/{station}', [StationController::class, 'getStation']);
 
 
 /**
  * Bike routes.
  */
-Route::get('/bike', [BikeController::class, 'getBikes'])->name('bikes');
-Route::get('/bike/{bike}', [BikeController::class, 'getBike'])->name('bike');
+Route::get('/bike', [BikeController::class, 'getBikes']);
+Route::get('/bike/{bike}', [BikeController::class, 'getBike']);
+Route::get('/bike/city/{city:id}', [BikeController::class, 'getBikesInCity']);
 
 
 /**
  * User Routes.
  */
-Route::get('/user', [UserController::class, 'getUsers'])->name('users');
-Route::get('/user/{user}', [UserController::class, 'getUser'])->name('user');
+Route::get('/user', [UserController::class, 'getUsers']);
+Route::get('/user/{user}', [UserController::class, 'getUser']);

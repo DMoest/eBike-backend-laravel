@@ -31,11 +31,6 @@ class StationController extends Controller
      */
     final public function getStation(Station $station): string
     {
-        return json_encode([
-            'capacity' => $station['capacity'],
-            'active' => $station['active'],
-            'adress' => $station['adress'],
-            'city' => $station['city']
-        ]);
+        return json_encode($station);
     }
 }

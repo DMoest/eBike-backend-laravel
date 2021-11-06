@@ -14,13 +14,12 @@ class CreateBikesTable extends Migration
     public function up()
     {
         Schema::create('bikes', function (Blueprint $table) {
-            $table->id()->autoIncrement()->unique();
+            $table->id()->unique()->autoIncrement();
+            $table->foreignId('city_id');
             $table->string('status');
             $table->boolean('active');
-            $table->string('city');
             $table->string('longitude');
             $table->string('latitude');
-            $table->foreignId('city_id')->nullable(); // TODO - ÄNDRA SENARE SOM ICKE NULL....
 
 //            $table->decimal('longitude', 10, 7);
 //            $table->decimal('latitude', 11, 8);

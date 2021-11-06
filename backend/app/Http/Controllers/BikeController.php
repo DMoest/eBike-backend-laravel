@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
 use App\Models\Bike;
+use App\Models\City;
 
 
 /**
@@ -19,25 +20,32 @@ class BikeController extends Controller
      */
     final public function getBikes(): string
     {
-        return json_encode(Bike::all());
+        $data = [
+            'bikes' => Bike::with('city')->get()
+        ];
+
+        return json_encode($data);
     }
 
 
     /**
-     *
+     * @method getBike()
+     * @description Getter method to return specific bike from database.
      * @param Bike $bike
      * @return string
      */
     final public function getBike(Bike $bike): string
     {
-        return json_encode([
-            'id' => $bike['id'],
-            'status' => $bike['status'],
-            'active' => $bike['active'],
-            'city' => $bike['city'],
-            'longitude' => $bike['longitude'],
-            'latitude' => $bike['latitude'],
-            'city_id' => $bike['city_id'] // TODO - ÄNDRA SENARE SOM ICKE NULL....
-        ]);
+        return json_encode($bike);
+    }
+
+
+    final public function getBikesInCity(City $city): string
+    {
+        $data = [
+            'bikes' => $city->bikes
+        ];
+
+        return json_encode($data);
     }
 }

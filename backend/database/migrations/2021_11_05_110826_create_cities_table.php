@@ -14,12 +14,13 @@ class CreateCitiesTable extends Migration
     public function up()
     {
         Schema::create('cities', function (Blueprint $table) {
-            $table->id()->autoIncrement()->unique();
-            $table->string('name');
+            $table->id('id')->autoIncrement()->unique();
+            $table->string('city_name');
             $table->string('country');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
