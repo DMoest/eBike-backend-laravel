@@ -59,10 +59,13 @@ class UserController extends Controller
 
     /**
      * @method createUser()
-     * @description Setter method to create a new user. Validates input json
-     *
+     * @description Setter method to create a new user.
+     *      Validates json input. If validation passes,
+     *      Create New User in database.
+     * @param Request $request
+     * @return object
      */
-    final public function createUser(Request $request)
+    final public function createUser(Request $request): object
     {
         $attributes = $request->validate([
             'firstname' => ['required', 'min:2', 'max:255'],
@@ -75,8 +78,22 @@ class UserController extends Controller
             'password' => ['required', 'min:8', 'max:50']
         ]);
 
-        $attributes["password"] = bcrypt($attributes["password"]);
+        return User::create($attributes);
+    }
 
-        User::create($attributes);
+
+    /**
+     * @method updateUser()
+     * @description Setter method to update user in database.
+     *      Get existing user then update it from all request attributes.
+     * @param Request $request
+     * @return object
+     */
+    final public function updateUser(Request $request): object
+    {
+        $user = User::find($request->id); // TODO validate input from request like in create user!
+        $user->update($request->all());
+
+        return $user;
     }
 }

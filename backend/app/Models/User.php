@@ -58,6 +58,17 @@ class User extends Authenticatable
 
 
     /**
+     * @method setPasswordAttribute()
+     * @description Eloquent Mutator method for hashing all passwords before saving them to database.
+     * @param $password
+     */
+    final public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+
+    /**
      * @method city()
      * @description Relation mapping, a user belong to a city.
      * @return BelongsTo
