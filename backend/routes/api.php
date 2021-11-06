@@ -69,3 +69,4 @@ Route::get('/bike/city/{city:id}', [BikeController::class, 'getBikesInCity']);
  */
 Route::get('/user', [UserController::class, 'getUsers']);
 Route::get('/user/{user}', [UserController::class, 'getUser']);
+Route::get('/user/city/{city:id}', [UserController::class, 'getUsersInCity']);

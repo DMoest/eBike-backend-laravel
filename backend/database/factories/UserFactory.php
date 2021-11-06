@@ -19,7 +19,7 @@ class UserFactory extends Factory
             'lastname' => $this->faker->lastName(),
             'adress' => $this->faker->streetAddress(),
             'postcode' => $this->faker->postcode(),
-            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Malmö", "Karlskrona", "Västerås", "Umeå"]),
+            'city_id' => $this->faker->numberBetween(1,6),
             'phone' => $this->faker->unique()->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -27,6 +27,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
+
 
     /**
      * Indicate that the model's email address should be unverified.

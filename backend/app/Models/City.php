@@ -51,4 +51,15 @@ class City extends Model
     {
         return $this->hasMany(Station::class);
     }
+
+
+    /**
+     * @method users()
+     * @description Relation mapping, a city has many users.
+     * @return object
+     */
+    final public function users(): object
+    {
+        return $this->hasMany(User::class);
+    }
 }

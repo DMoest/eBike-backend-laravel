@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
+use App\Models\City;
 use App\Models\User;
 
 
@@ -19,7 +20,11 @@ class UserController extends Controller
      */
     final public function getUsers(): string
     {
-        return json_encode(User::all());
+        $data = [
+            'users' => User::with('city')->get()
+        ];
+
+        return json_encode($data);
     }
 
 
@@ -32,5 +37,21 @@ class UserController extends Controller
     final public function getUser(User $user): string
     {
         return json_encode($user);
+    }
+
+
+    /**
+     * @method getUsersInCity()
+     * @description Getter method to return bikes in specific city.
+     * @param City $city
+     * @return string
+     */
+    final public function getUsersInCity(City $city): string
+    {
+        $data = [
+            'users' => $city->users
+        ];
+
+        return json_encode($data);
     }
 }
