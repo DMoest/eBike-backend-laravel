@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\User;
+use Illuminate\Http\Response;
 
 
 /**
@@ -53,5 +54,29 @@ class UserController extends Controller
         ];
 
         return json_encode($data);
+    }
+
+
+    /**
+     * @method createUser()
+     * @description Setter method to create a new user. Validates input json
+     *
+     */
+    final public function createUser(Request $request)
+    {
+        $attributes = $request->validate([
+            'firstname' => ['required', 'min:2', 'max:255'],
+            'lastname' => ['required', 'min:2', 'max:255'],
+            'adress' => ['required', 'min:2', 'max:255'],
+            'postcode' => ['required', 'min:5', 'max:6'],
+            'city_id' => ['required'],
+            'phone' => ['required'],
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'min:8', 'max:50']
+        ]);
+
+        $attributes["password"] = bcrypt($attributes["password"]);
+
+        User::create($attributes);
     }
 }
