@@ -40,6 +40,12 @@ class BikeController extends Controller
     }
 
 
+    /**
+     * @method getBikesInCity()
+     * @description Getter method to return bikes in specific city.
+     * @param City $city
+     * @return string
+     */
     final public function getBikesInCity(City $city): string
     {
         $data = [

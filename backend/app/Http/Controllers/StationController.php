@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
+use App\Models\City;
 use App\Models\Station;
 
 
@@ -19,7 +20,11 @@ class StationController extends Controller
      */
     final public function getStations(): string
     {
-        return json_encode(Station::all());
+        $data = [
+            'stations' => Station::with('city')->get()
+        ];
+
+        return json_encode($data);
     }
 
 
@@ -32,5 +37,21 @@ class StationController extends Controller
     final public function getStation(Station $station): string
     {
         return json_encode($station);
+    }
+
+
+    /**
+     * @method getStationsInCity()
+     * @description Getter method to return bikes in specific city.
+     * @param City $city
+     * @return string
+     */
+    final public function getStationsInCity(City $city): string
+    {
+        $data = [
+            'stations' => $city->stations
+        ];
+
+        return json_encode($data);
     }
 }

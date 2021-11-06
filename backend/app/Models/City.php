@@ -17,7 +17,7 @@ class City extends Model
      *
      * @var string[]
      */
-    protected $guarded = ['id'];
+    protected array $guarded = ['id'];
 
 
     /**
@@ -25,7 +25,7 @@ class City extends Model
      *
      * @var string[]
      */
-    protected $fillable = [
+    protected array $fillable = [
         'city_name',
         'country'
     ];

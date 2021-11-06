@@ -15,13 +15,15 @@ class CreateStationsTable extends Migration
     {
         Schema::create('stations', function (Blueprint $table) {
             $table->id()->autoIncrement()->unique();;
+            $table->foreignId('city_id');
+
             $table->integer('capacity');
             $table->integer('active');
             $table->string('adress');
-            $table->string('city');
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

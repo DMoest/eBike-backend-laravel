@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 class Bike extends Model
@@ -16,7 +17,7 @@ class Bike extends Model
      *
      * @var string[]
      */
-    protected $guarded = ['id'];
+    protected array $guarded = ['id'];
 
 
     /**
@@ -24,7 +25,7 @@ class Bike extends Model
      *
      * @var string[]
      */
-    protected $fillable = [
+    protected array $fillable = [
         'city_id',
         'status',
         'active',
@@ -36,7 +37,7 @@ class Bike extends Model
     /**
      * @method city()
      * @description Relation mapping, a bike belong to a city.
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     final public function city(): object
     {

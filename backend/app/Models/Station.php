@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Station extends Model
 {
@@ -15,7 +17,7 @@ class Station extends Model
      *
      * @var string[]
      */
-    protected $guarded = ['id'];
+    protected array $guarded = ['id'];
 
 
     /**
@@ -23,10 +25,21 @@ class Station extends Model
      *
      * @var string[]
      */
-    protected $fillable = [
+    protected array $fillable = [
         'capacity',
         'active',
         'adress',
-        'city'
+        'city_id'
     ];
+
+
+    /**
+     * @method city()
+     * @description Relation mapping, a station belong to a city.
+     * @return BelongsTo
+     */
+    final public function city(): object
+    {
+        return $this->belongsTo(City::class);
+    }
 }

@@ -53,6 +53,7 @@ Route::get('/city/{city}', [CityController::class, 'getCity']);
  */
 Route::get('/station', [StationController::class, 'getStations']);
 Route::get('/station/{station}', [StationController::class, 'getStation']);
+Route::get('/station/city/{city:id}', [StationController::class, 'getStationsInCity']);
 
 
 /**
