@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TravelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -84,3 +85,7 @@ Route::put('/user', [UserController::class, 'updateUser']);
 Route::get('/travel', [TravelController::class, 'getTravels']);
 Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
 Route::get('/travel/city/{city:id}', [TravelController::class, 'getTravelingInCity']);
+Route::get('/travel/bike/{bike:id}', [TravelController::class, 'getTravelingWithBike']);
+Route::get('/travel/user/{user:id}', [TravelController::class, 'getTravelingByUser']);
+Route::post('/travel', [TravelController::class, 'createTravel']);
+Route::put('/travel', [TravelController::class, 'updateTravel']);

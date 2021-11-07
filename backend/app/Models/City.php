@@ -62,4 +62,15 @@ class City extends Model
     {
         return $this->hasMany(User::class);
     }
+
+
+    /**
+     * @method travels()
+     * @description Relation mapping, in a city much traveling is made.
+     * @return object
+     */
+    final public function travels(): object
+    {
+        return $this->hasMany(Travel::class);
+    }
 }

@@ -11,6 +11,10 @@ use Illuminate\Http\Response;
 /**
  * User Controller class.
  * Request data related to Bike class.
+ *
+ * @todo Create getter method for users travels.
+ * @todo Make validation for input on update user.
+ *
  */
 class UserController extends Controller
 {
@@ -87,11 +91,14 @@ class UserController extends Controller
      * @description Setter method to update user in database.
      *      Get existing user then update it from all request attributes.
      * @param Request $request
+     *
+     * @todo Make input validation from request like in create user. Some sort of dynamic way to include specified params to be validated.
+     *
      * @return object
      */
     final public function updateUser(Request $request): object
     {
-        $user = User::find($request->id); // TODO validate input from request like in create user!
+        $user = User::find($request->id);
         $user->update($request->all());
 
         return $user;

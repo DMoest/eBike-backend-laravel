@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Jenssegers\Mongodb\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -76,5 +77,16 @@ class User extends Authenticatable
     final public function city(): object
     {
         return $this->belongsTo(City::class);
+    }
+
+
+    /**
+     * @method travels()
+     * @description Relation mapping, a user has many travels.
+     * @return HasMany
+     */
+    final public function travels(): object
+    {
+        return $this->hasMany(Travel::class);
     }
 }
