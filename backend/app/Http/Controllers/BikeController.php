@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Models\Bike;
 use App\Models\City;
 
@@ -53,5 +53,44 @@ class BikeController extends Controller
         ];
 
         return json_encode($data);
+    }
+
+
+
+    /**
+     * @method createBike()
+     * @description Setter method to create a new bike.
+     *      Validates json input. If validation passes,
+     *      Create new bike in database.
+     * @param Request $request
+     * @return object
+     */
+    final public function createBike(Request $request): object
+    {
+        $attributes = $request->validate([
+            'status' => ['required', 'string', 'min:2', 'max:255'],
+            'active' => ['required', 'boolean'],
+            'city_id' => ['required', 'integer'],
+            'longitude' => [''],
+            'latitude' => ['']
+        ]);
+
+        return Bike::create($attributes);
+    }
+
+
+    /**
+     * @method updateBike()
+     * @description Setter method to update bike in database.
+     *      Get existing bike then update it from all request attributes.
+     * @param Request $request
+     * @return object
+     */
+    final public function updateBike(Request $request): object
+    {
+        $bike = Bike::find($request->id); // TODO validate input from request like in create bike!
+        $bike->update($request->all());
+
+        return $bike;
     }
 }

@@ -62,6 +62,8 @@ Route::get('/station/city/{city:id}', [StationController::class, 'getStationsInC
 Route::get('/bike', [BikeController::class, 'getBikes']);
 Route::get('/bike/{bike}', [BikeController::class, 'getBike']);
 Route::get('/bike/city/{city:id}', [BikeController::class, 'getBikesInCity']);
+Route::post('/bike', [BikeController::class, 'createBike']);
+Route::put('/bike', [BikeController::class, 'updateBike']);
 
 
 /**
