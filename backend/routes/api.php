@@ -28,15 +28,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  */
 Route::get('/', function () {
     return json_encode([
-        'Index route' => "/   (this route)",
-        'Cities route' => "/city",
-        'City route' => "/city/city_id",
-        'Stations route' => "/station",
-        'Station route' => "/station/station_id",
-        'Bikes route' => "/bike",
-        'Bike route' => "/bike/bike_id",
-        'Users route' => "/user",
-        'User route' => "/user/user_id"
+        'GET Index route' => "/   (this route)",
+        'GET Cities route' => "/city",
+        'GET City route' => "/city/city_id",
+        'GET Stations route' => "/station",
+        'GET Station route' => "/station/station_id",
+        'GET Bikes route' => "/bike",
+        'GET Bike route' => "/bike/bike_id",
+        'GET Users route' => "/user",
+        'GET User route' => "/user/user_id"
     ]);
 });
 
@@ -54,6 +54,8 @@ Route::get('/city/{city}', [CityController::class, 'getCity']);
 Route::get('/station', [StationController::class, 'getStations']);
 Route::get('/station/{station}', [StationController::class, 'getStation']);
 Route::get('/station/city/{city:id}', [StationController::class, 'getStationsInCity']);
+Route::post('/station', [StationController::class, 'createStation']);
+Route::put('/station', [StationController::class, 'updateStation']);
 
 
 /**

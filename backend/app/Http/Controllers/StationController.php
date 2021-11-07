@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Station;
 
@@ -53,5 +53,42 @@ class StationController extends Controller
         ];
 
         return json_encode($data);
+    }
+
+
+    /**
+     * @method createStation()
+     * @description Setter method to create a new station.
+     *      Validates json input. If validation passes,
+     *      Create new station in database.
+     * @param Request $request
+     * @return object
+     */
+    final public function createStation(Request $request): object
+    {
+        $attributes = $request->validate([
+            'capacity' => ['required', 'integer'],
+            'active' => ['required', 'integer'],
+            'adress' => ['required', 'min:2', 'max:255'],
+            'city_id' => ['required', 'integer']
+        ]);
+
+        return Station::create($attributes);
+    }
+
+
+    /**
+     * @method updateStation()
+     * @description Setter method to update station in database.
+     *      Get existing station then update it from all request attributes.
+     * @param Request $request
+     * @return object
+     */
+    final public function updateStation(Request $request): object
+    {
+        $station = Station::find($request->id); // TODO validate input from request like in create bike!
+        $station->update($request->all());
+
+        return $station;
     }
 }
