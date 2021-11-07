@@ -29,17 +29,51 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  */
 Route::get('/', function () {
     return json_encode([
-        'GET Index route' => "/   (this route)",
-        'GET Cities route' => "/city",
-        'GET City route' => "/city/city_id",
-        'GET Stations route' => "/station",
-        'GET Station route' => "/station/station_id",
-        'GET Bikes route' => "/bike",
-        'GET Bike route' => "/bike/bike_id",
+        'Index' => "/   (this route)",
+        'GET All bikes' => "/bike",
+        'GET Bike by bike_id' => "/bike/bike_id",
+        'GET All bikes in city by city_id' => "/bike/city/city_id",
+        'POST Create new bike' => "/bike",
+        'PUT Update bike by bike_id' => "/bike",
+        'DELETE Bikes by bike_id' => "/bike",
+
+        'GET All cities' => "/city",
+        'GET A city by city_id' => "/city/city_id",
+        'POST Add a city' => "/city",
+        'PUT Update a city by city_id' => "/city",
+        'DELETE A city by city_id' => "/city",
+
+        'GET All stations' => "/station",
+        'GET A station by station_id' => "/station/station_id",
+        'GET All stations in city by city_id' => "/station/city/city_id",
+        'POST Add new station' => "/station",
+        'PUT Update a station by station_id' => "/station",
+        'DELETE A station by station_id' => "/station",
+
+        'GET Travels route' => "/station",
+        'GET Travel route by travel ID' => "/station/station_id",
+        'POST Travels route' => "/station",
+        'PUT Travels route' => "/station",
+        'DELETE Travels route' => "/station",
+
         'GET Users route' => "/user",
-        'GET User route' => "/user/user_id"
+        'GET User route' => "/user/user_id",
+        'POST Users route' => "/user",
+        'PUT Users route' => "/user",
+        'DELETE Users route' => "/user"
     ]);
 });
+
+
+/**
+ * Bike routes.
+ */
+Route::get('/bike', [BikeController::class, 'getBikes']);
+Route::get('/bike/{bike}', [BikeController::class, 'getBike']);
+Route::get('/bike/city/{city:id}', [BikeController::class, 'getBikesInCity']);
+Route::post('/bike', [BikeController::class, 'createBike']);
+Route::put('/bike', [BikeController::class, 'updateBike']);
+Route::delete('/bike', [BikeController::class, 'deleteBike']);
 
 
 /**
@@ -64,14 +98,16 @@ Route::delete('/station', [StationController::class, 'deleteStation']);
 
 
 /**
- * Bike routes.
+ * Travel Routes.
  */
-Route::get('/bike', [BikeController::class, 'getBikes']);
-Route::get('/bike/{bike}', [BikeController::class, 'getBike']);
-Route::get('/bike/city/{city:id}', [BikeController::class, 'getBikesInCity']);
-Route::post('/bike', [BikeController::class, 'createBike']);
-Route::put('/bike', [BikeController::class, 'updateBike']);
-Route::delete('/bike', [BikeController::class, 'deleteBike']);
+Route::get('/travel', [TravelController::class, 'getTravels']);
+Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
+Route::get('/travel/city/{city:id}', [TravelController::class, 'getTravelingInCity']);
+Route::get('/travel/bike/{bike:id}', [TravelController::class, 'getTravelingWithBike']);
+Route::get('/travel/user/{user:id}', [TravelController::class, 'getTravelingByUser']);
+Route::post('/travel', [TravelController::class, 'createTravel']);
+Route::put('/travel', [TravelController::class, 'updateTravel']);
+Route::delete('/travel', [TravelController::class, 'deleteTravel']);
 
 
 /**
@@ -83,16 +119,3 @@ Route::get('/user/city/{city:id}', [UserController::class, 'getUsersInCity']);
 Route::post('/user', [UserController::class, 'createUser']);
 Route::put('/user', [UserController::class, 'updateUser']);
 Route::delete('/user', [UserController::class, 'deleteUser']);
-
-
-/**
- * Travel Routes.
- */
-Route::get('/travel', [TravelController::class, 'getTravels']);
-Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
-Route::get('/travel/city/{city:id}', [TravelController::class, 'getTravelingInCity']);
-Route::get('/travel/bike/{bike:id}', [TravelController::class, 'getTravelingWithBike']);
-Route::get('/travel/user/{user:id}', [TravelController::class, 'getTravelingByUser']);
-Route::post('/travel', [TravelController::class, 'createTravel']);
-Route::put('/travel', [TravelController::class, 'updateTravel']);
-Route::delete('/travel', [TravelController::class, 'deleteTravel']);

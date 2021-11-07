@@ -101,6 +101,9 @@ class TravelController extends Controller
      *      create new travel in database.
      * @param Request $request
      * @return object
+     *
+     * @todo Update the initialization of a new cravel with more parameters from input.
+     *
      */
     final public function createTravel(Request $request): object
     {

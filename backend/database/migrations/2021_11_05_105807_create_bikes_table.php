@@ -27,6 +27,7 @@ class CreateBikesTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *

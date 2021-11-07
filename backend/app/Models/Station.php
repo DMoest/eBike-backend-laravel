@@ -29,6 +29,7 @@ class Station extends Model
         'capacity',
         'active',
         'adress',
+        'postcode',
         'city_id'
     ];
 

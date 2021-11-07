@@ -71,6 +71,7 @@ class StationController extends Controller
             'capacity' => ['required', 'integer'],
             'active' => ['required', 'integer'],
             'adress' => ['required', 'min:2', 'max:255', Rule::unique('stations', 'adress')],
+            'postcode' => ['required', 'min:5', 'max:6'],
             'city_id' => ['required', 'integer']
         ]);
 

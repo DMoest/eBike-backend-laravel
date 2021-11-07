@@ -24,8 +24,6 @@ class CreateTravelTable extends Migration
             $table->decimal('stop_longitude', 10, 7)->nullable();
             $table->decimal('stop_latitude', 11, 8)->nullable();
 
-            $table->timestamp('start_time')->default(now());
-            $table->timestamp('stop_time')->nullable();
             $table->string('status')->default('active');
             $table->integer('price')->default(10);
             $table->timestamps();

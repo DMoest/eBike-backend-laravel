@@ -29,8 +29,6 @@ class Travel extends Model
         'user_id',
         'bike_id',
         'status',
-        'start_time',
-        'stop_time',
         'start_longitude',
         'stop_latitude',
         'start_longitude',
