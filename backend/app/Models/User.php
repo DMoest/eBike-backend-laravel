@@ -35,7 +35,8 @@ class User extends Authenticatable
         'city_id',
         'phone',
         'email',
-        'password'
+        'password',
+        'payment_method'
     ];
 
     /**

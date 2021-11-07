@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Station;
+use Illuminate\Validation\Rule;
 
 
 /**
@@ -69,7 +70,7 @@ class StationController extends Controller
         $attributes = $request->validate([
             'capacity' => ['required', 'integer'],
             'active' => ['required', 'integer'],
-            'adress' => ['required', 'min:2', 'max:255'],
+            'adress' => ['required', 'min:2', 'max:255', Rule::unique('stations', 'adress')],
             'city_id' => ['required', 'integer']
         ]);
 

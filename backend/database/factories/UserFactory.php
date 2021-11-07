@@ -24,6 +24,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => $this->faker->password(10),
+            'payment_method' => $this->faker->randomElement(['monthly', 'annual', 'credit']),
             'remember_token' => Str::random(10),
         ];
     }

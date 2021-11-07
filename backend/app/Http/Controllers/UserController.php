@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\City;
 use App\Models\User;
-use Illuminate\Http\Response;
 
 
 /**
@@ -77,9 +77,10 @@ class UserController extends Controller
             'adress' => ['required', 'min:2', 'max:255'],
             'postcode' => ['required', 'min:5', 'max:6'],
             'city_id' => ['required'],
-            'phone' => ['required'],
-            'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', 'min:8', 'max:50']
+            'phone' => ['required', Rule::unique('users', 'phone')],
+            'email' => ['required', 'email', 'max:255', Rule::unique('users','email')],
+            'password' => ['required', 'min:8', 'max:50'],
+            'payment_method' => ['required', 'min:8', 'max:25'],
         ]);
 
         return User::create($attributes);

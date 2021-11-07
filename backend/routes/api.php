@@ -47,6 +47,8 @@ Route::get('/', function () {
  */
 Route::get('/city', [CityController::class, 'getCities']);
 Route::get('/city/{city}', [CityController::class, 'getCity']);
+Route::post('/city', [CityController::class, 'addCity']);
+Route::put('/city', [CityController::class, 'updateCity']);
 
 
 /**
