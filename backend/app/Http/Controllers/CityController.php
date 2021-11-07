@@ -38,9 +38,9 @@ class CityController extends Controller
 
     /**
      * @method addCity()
-     * @description Setter method to create a new user.
+     * @description Setter method to add a new city to database.
      *      Validates json input. If validation passes,
-     *      Create New User in database.
+     *      create new city in database table/collection.
      * @param Request $request
      * @return object
      */
@@ -57,8 +57,8 @@ class CityController extends Controller
 
     /**
      * @method updateCity()
-     * @description Setter method to update user in database.
-     *      Get existing user then update it from all request attributes.
+     * @description Setter method to update city in database table/collection.
+     *      Get existing city then update it from all request attributes.
      * @param Request $request
      *
      * @todo Make input validation from request like in add city. Some sort of dynamic way to include specified params to be validated.
@@ -69,6 +69,25 @@ class CityController extends Controller
     {
         $city = City::find($request->id);
         $city->update($request->all());
+
+        return $city;
+    }
+
+
+    /**
+     * @method deleteCity()
+     * @description Setter method to remove city from database table/collection.
+     *      Get existing city then remove it from the database table/collection cities.
+     * @param Request $request
+     *
+     * @todo Make input validation from request like in add city. Some sort of dynamic way to include specified params to be validated.
+     *
+     * @return object
+     */
+    final public function deleteCity(Request $request): object
+    {
+        $city = City::find($request->id);
+        $city->delete($city);
 
         return $city;
     }

@@ -43,7 +43,7 @@ class StationController extends Controller
 
     /**
      * @method getStationsInCity()
-     * @description Getter method to return bikes in specific city.
+     * @description Getter method to return stations in specific city.
      * @param City $city
      * @return string
      */
@@ -61,7 +61,7 @@ class StationController extends Controller
      * @method createStation()
      * @description Setter method to create a new station.
      *      Validates json input. If validation passes,
-     *      Create new station in database.
+     *      create new station in database table/collection.
      * @param Request $request
      * @return object
      */
@@ -89,6 +89,22 @@ class StationController extends Controller
     {
         $station = Station::find($request->id); // TODO validate input from request like in create bike!
         $station->update($request->all());
+
+        return $station;
+    }
+
+
+    /**
+     * @method deleteStation()
+     * @description Setter method to update station in database.
+     *      Get existing station then update it from all request attributes.
+     * @param Request $request
+     * @return object
+     */
+    final public function deleteStation(Request $request): object
+    {
+        $station = Station::find($request->id); // TODO validate input from request like in create bike!
+        $station->delete($request->id);
 
         return $station;
     }

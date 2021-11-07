@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bike;
 use App\Models\City;
+use phpDocumentor\Reflection\Types\Boolean;
 
 
 /**
@@ -56,7 +57,6 @@ class BikeController extends Controller
     }
 
 
-
     /**
      * @method createBike()
      * @description Setter method to create a new bike.
@@ -90,6 +90,22 @@ class BikeController extends Controller
     {
         $bike = Bike::find($request->id); // TODO validate input from request like in create bike!
         $bike->update($request->all());
+
+        return $bike;
+    }
+
+
+    /**
+     * @method deleteBike()
+     * @description Setter method to remove bike from database table/collection.
+     *      Get existing bike then remove it from database table/collection.
+     * @param Request $request
+     * @return object
+     */
+    final public function deleteBike(Request $request): object
+    {
+        $bike = Bike::find($request->id); // TODO validate input from request like in create bike!
+        $bike->delete($bike);
 
         return $bike;
     }

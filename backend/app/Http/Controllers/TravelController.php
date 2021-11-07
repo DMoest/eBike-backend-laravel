@@ -128,4 +128,20 @@ class TravelController extends Controller
 
         return $user;
     }
+
+
+    /**
+     * @method deleteTravel()
+     * @description Setter method to remove travel from database table/collection.
+     *      Get existing travel then remove it from database table/collection.
+     * @param Request $request
+     * @return object
+     */
+    final public function deleteTravel(Request $request): object
+    {
+        $travel = Travel::find($request->id);
+        $travel->delete($travel);
+
+        return $travel;
+    }
 }

@@ -104,4 +104,22 @@ class UserController extends Controller
 
         return $user;
     }
+
+
+    /**
+     * @method deleteUser()
+     * @description Setter method to remove user from database table/collection.
+     *      Get existing user then remove it from database table/collection.
+     * @param Request $request
+     *
+     * @todo Make input validation from request like in create user. Some sort of dynamic way to include specified params to be validated.
+     *
+     * @return object
+     */
+    final public function deleteUser(Request $request): object
+    {
+        $user = User::find($request->id);
+
+        return $user->update($user);
+    }
 }
