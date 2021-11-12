@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Bike;
 use App\Models\City;
-use phpDocumentor\Reflection\Types\Boolean;
 
 
 /**
@@ -17,15 +16,15 @@ class BikeController extends Controller
     /**
      * @method getBikes()
      * @description Getter method to request all bikes from database.
-     * @return string
+     * @return array
      */
-    final public function getBikes(): string
+    final public function getBikes(): array
     {
         $data = [
-            'bikes' => Bike::with('city')->get()
+            'bikes' => Bike::all()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -33,11 +32,11 @@ class BikeController extends Controller
      * @method getBike()
      * @description Getter method to return specific bike from database.
      * @param Bike $bike
-     * @return string
+     * @return object
      */
-    final public function getBike(Bike $bike): string
+    final public function getBike(Bike $bike): object
     {
-        return json_encode($bike);
+        return $bike;
     }
 
 
@@ -45,15 +44,15 @@ class BikeController extends Controller
      * @method getBikesInCity()
      * @description Getter method to return bikes in specific city.
      * @param City $city
-     * @return string
+     * @return array
      */
-    final public function getBikesInCity(City $city): string
+    final public function getBikesInCity(City $city): array
     {
         $data = [
             'bikes' => $city->bikes
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -70,7 +69,7 @@ class BikeController extends Controller
         $attributes = $request->validate([
             'status' => ['required', 'string', 'min:2', 'max:255'],
             'active' => ['required', 'boolean'],
-            'city_id' => ['required', 'integer'],
+            'city' => ['required'],
             'longitude' => [''],
             'latitude' => ['']
         ]);
@@ -88,7 +87,7 @@ class BikeController extends Controller
      */
     final public function updateBike(Request $request): object
     {
-        $bike = Bike::find($request->id); // TODO validate input from request like in create bike!
+        $bike = Bike::find($request->_id); // TODO validate input from request like in create bike!
         $bike->update($request->all());
 
         return $bike;
@@ -104,7 +103,7 @@ class BikeController extends Controller
      */
     final public function deleteBike(Request $request): object
     {
-        $bike = Bike::find($request->id); // TODO validate input from request like in create bike!
+        $bike = Bike::find($request->_id); // TODO validate input from request like in create bike!
         $bike->delete($bike);
 
         return $bike;

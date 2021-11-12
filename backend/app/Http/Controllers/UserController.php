@@ -76,7 +76,7 @@ class UserController extends Controller
             'lastname' => ['required', 'min:2', 'max:255'],
             'adress' => ['required', 'min:2', 'max:255'],
             'postcode' => ['required', 'min:5', 'max:6'],
-            'city_id' => ['required'],
+            'city' => ['required'],
             'phone' => ['required', Rule::unique('users', 'phone')],
             'email' => ['required', 'email', 'max:255', Rule::unique('users','email')],
             'password' => ['required', 'min:8', 'max:50'],

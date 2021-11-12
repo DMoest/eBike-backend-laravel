@@ -18,7 +18,7 @@ class StationFactory extends Factory
             'active' => $this->faker->numberBetween(5, 10),
             'adress' => $this->faker->streetAddress(),
             'postcode' => $this->faker->postcode(),
-            'city_id' => $this->faker->numberBetween(1,6),
+            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Malmö", "Karlskrona", "Umeå", "Västerås"]),
         ];
     }
 }

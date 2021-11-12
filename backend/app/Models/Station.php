@@ -15,24 +15,27 @@ class Station extends Eloquent implements Authenticatable
 
 
     /**
-     * The attributes that are guarded from mass assignable.
-     *
-     * @var string[]
+     * @description Models database connection.
+     * @var string
      */
-    protected array $guarded = ['id'];
+    protected string $database = 'mongodb';
+
+
+    /**
+     * The attributes that are guarded from mass assignable.
+     */
+    protected $guarded = ['_id'];
 
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var string[]
      */
-    protected array $fillable = [
+    protected $fillable = [
         'capacity',
         'active',
         'adress',
         'postcode',
-        'city_id'
+        'city'
     ];
 
 

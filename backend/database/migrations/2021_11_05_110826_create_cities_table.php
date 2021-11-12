@@ -13,11 +13,10 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
-//            $table->id('id')->autoIncrement()->unique();
-            $table->string('name');
-            $table->string('country');
-            $table->timestamps();
+        Schema::create('cities', function (Blueprint $collection) {
+            $collection->string('name');
+            $collection->string('country');
+            $collection->timestamps();
         });
     }
 

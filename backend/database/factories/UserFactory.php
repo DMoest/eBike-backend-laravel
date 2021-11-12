@@ -19,12 +19,13 @@ class UserFactory extends Factory
             'lastname' => $this->faker->lastName(),
             'adress' => $this->faker->streetAddress(),
             'postcode' => $this->faker->postcode(),
-            'city_id' => $this->faker->numberBetween(1,6),
+            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Malmö", "Karlskrona", "Umeå", "Västerås"]),
             'phone' => $this->faker->unique()->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => $this->faker->password(10),
             'payment_method' => $this->faker->randomElement(['monthly', 'annual', 'credit']),
+            'payment_status' => $this->faker->randomElement(['paid', 'unpaid']),
             'remember_token' => Str::random(10),
         ];
     }

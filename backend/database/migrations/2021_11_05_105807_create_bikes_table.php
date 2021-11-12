@@ -13,17 +13,13 @@ class CreateBikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bikes', function (Blueprint $table) {
-//            $table->id()->unique()->autoIncrement();
-            $table->foreignId('city_id');
-            $table->string('status');
-            $table->boolean('active');
-//            $table->string('longitude')->nullable();
-//            $table->string('latitude')->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
-            $table->decimal('latitude', 11, 8)->nullable();
-
-            $table->timestamps();
+        Schema::create('bikes', function (Blueprint $collection) {
+            $collection->foreignId('city');
+            $collection->string('status');
+            $collection->boolean('active');
+            $collection->decimal('longitude', 10, 7)->nullable();
+            $collection->decimal('latitude', 11, 8)->nullable();
+            $collection->timestamps();
         });
     }
 

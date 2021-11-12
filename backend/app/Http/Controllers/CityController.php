@@ -16,11 +16,11 @@ class CityController extends Controller
     /**
      * @method getCities()
      * @description Getter method to request all cities from database.
-     * @return string
+     * @return object
      */
-    final public function getCities(): string
+    final public function getCities(): object
     {
-        return json_encode(City::all());
+        return City::all();
     }
 
 
@@ -28,11 +28,11 @@ class CityController extends Controller
      * @method getCity()
      * @description Getter method to return specific city from database.
      * @param City $city
-     * @return string
+     * @return object
      */
-    final public function getCity(City $city): string
+    final public function getCity(City $city): object
     {
-        return json_encode($city);
+        return $city;
     }
 
 

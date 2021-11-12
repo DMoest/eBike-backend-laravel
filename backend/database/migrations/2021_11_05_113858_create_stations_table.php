@@ -13,14 +13,14 @@ class CreateStationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('stations', function (Blueprint $table) {
-//            $table->id()->autoIncrement()->unique();
-            $table->foreignId('city_id');
-            $table->integer('capacity');
-            $table->integer('active');
-            $table->string('adress');
-            $table->string('postcode');
-            $table->timestamps();
+        Schema::create('stations', function (Blueprint $collection) {
+//            $collection->id()->autoIncrement()->unique();
+            $collection->foreignId('city');
+            $collection->integer('capacity');
+            $collection->integer('active');
+            $collection->string('adress');
+            $collection->string('postcode');
+            $collection->timestamps();
         });
     }
 

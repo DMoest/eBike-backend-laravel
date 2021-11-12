@@ -16,43 +16,46 @@ class User extends Eloquent implements Authenticatable
 
 
     /**
-     * The attributes that are guarded from mass assignable.
-     *
-     * @var string[]
+     * @description Models database connection.
+     * @var string
      */
-    protected $guarded = ['id'];
+    private string $database = 'mongodb';
+
+
+    /**
+     * The attributes that are guarded from mass assignable.
+     */
+    protected $guarded = ['_id'];
+
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var string[]
      */
     protected $fillable = [
         'firstname',
         'lastname',
         'adress',
         'postcode',
-        'city_id',
+        'city',
         'phone',
         'email',
         'password',
-        'payment_method'
+        'payment_method',
+        'payment_status'
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
-     *
-     * @var array
      */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+
     /**
      * The attributes that should be cast.
-     *
-     * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
