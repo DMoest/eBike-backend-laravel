@@ -8,6 +8,7 @@ REST-API for third party application/plugins development.
 
 <br>
 
+
 ## Application usage
 
 ### Setup Database
@@ -23,8 +24,33 @@ apply your settings including database name, database user and database password
 * ```DB_USERNAME``` - This is the name of the user you allow access to the database.
 * ```DB_PASSWORD``` - This is the password for the given user of the database.
 
-In case you wish to run any of the other preconfigured database types available set the connection type in 'config/database.php'.
+In case you wish to run any of the other preconfigured database types available set the connection type in 'config/database.php'. 
+```SQLite``` would be a good recommendation for fast and easy application try out if a MongoDB setup is not wanted. 
+Make sure to uncomment the ```_id``` columns in the migrations since SQLite does not apply automatic id:s for data tables.
 
+<br>
+
+### Seed fake data to the database
+In the factories files you find a setup to seed the database with fake data. 
+To migrate the collections/tables to the database run:
+```
+php artisan migrate
+```
+
+In case you want to rollback/drop the database migrations run:
+```
+php artisan migrate:rollback
+```
+To drop/rollback first and then remigrate the database collections/tables run:
+```
+php artisan migrate:fresh
+```
+While in development and working with the database you often find your self in need to drop, remigrate and seed the database. For this action use:
+```
+php artisan migrate:fresh --seed
+```
+
+<br>
 
 ### Install the application
 After cloning the repository make sure that all the application dependencies are installed correctly.
@@ -38,6 +64,8 @@ make clean-all install
 ```
 There could be a few cache files or unconfigured dependencies affecting the API:s performance.
 
+<br>
+
 ### Start the server
 First make sure to optimize routes, models and other class related objects. 
 Optimization only needs to be done once after first clone or new changes to the application.  
@@ -48,20 +76,13 @@ php artisan optimize
 php artisan serve
 ```
 
-### To reseed the database
-The database will first be reset, then remigrated and reseeded from factories classes and custom data seeders.
-```
-php artisan migrate:fresh --seed
-```
-
-
 ### Make request calls to the API
 Use your preferred request service tool (CURL, Insomnia, Postman... ) or web browser.
 ```
 http://<host adress>/api/<route>
 ```
 
-### View the API registered routes
+### View the available routes for the API
 To view all registered routes on the API you can use this command.
 ```
 php artisan route:list

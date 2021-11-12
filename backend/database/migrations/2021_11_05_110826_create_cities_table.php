@@ -14,6 +14,7 @@ class CreateCitiesTable extends Migration
     public function up()
     {
         Schema::create('cities', function (Blueprint $collection) {
+//            $collection->id('_id')->autoIncrement()->unique();
             $collection->string('name');
             $collection->string('country');
             $collection->timestamps();
