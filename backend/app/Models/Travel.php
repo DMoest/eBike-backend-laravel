@@ -3,28 +3,30 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Auth\Authenticatable as AuthenticateTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class Travel extends Model
+class Travel extends Eloquent implements Authenticatable
 {
+    use AuthenticateTrait;
     use HasFactory;
 
 
     /**
      * The attributes that are guarded from mass assignable.
      *
-     * @var string[]
+     * @var array
      */
-    protected array $guarded = ['id'];
+    protected $guarded = ['id'];
 
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array
      */
-    protected array $fillable = [
+    protected $fillable = [
         'city_id',
         'user_id',
         'bike_id',

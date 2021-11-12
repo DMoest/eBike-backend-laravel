@@ -14,7 +14,7 @@ class CreateTravelTable extends Migration
     public function up()
     {
         Schema::create('travel', function (Blueprint $table) {
-            $table->id()->autoIncrement()->unique();
+//            $table->id()->autoIncrement()->unique();
             $table->foreignId('city_id');
             $table->foreignId('user_id');
             $table->foreignId('bike_id');

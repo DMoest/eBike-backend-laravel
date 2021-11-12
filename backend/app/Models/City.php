@@ -4,31 +4,43 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Auth\Authenticatable as AuthenticateTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 
-class City extends Model
+class City extends Eloquent implements Authenticatable
 {
+    use AuthenticateTrait;
     use HasFactory;
 
+    protected string $database = 'mongodb';
+    protected string $collection = 'cities';
 
     /**
      * The attributes that are guarded from mass assignable.
      *
-     * @var string[]
+     * @var array
      */
-    protected array $guarded = ['id'];
+    protected $guarded = ['id'];
 
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array
      */
-    protected array $fillable = [
+    protected $fillable = [
         'name',
         'country'
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $dates = ['email_verified_at'];
 
 
     /**

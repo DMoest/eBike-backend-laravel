@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Auth\Authenticatable as AuthenticateTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 
-class Bike extends Model
+class Bike extends Eloquent implements Authenticatable
 {
+    use AuthenticateTrait;
     use HasFactory;
 
 

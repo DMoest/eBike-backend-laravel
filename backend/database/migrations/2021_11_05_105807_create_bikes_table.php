@@ -14,7 +14,7 @@ class CreateBikesTable extends Migration
     public function up()
     {
         Schema::create('bikes', function (Blueprint $table) {
-            $table->id()->unique()->autoIncrement();
+//            $table->id()->unique()->autoIncrement();
             $table->foreignId('city_id');
             $table->string('status');
             $table->boolean('active');
