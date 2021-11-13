@@ -1,16 +1,20 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
-use Illuminate\Auth\Authenticatable as AuthenticateTrait;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 
-class Station extends Eloquent implements Authenticatable
+/**
+ * Model for Station.
+ * Defines primary keys and the relations to other data models.
+ * Enables/disables mass assigning columns in collections.
+ */
+class Station extends Eloquent
 {
-    use AuthenticateTrait;
     use HasFactory;
 
 
@@ -22,14 +26,14 @@ class Station extends Eloquent implements Authenticatable
 
 
     /**
-     * The attributes that are guarded from mass assignable.
+     * PrimaryKey is the collections primary key.
+     * Guarded are the attributes that are guarded from mass assignable.
+     * Fillable are attributes that are mass assignable.
+     * Cast are the attributes that should be type cast.
      */
+    protected $primaryKey = '_id';
     protected $guarded = ['_id'];
-
-
-    /**
-     * The attributes that are mass assignable.
-     */
+    protected $casts = [ '_id' => 'string' ];
     protected $fillable = [
         'capacity',
         'active',
@@ -46,6 +50,6 @@ class Station extends Eloquent implements Authenticatable
      */
     final public function city(): object
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, '_id' );
     }
 }

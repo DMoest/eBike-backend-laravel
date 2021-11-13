@@ -21,15 +21,15 @@ class UserController extends Controller
     /**
      * @method getUsers()
      * @description Getter method to request all users from database.
-     * @return string
+     * @return array
      */
-    final public function getUsers(): string
+    final public function getUsers(): array
     {
         $data = [
-            'users' => User::with('city')->get()
+            'users' => User::all()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -37,11 +37,11 @@ class UserController extends Controller
      * @method getUser()
      * @description Getter method to return specific user from database.
      * @param User $user
-     * @return string
+     * @return object
      */
-    final public function getUser(User $user): string
+    final public function getUser(User $user): object
     {
-        return json_encode($user);
+        return $user;
     }
 
 
@@ -49,15 +49,15 @@ class UserController extends Controller
      * @method getUsersInCity()
      * @description Getter method to return bikes in specific city.
      * @param City $city
-     * @return string
+     * @return array
      */
-    final public function getUsersInCity(City $city): string
+    final public function getUsersInCity(City $city): array
     {
         $data = [
-            'users' => $city->users
+            'users' => User::where('city', $city->name)->get()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -71,19 +71,20 @@ class UserController extends Controller
      */
     final public function createUser(Request $request): object
     {
-        $attributes = $request->validate([
-            'firstname' => ['required', 'min:2', 'max:255'],
-            'lastname' => ['required', 'min:2', 'max:255'],
-            'adress' => ['required', 'min:2', 'max:255'],
-            'postcode' => ['required', 'min:5', 'max:6'],
-            'city' => ['required'],
-            'phone' => ['required', Rule::unique('users', 'phone')],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users','email')],
-            'password' => ['required', 'min:8', 'max:50'],
-            'payment_method' => ['required', 'min:8', 'max:25'],
-        ]);
+//        $attributes = $request->validate([
+//            'firstname' => ['required', 'min:2', 'max:255'],
+//            'lastname' => ['required', 'min:2', 'max:255'],
+//            'adress' => ['required', 'min:2', 'max:255'],
+//            'postcode' => ['required', 'min:5', 'max:6'],
+//            'city' => ['required'],
+//            'phone' => ['required', Rule::unique('users', 'phone')],
+//            'email' => ['required', 'email', 'max:255', Rule::unique('users','email')],
+//            'password' => ['required', 'min:8', 'max:50'],
+//            'payment_method' => ['required', 'min:8', 'max:25'],
+//            'payment_status' => ['required']
+//        ]);
 
-        return User::create($attributes);
+        return User::create($request->all());
     }
 
 
@@ -99,7 +100,7 @@ class UserController extends Controller
      */
     final public function updateUser(Request $request): object
     {
-        $user = User::find($request->id);
+        $user = User::find($request->_id);
         $user->update($request->all());
 
         return $user;
@@ -118,8 +119,9 @@ class UserController extends Controller
      */
     final public function deleteUser(Request $request): object
     {
-        $user = User::find($request->id);
+        $user = User::find($request->_id);
+        $user->delete($user);
 
-        return $user->update($user);
+        return $user;
     }
 }

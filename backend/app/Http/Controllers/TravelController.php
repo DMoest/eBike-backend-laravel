@@ -22,15 +22,15 @@ class TravelController extends Controller
     /**
      * @method getTravels()
      * @description Getter method to request all travels from database.
-     * @return string
+     * @return array
      */
-    final public function getTravels(): string
+    final public function getTravels(): array
     {
         $data = [
             'travels' => Travel::with('city', 'bike')->get()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -38,11 +38,11 @@ class TravelController extends Controller
      * @method getTravel()
      * @description Getter method to return specific travel from database.
      * @param Travel $travel
-     * @return string
+     * @return object
      */
-    final public function getTravel(Travel $travel): string
+    final public function getTravel(Travel $travel): object
     {
-        return json_encode($travel);
+        return $travel;
     }
 
 
@@ -50,15 +50,15 @@ class TravelController extends Controller
      * @method getTravelingInCity()
      * @description Getter method to return traveling in specific city.
      * @param City $city
-     * @return string
+     * @return array
      */
-    final public function getTravelingInCity(City $city): string
+    final public function getTravelingInCity(City $city): array
     {
         $data = [
-            'city_travels' => $city->travels
+            'city_travels' => Travel::where('city', $city->name)->get()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -66,15 +66,15 @@ class TravelController extends Controller
      * @method getTravelingWithBike()
      * @description Getter method to return traveling with specific bike.
      * @param Bike $bike
-     * @return string
+     * @return array
      */
-    final public function getTravelingWithBike(Bike $bike): string
+    final public function getTravelingWithBike(Bike $bike): array
     {
         $data = [
-            'bike_travels' => $bike->travels
+            'bike_travels' => Travel::where('bike_id', $bike->_id)->get()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -82,15 +82,15 @@ class TravelController extends Controller
      * @method getTravelingByUser()
      * @description Getter method to return traveling in specific city.
      * @param User $user
-     * @return string
+     * @return array
      */
-    final public function getTravelingByUser(User $user): string
+    final public function getTravelingByUser(User $user): array
     {
         $data = [
-            'user_travels' => $user->travels
+            'user_travels' => Travel::where('user_id', $user->_id)->get()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -126,7 +126,7 @@ class TravelController extends Controller
      */
     final public function updateTravel(Request $request): object
     {
-        $user = Travel::find($request->id);
+        $user = Travel::find($request->_id);
         $user->update($request->all());
 
         return $user;
@@ -142,7 +142,7 @@ class TravelController extends Controller
      */
     final public function deleteTravel(Request $request): object
     {
-        $travel = Travel::find($request->id);
+        $travel = Travel::find($request->_id);
         $travel->delete($travel);
 
         return $travel;

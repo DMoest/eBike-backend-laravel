@@ -15,7 +15,7 @@ class CreateBikesTable extends Migration
     {
         Schema::create('bikes', function (Blueprint $collection) {
 //            $collection->id('_id')->autoIncrement()->unique();
-            $collection->foreignId('city');
+            $collection->string('city');
             $collection->string('status');
             $collection->boolean('active');
             $collection->decimal('longitude', 10, 7)->nullable();

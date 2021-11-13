@@ -49,7 +49,8 @@ class BikeController extends Controller
     final public function getBikesInCity(City $city): array
     {
         $data = [
-            'bikes' => $city->bikes
+            'bikes' => Bike::where('city', $city->name)->get()
+//            'bikes' => $city->bikes
         ];
 
         return $data;

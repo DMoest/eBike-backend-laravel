@@ -69,7 +69,7 @@ Route::get('/', function () {
  * Bike routes.
  */
 Route::get('/bike', [BikeController::class, 'getBikes']);
-Route::get('/bike/{bike}', [BikeController::class, 'getBike']);
+Route::get('/bike/{bike:_id}', [BikeController::class, 'getBike']);
 Route::get('/bike/city/{city:name}', [BikeController::class, 'getBikesInCity']);
 Route::post('/bike', [BikeController::class, 'createBike']);
 Route::put('/bike', [BikeController::class, 'updateBike']);
@@ -90,7 +90,7 @@ Route::delete('/city', [CityController::class, 'deleteCity']);
  * Station routes.
  */
 Route::get('/station', [StationController::class, 'getStations']);
-Route::get('/station/{station}', [StationController::class, 'getStation']);
+Route::get('/station/{station:_id}', [StationController::class, 'getStation']);
 Route::get('/station/city/{city:name}', [StationController::class, 'getStationsInCity']);
 Route::post('/station', [StationController::class, 'createStation']);
 Route::put('/station', [StationController::class, 'updateStation']);
@@ -103,8 +103,8 @@ Route::delete('/station', [StationController::class, 'deleteStation']);
 Route::get('/travel', [TravelController::class, 'getTravels']);
 Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
 Route::get('/travel/city/{city:name}', [TravelController::class, 'getTravelingInCity']);
-Route::get('/travel/bike/{bike:id}', [TravelController::class, 'getTravelingWithBike']);
-Route::get('/travel/user/{user:id}', [TravelController::class, 'getTravelingByUser']);
+Route::get('/travel/bike/{bike:_id}', [TravelController::class, 'getTravelingWithBike']);
+Route::get('/travel/user/{user:_id}', [TravelController::class, 'getTravelingByUser']);
 Route::post('/travel', [TravelController::class, 'createTravel']);
 Route::put('/travel', [TravelController::class, 'updateTravel']);
 Route::delete('/travel', [TravelController::class, 'deleteTravel']);
@@ -114,7 +114,7 @@ Route::delete('/travel', [TravelController::class, 'deleteTravel']);
  * User Routes.
  */
 Route::get('/user', [UserController::class, 'getUsers']);
-Route::get('/user/{user}', [UserController::class, 'getUser']);
+Route::get('/user/{user:_id}', [UserController::class, 'getUser']);
 Route::get('/user/city/{city:name}', [UserController::class, 'getUsersInCity']);
 Route::post('/user', [UserController::class, 'createUser']);
 Route::put('/user', [UserController::class, 'updateUser']);

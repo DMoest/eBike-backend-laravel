@@ -1,7 +1,9 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
@@ -9,10 +11,15 @@ use Illuminate\Auth\Authenticatable as AuthenticateTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 
+
+/**
+ * Model for User.
+ * Defines primary keys and the relations to other data models.
+ * Enables/disables mass assigning columns in collections.
+ */
 class User extends Eloquent implements Authenticatable
 {
-    use AuthenticateTrait;
-    use HasApiTokens, HasFactory, Notifiable;
+    use AuthenticateTrait, HasApiTokens, HasFactory, Notifiable;
 
 
     /**
@@ -23,14 +30,14 @@ class User extends Eloquent implements Authenticatable
 
 
     /**
-     * The attributes that are guarded from mass assignable.
+     * PrimaryKey is the collections primary key.
+     * Guarded are the attributes that are guarded from mass assignable.
+     * Fillable are attributes that are mass assignable.
+     * Cast are the attributes that should be type cast.
+     * Hidden are the attributes that should be hidden for serialization.
      */
+    protected $primaryKey = '_id';
     protected $guarded = ['_id'];
-
-
-    /**
-     * The attributes that are mass assignable.
-     */
     protected $fillable = [
         'firstname',
         'lastname',
@@ -43,23 +50,8 @@ class User extends Eloquent implements Authenticatable
         'payment_method',
         'payment_status'
     ];
-
-
-    /**
-     * The attributes that should be hidden for serialization.
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-
-    /**
-     * The attributes that should be cast.
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    protected $hidden = [ 'password', 'remember_token' ];
+    protected $casts = [ 'email_verified_at' => 'datetime' ];
 
 
     /**
@@ -80,7 +72,7 @@ class User extends Eloquent implements Authenticatable
      */
     final public function city(): object
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, '_id', 'name');
     }
 
 
@@ -91,6 +83,6 @@ class User extends Eloquent implements Authenticatable
      */
     final public function travels(): object
     {
-        return $this->hasMany(Travel::class);
+        return $this->hasMany(Travel::class, '_id');
     }
 }

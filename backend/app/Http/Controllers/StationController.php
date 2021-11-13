@@ -17,15 +17,15 @@ class StationController extends Controller
     /**
      * @method getStations()
      * @description Getter method to request all stations from database.
-     * @return string
+     * @return array
      */
-    final public function getStations(): string
+    final public function getStations(): array
     {
         $data = [
-            'stations' => Station::with('city')->get()
+            'stations' => Station::all()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -37,7 +37,7 @@ class StationController extends Controller
      */
     final public function getStation(Station $station): string
     {
-        return json_encode($station);
+        return $station;
     }
 
 
@@ -45,15 +45,15 @@ class StationController extends Controller
      * @method getStationsInCity()
      * @description Getter method to return stations in specific city.
      * @param City $city
-     * @return string
+     * @return array
      */
-    final public function getStationsInCity(City $city): string
+    final public function getStationsInCity(City $city): array
     {
         $data = [
-            'stations' => $city->stations
+            'city_stations' => Station::where('city', $city->name)->get()
         ];
 
-        return json_encode($data);
+        return $data;
     }
 
 
@@ -88,7 +88,7 @@ class StationController extends Controller
      */
     final public function updateStation(Request $request): object
     {
-        $station = Station::find($request->id); // TODO validate input from request like in create bike!
+        $station = Station::find($request->_id); // TODO validate input from request like in create bike!
         $station->update($request->all());
 
         return $station;
@@ -104,8 +104,8 @@ class StationController extends Controller
      */
     final public function deleteStation(Request $request): object
     {
-        $station = Station::find($request->id); // TODO validate input from request like in create bike!
-        $station->delete($request->id);
+        $station = Station::find($request->_id); // TODO validate input from request like in create bike!
+        $station->delete($request->_id);
 
         return $station;
     }

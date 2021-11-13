@@ -76,11 +76,15 @@ php artisan optimize
 php artisan serve
 ```
 
+<br>
+
 ### Make request calls to the API
 Use your preferred request service tool (CURL, Insomnia, Postman... ) or web browser.
 ```
-http://<host adress>/api/<route>
+http://<host adress>/api/<route add on>
 ```
+
+<br>
 
 ### View the available routes for the API
 To view all registered routes on the API you can use this command.
@@ -88,12 +92,14 @@ To view all registered routes on the API you can use this command.
 php artisan route:list
 ```
 
+<br>
 
 ### Unit test the server
 ```
 php artisan test
 ```
 
+<br>
 <br>
 
 This project is a part of the course Frameworks & Design Patterns @ Blekinge Institute of Technologies.

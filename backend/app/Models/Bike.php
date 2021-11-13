@@ -1,12 +1,18 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Models;
-
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 
+/**
+ * Model for Bike.
+ * Defines primary keys and the relations to other data models.
+ * Enables/disables mass assigning columns in collections.
+ */
 class Bike extends Eloquent
 {
     use HasFactory;
@@ -20,14 +26,14 @@ class Bike extends Eloquent
 
 
     /**
-     * The attributes that are guarded from mass assignable.
+     * PrimaryKey is the collections primary key.
+     * Guarded are the attributes that are guarded from mass assignable.
+     * Fillable are attributes that are mass assignable.
+     * Cast are the attributes that should be type cast.
      */
-    protected $guarded = ["_id"];
-
-
-    /**
-     * The attributes that are mass assignable.
-     */
+    protected $primaryKey = "_id";
+    protected $guarded = [ "_id" ];
+    protected $casts = [ "_id" => "string" ];
     protected $fillable = [
         'city',
         'status',
@@ -44,7 +50,7 @@ class Bike extends Eloquent
      */
     final public function city(): object
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, '_id', 'name');
     }
 
 
@@ -55,6 +61,6 @@ class Bike extends Eloquent
      */
     final public function travels(): object
     {
-        return $this->hasMany(Travel::class);
+        return $this->hasMany(Travel::class, '_id');
     }
 }

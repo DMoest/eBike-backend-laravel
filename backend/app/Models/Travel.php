@@ -1,11 +1,18 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 
+/**
+ * Model for Travels.
+ * Defines primary keys and the relations to other data models.
+ * Enables/disables mass assigning columns in collections.
+ */
 class Travel extends Eloquent
 {
     use HasFactory;
@@ -18,30 +25,25 @@ class Travel extends Eloquent
     protected string $database = 'mongodb';
 
 
-//    /**
-//     * The attributes that are guarded from mass assignable.
-//     *
-//     * @var array
-//     */
-//    protected array $guarded = ['_id'];
-//
-//
-//    /**
-//     * The attributes that are mass assignable.
-//     *
-//     * @var array
-//     */
-//    protected array $fillable = [
-//        'city_id',
-//        'user_id',
-//        'bike_id',
-//        'status',
-//        'start_longitude',
-//        'stop_latitude',
-//        'start_longitude',
-//        'stop_latitude',
-//        'price'
-//    ];
+    /**
+     * PrimaryKey is the collections primary key.
+     * Guarded are the attributes that are guarded from mass assignable.
+     * Fillable are attributes that are mass assignable.
+     * Cast are the attributes that should be type cast.
+     */
+    protected $primaryKey = '_id';
+    protected $guarded = ['_id'];
+    protected $fillable = [
+        'city',
+        'user_id',
+        'bike_id',
+        'status',
+        'start_longitude',
+        'stop_latitude',
+        'start_longitude',
+        'stop_latitude',
+        'price'
+    ];
 
 
     /**
@@ -51,7 +53,7 @@ class Travel extends Eloquent
      */
     final public function bike(): object
     {
-        return $this->belongsTo(Bike::class);
+        return $this->belongsTo(Bike::class, '_id');
     }
 
 
@@ -62,7 +64,7 @@ class Travel extends Eloquent
      */
     final public function city(): object
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class, '_id');
     }
 
 
@@ -73,6 +75,6 @@ class Travel extends Eloquent
      */
     final public function user(): object
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, '_id');
     }
 }

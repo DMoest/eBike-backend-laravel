@@ -67,7 +67,7 @@ class CityController extends Controller
      */
     final public function updateCity(Request $request): object
     {
-        $city = City::find($request->id);
+        $city = City::find($request->_id);
         $city->update($request->all());
 
         return $city;
@@ -86,7 +86,7 @@ class CityController extends Controller
      */
     final public function deleteCity(Request $request): object
     {
-        $city = City::find($request->id);
+        $city = City::find($request->_id);
         $city->delete($city);
 
         return $city;
