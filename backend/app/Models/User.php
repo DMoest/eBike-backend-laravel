@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Illuminate\Auth\Authenticatable as AuthenticateTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Jenssegers\Mongodb\Relations\BelongsTo;
+use Jenssegers\Mongodb\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 
 
@@ -37,8 +39,9 @@ class User extends Eloquent implements Authenticatable
      * Hidden are the attributes that should be hidden for serialization.
      */
     protected $primaryKey = '_id';
-    protected $guarded = ['_id'];
+    protected $guarded = ['_id', 'provider_id'];
     protected $fillable = [
+        'provider_id',
         'firstname',
         'lastname',
         'adress',
@@ -84,5 +87,16 @@ class User extends Eloquent implements Authenticatable
     final public function travels(): object
     {
         return $this->hasMany(Travel::class, '_id');
+    }
+
+
+    /**
+     * @method linkedSocialAccounts()
+     * @description Relation mapping, a user can has many social accounts to login with.
+     * @return HasMany
+     */
+    final public function linkedSocialAccounts(): object
+    {
+        return $this->hasMany(LinkedSocialAccount::class);
     }
 }
