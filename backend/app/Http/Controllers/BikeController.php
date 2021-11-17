@@ -1,7 +1,11 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Http\Controllers;
-
+use http\Env\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Bike;
 use App\Models\City;
@@ -16,15 +20,23 @@ class BikeController extends Controller
     /**
      * @method getBikes()
      * @description Getter method to request all bikes from database.
-     * @return string
+     * @return JsonResponse
      */
-    final public function getBikes(): string
+    final public function getBikes(): JsonResponse
     {
         $data = [
             'bikes' => Bike::all()
         ];
 
-        return utf8_encode($data);
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -32,11 +44,19 @@ class BikeController extends Controller
      * @method getBike()
      * @description Getter method to return specific bike from database.
      * @param Bike $bike
-     * @return string
+     * @return JsonResponse
      */
-    final public function getBike(Bike $bike): string
+    final public function getBike(Bike $bike): JsonResponse
     {
-        return utf8_encode($bike);
+        return response()->json(
+            $bike,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -44,16 +64,23 @@ class BikeController extends Controller
      * @method getBikesInCity()
      * @description Getter method to return bikes in specific city.
      * @param City $city
-     * @return string
+     * @return JsonResponse
      */
-    final public function getBikesInCity(City $city): string
+    final public function getBikesInCity(City $city): JsonResponse
     {
         $data = [
             'bikes' => Bike::where('city', $city->name)->get()
-//            'bikes' => $city->bikes
         ];
 
-        return utf8_encode($data);
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -63,9 +90,9 @@ class BikeController extends Controller
      *      Validates json input. If validation passes,
      *      Create new bike in database.
      * @param Request $request
-     * @return string
+     * @return JsonResponse
      */
-    final public function createBike(Request $request): string
+    final public function createBike(Request $request): JsonResponse
     {
         $attributes = $request->validate([
             'status' => ['required', 'string', 'min:2', 'max:255'],
@@ -76,9 +103,17 @@ class BikeController extends Controller
             'speed' => ['']
         ]);
 
-        $newBike = Bike::create(utf8_encode($attributes));
+        $newBike = Bike::create($attributes);
 
-        return utf8_encode($newBike);
+        return response()->json(
+            $newBike,
+            201,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -87,14 +122,22 @@ class BikeController extends Controller
      * @description Setter method to update bike in database.
      *      Get existing bike then update it from all request attributes.
      * @param Request $request
-     * @return string
+     * @return JsonResponse
      */
-    final public function updateBike(Request $request): string
+    final public function updateBike(Request $request): JsonResponse
     {
         $bike = Bike::find($request->_id); // TODO validate input from request like in create bike!
-        $bike->update(utf8_encode($request->all()));
+        $bike->update($request->all());
 
-        return utf8_encode($bike);
+        return response()->json(
+            $bike,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -103,13 +146,21 @@ class BikeController extends Controller
      * @description Setter method to remove bike from database table/collection.
      *      Get existing bike then remove it from database table/collection.
      * @param Request $request
-     * @return string
+     * @return JsonResponse
      */
-    final public function deleteBike(Request $request): string
+    final public function deleteBike(Request $request): JsonResponse
     {
         $bike = Bike::find($request->_id); // TODO validate input from request like in create bike!
         $bike->delete($bike);
 
-        return utf8_encode($bike);
+        return response()->json(
+            $bike,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 }

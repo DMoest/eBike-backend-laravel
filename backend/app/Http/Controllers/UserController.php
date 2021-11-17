@@ -1,7 +1,10 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Http\Controllers;
-
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\City;
@@ -21,15 +24,21 @@ class UserController extends Controller
     /**
      * @method getUsers()
      * @description Getter method to request all users from database.
-     * @return string
+     * @return JsonResponse
      */
-    final public function getUsers(): string
+    final public function getUsers(): JsonResponse
     {
-        $data = [
-            'users' => User::all()
-        ];
+        $data = User::all();
 
-        return utf8_encode($data);
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -37,11 +46,19 @@ class UserController extends Controller
      * @method getUser()
      * @description Getter method to return specific user from database.
      * @param User $user
-     * @return string
+     * @return JsonResponse
      */
-    final public function getUser(User $user): string
+    final public function getUser(User $user): JsonResponse
     {
-        return utf8_encode($user);
+        return response()->json(
+            $user,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -49,15 +66,21 @@ class UserController extends Controller
      * @method getUsersInCity()
      * @description Getter method to return bikes in specific city.
      * @param City $city
-     * @return string
+     * @return JsonResponse
      */
-    final public function getUsersInCity(City $city): string
+    final public function getUsersInCity(City $city): JsonResponse
     {
-        $data = [
-            'users' => User::where('city', $city->name)->get()
-        ];
+        $data = User::where('city', $city->name)->get();
 
-        return utf8_encode($data);
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -86,7 +109,17 @@ class UserController extends Controller
 //            'payment_status' => ['required']
 //        ]);
 
-        return User::create(utf8_encode($request->all()));
+        $newUser = User::create($request->all());
+
+        return response()->json(
+            $newUser,
+            201,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -105,7 +138,15 @@ class UserController extends Controller
         $user = User::find($request->_id);
         $user->update($request->all());
 
-        return utf8_encode($user);
+        return response()->json(
+            $user,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -124,6 +165,14 @@ class UserController extends Controller
         $user = User::find($request->_id);
         $user->delete($user);
 
-        return utf8_encode($user);
+        return response()->json(
+            $user,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 }
