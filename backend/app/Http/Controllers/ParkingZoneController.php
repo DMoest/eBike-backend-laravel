@@ -23,7 +23,7 @@ class ParkingZoneController extends Controller
      */
     final public function getParingZones(): JsonResponse
     {
-        $data = ParkingZone::all();
+        $data = [ 'parking_zones' => ParkingZone::all() ];
 
         return response()->json(
             $data,
@@ -65,7 +65,7 @@ class ParkingZoneController extends Controller
      */
     final public function getParkingZonesInCity(City $city): JsonResponse
     {
-        $data = ParkingZone::where('city', $city->name)->get();
+        $data = [ 'parking_zones' => ParkingZone::where('city', $city->name)->get() ];
 
         return response()->json(
             $data,

@@ -28,7 +28,9 @@ class UserController extends Controller
      */
     final public function getUsers(): JsonResponse
     {
-        $data = User::all();
+        $data = [
+            'users' => User::all()
+        ];
 
         return response()->json(
             $data,
@@ -70,7 +72,7 @@ class UserController extends Controller
      */
     final public function getUsersInCity(City $city): JsonResponse
     {
-        $data = User::where('city', $city->name)->get();
+        $data = [ 'users' => User::where('city', $city->name)->get() ];
 
         return response()->json(
             $data,

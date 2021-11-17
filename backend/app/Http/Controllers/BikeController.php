@@ -24,7 +24,7 @@ class BikeController extends Controller
      */
     final public function getBikes(): JsonResponse
     {
-        $data = Bike::all();
+        $data = [ 'bikes' => Bike::all() ];
 
         return response()->json(
             $data,
@@ -66,7 +66,7 @@ class BikeController extends Controller
      */
     final public function getBikesInCity(City $city): JsonResponse
     {
-        $data = Bike::where('city', $city->name)->get();
+        $data = [ 'bikes' => Bike::where('city', $city->name)->get() ];
 
         return response()->json(
             $data,

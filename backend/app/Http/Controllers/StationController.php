@@ -24,7 +24,7 @@ class StationController extends Controller
      */
     final public function getStations(): JsonResponse
     {
-        $data = Station::all();
+        $data = [ 'stations' => Station::all() ];
 
         return response()->json(
             $data,
@@ -66,7 +66,7 @@ class StationController extends Controller
      */
     final public function getStationsInCity(City $city): JsonResponse
     {
-        $data = Station::where('city', $city->name)->get();
+        $data = [ 'stations' => Station::where('city', $city->name)->get() ];
 
         return response()->json(
             $data,
