@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Declared namespaces in use.
+ */
 use App\Http\Controllers\TravelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -7,6 +10,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\AuthenticationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +68,13 @@ Route::get('/', function () {
         'DELETE Users route' => "/user"
     ]);
 });
+
+
+///**
+// * Authentication Route.
+// */
+//Route::get('/auth/github', [AuthenticationController::class, 'redirectToProvider']);
+//Route::get('/auth/github/callback', [AuthenticationController::class, 'providerCallback']);
 
 
 /**
