@@ -16,11 +16,11 @@ class CityController extends Controller
     /**
      * @method getCities()
      * @description Getter method to request all cities from database.
-     * @return object
+     * @return string
      */
-    final public function getCities(): object
+    final public function getCities(): string
     {
-        return City::all();
+        return utf8_encode(City::all());
     }
 
 
@@ -28,11 +28,11 @@ class CityController extends Controller
      * @method getCity()
      * @description Getter method to return specific city from database.
      * @param City $city
-     * @return object
+     * @return string
      */
-    final public function getCity(City $city): object
+    final public function getCity(City $city): string
     {
-        return $city;
+        return utf8_encode($city);
     }
 
 
@@ -42,16 +42,16 @@ class CityController extends Controller
      *      Validates json input. If validation passes,
      *      create new city in database table/collection.
      * @param Request $request
-     * @return object
+     * @return string
      */
-    final public function addCity(Request $request): object
+    final public function addCity(Request $request): string
     {
         $attributes = $request->validate([
             'name' => ['required', 'min:2', 'max:255', Rule::unique('cities', 'name')],
             'country' => ['required', 'min:2', 'max:255'],
         ]);
 
-        return City::create($attributes);
+        return City::create(utf8_encode($attributes));
     }
 
 
@@ -63,14 +63,14 @@ class CityController extends Controller
      *
      * @todo Make input validation from request like in add city. Some sort of dynamic way to include specified params to be validated.
      *
-     * @return object
+     * @return string
      */
-    final public function updateCity(Request $request): object
+    final public function updateCity(Request $request): string
     {
         $city = City::find($request->_id);
         $city->update($request->all());
 
-        return $city;
+        return utf8_encode($city);
     }
 
 
@@ -82,13 +82,13 @@ class CityController extends Controller
      *
      * @todo Make input validation from request like in add city. Some sort of dynamic way to include specified params to be validated.
      *
-     * @return object
+     * @return string
      */
-    final public function deleteCity(Request $request): object
+    final public function deleteCity(Request $request): string
     {
         $city = City::find($request->_id);
         $city->delete($city);
 
-        return $city;
+        return utf8_encode($city);
     }
 }

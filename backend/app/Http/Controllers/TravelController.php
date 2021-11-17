@@ -22,15 +22,15 @@ class TravelController extends Controller
     /**
      * @method getTravels()
      * @description Getter method to request all travels from database.
-     * @return array
+     * @return string
      */
-    final public function getTravels(): array
+    final public function getTravels(): string
     {
         $data = [
             'travels' => Travel::with('city', 'bike')->get()
         ];
 
-        return $data;
+        return utf8_encode($data);
     }
 
 
@@ -38,11 +38,11 @@ class TravelController extends Controller
      * @method getTravel()
      * @description Getter method to return specific travel from database.
      * @param Travel $travel
-     * @return object
+     * @return string
      */
-    final public function getTravel(Travel $travel): object
+    final public function getTravel(Travel $travel): string
     {
-        return $travel;
+        return utf8_encode($travel);
     }
 
 
@@ -50,15 +50,15 @@ class TravelController extends Controller
      * @method getTravelingInCity()
      * @description Getter method to return traveling in specific city.
      * @param City $city
-     * @return array
+     * @return string
      */
-    final public function getTravelingInCity(City $city): array
+    final public function getTravelingInCity(City $city): string
     {
         $data = [
             'city_travels' => Travel::where('city', $city->name)->get()
         ];
 
-        return $data;
+        return utf8_encode($data);
     }
 
 
@@ -66,15 +66,15 @@ class TravelController extends Controller
      * @method getTravelingWithBike()
      * @description Getter method to return traveling with specific bike.
      * @param Bike $bike
-     * @return array
+     * @return string
      */
-    final public function getTravelingWithBike(Bike $bike): array
+    final public function getTravelingWithBike(Bike $bike): string
     {
         $data = [
             'bike_travels' => Travel::where('bike_id', $bike->_id)->get()
         ];
 
-        return $data;
+        return utf8_encode($data);
     }
 
 
@@ -82,15 +82,15 @@ class TravelController extends Controller
      * @method getTravelingByUser()
      * @description Getter method to return traveling in specific city.
      * @param User $user
-     * @return array
+     * @return string
      */
-    final public function getTravelingByUser(User $user): array
+    final public function getTravelingByUser(User $user): string
     {
         $data = [
             'user_travels' => Travel::where('user_id', $user->_id)->get()
         ];
 
-        return $data;
+        return utf8_encode($data);
     }
 
 
@@ -102,7 +102,7 @@ class TravelController extends Controller
      * @param Request $request
      * @return object
      *
-     * @todo Update the initialization of a new cravel with more parameters from input.
+     * @todo Update the initialization of a new travel with validation for more parameters from input.
      *
      */
     final public function createTravel(Request $request): object
@@ -113,7 +113,7 @@ class TravelController extends Controller
             'bike_id' => ['Required', 'integer']
         ]);
 
-        return Travel::create($request->all());
+        return Travel::create(utf8_encode($request->all()));
     }
 
 
@@ -122,14 +122,14 @@ class TravelController extends Controller
      * @description Setter method to update travel in database.
      *      Get existing travel then update it from all request attributes.
      * @param Request $request
-     * @return object
+     * @return string
      */
-    final public function updateTravel(Request $request): object
+    final public function updateTravel(Request $request): string
     {
         $user = Travel::find($request->_id);
         $user->update($request->all());
 
-        return $user;
+        return utf8_encode($user);
     }
 
 
@@ -138,13 +138,13 @@ class TravelController extends Controller
      * @description Setter method to remove travel from database table/collection.
      *      Get existing travel then remove it from database table/collection.
      * @param Request $request
-     * @return object
+     * @return string
      */
-    final public function deleteTravel(Request $request): object
+    final public function deleteTravel(Request $request): string
     {
         $travel = Travel::find($request->_id);
         $travel->delete($travel);
 
-        return $travel;
+        return utf8_encode($travel);
     }
 }

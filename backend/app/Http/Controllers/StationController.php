@@ -17,15 +17,15 @@ class StationController extends Controller
     /**
      * @method getStations()
      * @description Getter method to request all stations from database.
-     * @return array
+     * @return string
      */
-    final public function getStations(): array
+    final public function getStations(): string
     {
         $data = [
             'stations' => Station::all()
         ];
 
-        return $data;
+        return utf8_encode($data);
     }
 
 
@@ -37,7 +37,7 @@ class StationController extends Controller
      */
     final public function getStation(Station $station): string
     {
-        return $station;
+        return utf8_encode($station);
     }
 
 
@@ -45,15 +45,15 @@ class StationController extends Controller
      * @method getStationsInCity()
      * @description Getter method to return stations in specific city.
      * @param City $city
-     * @return array
+     * @return string
      */
-    final public function getStationsInCity(City $city): array
+    final public function getStationsInCity(City $city): string
     {
         $data = [
             'city_stations' => Station::where('city', $city->name)->get()
         ];
 
-        return $data;
+        return utf8_encode($data);
     }
 
 
@@ -75,7 +75,7 @@ class StationController extends Controller
             'city' => ['required', 'string']
         ]);
 
-        return Station::create($attributes);
+        return Station::create(utf8_encode($attributes));
     }
 
 
@@ -84,14 +84,14 @@ class StationController extends Controller
      * @description Setter method to update station in database.
      *      Get existing station then update it from all request attributes.
      * @param Request $request
-     * @return object
+     * @return string
      */
-    final public function updateStation(Request $request): object
+    final public function updateStation(Request $request): string
     {
         $station = Station::find($request->_id); // TODO validate input from request like in create bike!
         $station->update($request->all());
 
-        return $station;
+        return utf8_encode($station);
     }
 
 
@@ -100,13 +100,13 @@ class StationController extends Controller
      * @description Setter method to update station in database.
      *      Get existing station then update it from all request attributes.
      * @param Request $request
-     * @return object
+     * @return string
      */
-    final public function deleteStation(Request $request): object
+    final public function deleteStation(Request $request): string
     {
         $station = Station::find($request->_id); // TODO validate input from request like in create bike!
         $station->delete($request->_id);
 
-        return $station;
+        return utf8_encode($station);
     }
 }

@@ -21,15 +21,15 @@ class UserController extends Controller
     /**
      * @method getUsers()
      * @description Getter method to request all users from database.
-     * @return array
+     * @return string
      */
-    final public function getUsers(): array
+    final public function getUsers(): string
     {
         $data = [
             'users' => User::all()
         ];
 
-        return $data;
+        return utf8_encode($data);
     }
 
 
@@ -37,11 +37,11 @@ class UserController extends Controller
      * @method getUser()
      * @description Getter method to return specific user from database.
      * @param User $user
-     * @return object
+     * @return string
      */
-    final public function getUser(User $user): object
+    final public function getUser(User $user): string
     {
-        return $user;
+        return utf8_encode($user);
     }
 
 
@@ -49,15 +49,15 @@ class UserController extends Controller
      * @method getUsersInCity()
      * @description Getter method to return bikes in specific city.
      * @param City $city
-     * @return array
+     * @return string
      */
-    final public function getUsersInCity(City $city): array
+    final public function getUsersInCity(City $city): string
     {
         $data = [
             'users' => User::where('city', $city->name)->get()
         ];
 
-        return $data;
+        return utf8_encode($data);
     }
 
 
@@ -68,6 +68,8 @@ class UserController extends Controller
      *      Create New User in database.
      * @param Request $request
      * @return object
+     *
+     * @todo Fix the validation of parameters that create a new user.
      */
     final public function createUser(Request $request): object
     {
@@ -84,7 +86,7 @@ class UserController extends Controller
 //            'payment_status' => ['required']
 //        ]);
 
-        return User::create($request->all());
+        return User::create(utf8_encode($request->all()));
     }
 
 
@@ -96,14 +98,14 @@ class UserController extends Controller
      *
      * @todo Make input validation from request like in create user. Some sort of dynamic way to include specified params to be validated.
      *
-     * @return object
+     * @return string
      */
-    final public function updateUser(Request $request): object
+    final public function updateUser(Request $request): string
     {
         $user = User::find($request->_id);
         $user->update($request->all());
 
-        return $user;
+        return utf8_encode($user);
     }
 
 
@@ -115,13 +117,13 @@ class UserController extends Controller
      *
      * @todo Make input validation from request like in create user. Some sort of dynamic way to include specified params to be validated.
      *
-     * @return object
+     * @return string
      */
-    final public function deleteUser(Request $request): object
+    final public function deleteUser(Request $request): string
     {
         $user = User::find($request->_id);
         $user->delete($user);
 
-        return $user;
+        return utf8_encode($user);
     }
 }
