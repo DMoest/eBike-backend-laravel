@@ -90,11 +90,11 @@ class UserController extends Controller
      *      Validates json input. If validation passes,
      *      Create New User in database.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      *
      * @todo Fix the validation of parameters that create a new user.
      */
-    final public function createUser(Request $request): object
+    final public function createUser(Request $request): JsonResponse
     {
 //        $attributes = $request->validate([
 //            'firstname' => ['required', 'min:2', 'max:255'],
@@ -131,9 +131,9 @@ class UserController extends Controller
      *
      * @todo Make input validation from request like in create user. Some sort of dynamic way to include specified params to be validated.
      *
-     * @return string
+     * @return JsonResponse
      */
-    final public function updateUser(Request $request): string
+    final public function updateUser(Request $request): JsonResponse
     {
         $user = User::find($request->_id);
         $user->update($request->all());
@@ -158,9 +158,9 @@ class UserController extends Controller
      *
      * @todo Make input validation from request like in create user. Some sort of dynamic way to include specified params to be validated.
      *
-     * @return string
+     * @return JsonResponse
      */
-    final public function deleteUser(Request $request): string
+    final public function deleteUser(Request $request): JsonResponse
     {
         $user = User::find($request->_id);
         $user->delete($user);

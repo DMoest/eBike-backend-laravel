@@ -10,6 +10,7 @@ use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Js;
 
 
 /**
@@ -29,7 +30,7 @@ class TravelController extends Controller
      */
     final public function getTravels(): JsonResponse
     {
-        $data = Travel::with('city', 'bike')->get();
+        $data = Travel::all();
 
         return response()->json(
             $data,
@@ -135,17 +136,17 @@ class TravelController extends Controller
      *      Validates json input. If validation passes,
      *      create new travel in database.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      *
      * @todo Update the initialization of a new travel with validation for more parameters from input.
      *
      */
-    final public function createTravel(Request $request): object
+    final public function createTravel(Request $request): JsonResponse
     {
         $request->validate([
-            'city_id' => ['Required', 'integer'],
-            'user_id' => ['Required', 'integer'],
-            'bike_id' => ['Required', 'integer']
+            'city' => ['Required'],
+            'user_id' => ['Required'],
+            'bike_id' => ['Required']
         ]);
 
         $newTravel = Travel::create($request->all());
@@ -167,9 +168,9 @@ class TravelController extends Controller
      * @description Setter method to update travel in database.
      *      Get existing travel then update it from all request attributes.
      * @param Request $request
-     * @return string
+     * @return JsonResponse
      */
-    final public function updateTravel(Request $request): string
+    final public function updateTravel(Request $request): JsonResponse
     {
         $travel = Travel::find($request->_id);
         $travel->update($request->all());
@@ -191,12 +192,12 @@ class TravelController extends Controller
      * @description Setter method to remove travel from database table/collection.
      *      Get existing travel then remove it from database table/collection.
      * @param Request $request
-     * @return string
+     * @return JsonResponse
      */
-    final public function deleteTravel(Request $request): string
+    final public function deleteTravel(Request $request): JsonResponse
     {
         $travel = Travel::find($request->_id);
-        $travel->delete($travel);
+        $travel->delete($request->_id);
 
         return response()->json(
             $travel,

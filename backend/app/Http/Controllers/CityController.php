@@ -63,9 +63,9 @@ class CityController extends Controller
      *      Validates json input. If validation passes,
      *      create new city in database table/collection.
      * @param Request $request
-     * @return string
+     * @return JsonResponse
      */
-    final public function addCity(Request $request): string
+    final public function addCity(Request $request): JsonResponse
     {
         $attributes = $request->validate([
             'name' => ['required', 'min:2', 'max:255', Rule::unique('cities', 'name')],

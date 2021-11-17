@@ -62,9 +62,9 @@ class StationController extends Controller
      * @method getStationsInCity()
      * @description Getter method to return stations in specific city.
      * @param City $city
-     * @return string
+     * @return JsonResponse
      */
-    final public function getStationsInCity(City $city): string
+    final public function getStationsInCity(City $city): JsonResponse
     {
         $data = Station::where('city', $city->name)->get();
 
@@ -86,9 +86,9 @@ class StationController extends Controller
      *      Validates json input. If validation passes,
      *      create new station in database table/collection.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      */
-    final public function createStation(Request $request): object
+    final public function createStation(Request $request): JsonResponse
     {
         $attributes = $request->validate([
             'capacity' => ['required', 'integer'],
