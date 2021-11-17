@@ -4,15 +4,15 @@
  * Declared namespaces in use.
  */
 
-use App\Http\Controllers\ParkingZonesController;
 use App\Http\Controllers\TravelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StationController;
-use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ParkingZoneController;
 
 
 /*
@@ -106,12 +106,12 @@ Route::delete('/city', [CityController::class, 'deleteCity']);
  * Parking Zone routes.
  * @description Routes are for handeling database requests relevant to parking zones. Full CRUD supported.
  */
-Route::get('/parking', [ParkingZonesController::class, 'getParingZones']);
-Route::get('/parking/{parking:_id}', [ParkingZonesController::class, 'getParingZone']);
-Route::get('/parking/city/{city:name}', [ParkingZonesController::class, 'getParkingZonesInCity']);
-Route::post('/parking', [ParkingZonesController::class, 'createParkingZone']);
-Route::put('/parking', [ParkingZonesController::class, 'updateParkingZone']);
-Route::delete('/parking', [ParkingZonesController::class, 'deleteParkingZone']);
+Route::get('/parking', [ParkingZoneController::class, 'getParingZones']);
+Route::get('/parking/{parking:_id}', [ParkingZoneController::class, 'getParingZone']);
+Route::get('/parking/city/{city:name}', [ParkingZoneController::class, 'getParkingZonesInCity']);
+Route::post('/parking', [ParkingZoneController::class, 'createParkingZone']);
+Route::put('/parking', [ParkingZoneController::class, 'updateParkingZone']);
+Route::delete('/parking', [ParkingZoneController::class, 'deleteParkingZone']);
 
 
 /**

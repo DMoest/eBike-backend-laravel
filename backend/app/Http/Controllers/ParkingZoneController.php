@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
  * @ParkingZoneController
  * @description ParkingZone Controller class. Requests data related to Bike class.
  */
-class ParkingZonesController extends Controller
+class ParkingZoneController extends Controller
 {
     /**
      * @method getParingZones()
@@ -41,9 +41,9 @@ class ParkingZonesController extends Controller
      * @method getParkingZone()
      * @description Getter method to return specific parking zone from database.
      * @param ParkingZone $parkingZone
-     * @return string
+     * @return JsonResponse
      */
-    final public function getParkingZone(ParkingZone $parkingZone): string
+    final public function getParkingZone(ParkingZone $parkingZone): JsonResponse
     {
         return response()->json(
             $parkingZone,
@@ -85,9 +85,9 @@ class ParkingZonesController extends Controller
      *      Validates json input. If validation passes,
      *      create new parking zone in database.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      */
-    final public function createParkingZone(Request $request): object
+    final public function createParkingZone(Request $request): JsonResponse
     {
         $request->validate([
             'city' => ['Required', 'string'],
