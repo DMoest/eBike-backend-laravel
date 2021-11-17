@@ -16,6 +16,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $collection) {
 //            $collection->id('_id')->autoIncrement()->unique();
+            $collection->charset = 'utf8mb4';
+            $collection->collation = 'utf8mb4_unicode_ci';
+
             $collection->string('provider_id')->nullable();
             $collection->string('firstname');
             $collection->string('lastname');

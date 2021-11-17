@@ -22,6 +22,9 @@ class CreateTravelTable extends Migration
     {
         Schema::create('travel', function (Blueprint $collection) {
 //            $collection->id('_id')->autoIncrement()->unique();
+            $collection->charset = 'utf8mb4';
+            $collection->collation = 'utf8mb4_unicode_ci';
+
             $collection->foreignId('city')->references('name')->on('cities');
             $collection->foreignId('user_id')->references('_id')->on('users');
             $collection->foreignId('bike_id')->references('_id')->on('bikes');

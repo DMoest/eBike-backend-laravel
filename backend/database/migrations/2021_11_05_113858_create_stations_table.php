@@ -15,6 +15,9 @@ class CreateStationsTable extends Migration
     {
         Schema::create('stations', function (Blueprint $collection) {
 //            $collection->id('_id')->autoIncrement()->unique();
+            $collection->charset = 'utf8mb4';
+            $collection->collation = 'utf8mb4_unicode_ci';
+
             $collection->foreignId('city');
             $collection->integer('capacity');
             $collection->integer('active');

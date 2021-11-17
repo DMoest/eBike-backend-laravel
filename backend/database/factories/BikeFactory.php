@@ -20,7 +20,8 @@ class BikeFactory extends Factory
             'status' => $this->faker->randomElement(["in_service", "in_repair", "broken", "lost", "out_of_service"]),
             'active' => $this->faker->boolean(),
             'longitude' => $this->faker->longitude(),
-            'latitude' => $this->faker->latitude()
+            'latitude' => $this->faker->latitude(),
+            'speed' => 0
         ];
     }
 }

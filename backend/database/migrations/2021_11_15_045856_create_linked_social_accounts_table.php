@@ -23,6 +23,9 @@ class CreateLinkedSocialAccountsTable extends Migration
     {
         Schema::create('linked_social_accounts', function (Blueprint $collection) {
 //            $collection->increments('_id');
+            $collection->charset = 'utf8mb4';
+            $collection->collation = 'utf8mb4_unicode_ci';
+
             $collection->string('provider_id');
             $collection->string('provider_name');
             $collection->string('user_id');

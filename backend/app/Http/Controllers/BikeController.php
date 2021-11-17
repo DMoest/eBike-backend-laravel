@@ -72,7 +72,8 @@ class BikeController extends Controller
             'active' => ['required', 'boolean'],
             'city' => ['required'],
             'longitude' => [''],
-            'latitude' => ['']
+            'latitude' => [''],
+            'speed' => ['']
         ]);
 
         return Bike::create($attributes);

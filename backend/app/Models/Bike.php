@@ -39,7 +39,8 @@ class Bike extends Eloquent
         'status',
         'active',
         'longitude',
-        'latitude'
+        'latitude',
+        'speed'
     ];
 
 

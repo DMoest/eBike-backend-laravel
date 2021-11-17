@@ -6,13 +6,17 @@ customer webb-app, customer mobile-/webb-app, the bike control system applicatio
 REST-API for third party application/plugins development.
 
 
+
 <br>
 
 
 ## Application usage
+Make sure to have PHP version 8.x installed in the environment you intend to run the application.
 
 ### Setup Database
-First you need a working database to collect/write data to/from. All information regarding connections to private/protected information should be stored safely in a .env file inside the directory 'backend/'.
+In case you want to run your application with MongDB as your datbase 
+
+Second you need a working database to collect/write data to/from. All information regarding connections to private/protected information should be stored safely in a .env file inside the directory 'backend/'.
 Create a .env file in bachend/ directory. Create a srv MongoDB connection defined with the database related environmental variables.
 You need the following to get setup:
 * ```DB_CONNECTION``` - This should be 'mongodb'.
