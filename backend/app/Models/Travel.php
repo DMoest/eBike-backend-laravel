@@ -39,8 +39,8 @@ class Travel extends Eloquent
         'bike_id',
         'status',
         'start_longitude',
-        'stop_latitude',
-        'start_longitude',
+        'stop_longitude',
+        'start_latitude',
         'stop_latitude',
         'price'
     ];
