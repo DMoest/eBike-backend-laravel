@@ -56,14 +56,14 @@ class BikeControllerTest extends TestCase
     }
 
 
-    /**
-     * @test
-     * @description Test existence of methods for Bike Controller class.
-     */
-    final public function test_BikeController_methods_response_code(): void
-    {
-        /* Test response from class methods */
-        $getResponse = $this->bikeController->getBikes();
-        $getResponse->assertStatus(200);
-    }
+//    /**
+//     * @test
+//     * @description Test existence of methods for Bike Controller class.
+//     */
+//    final public function test_BikeController_methods_response_code(): void
+//    {
+//        /* Test response from class methods */
+//        $getResponse = $this->bikeController->getBikes();
+//        $getResponse->assertStatus(200);
+//    }
 }
