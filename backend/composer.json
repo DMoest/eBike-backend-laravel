@@ -14,7 +14,8 @@
         "laravel/sanctum": "^2.12",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
-        "mongodb/mongodb": "^1.10"
+        "mongodb/mongodb": "^1.10",
+        "stripe/stripe-php": "^7.103"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
