@@ -1,7 +1,10 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Http\Controllers;
-
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\City;
 use App\Models\Station;
@@ -17,15 +20,21 @@ class StationController extends Controller
     /**
      * @method getStations()
      * @description Getter method to request all stations from database.
-     * @return array
+     * @return JsonResponse
      */
-    final public function getStations(): array
+    final public function getStations(): JsonResponse
     {
-        $data = [
-            'stations' => Station::all()
-        ];
+        $data = [ 'stations' => Station::all() ];
 
-        return $data;
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -33,11 +42,19 @@ class StationController extends Controller
      * @method getStation()
      * @description Getter method to return specific station from database.
      * @param Station $station
-     * @return string
+     * @return JsonResponse
      */
-    final public function getStation(Station $station): string
+    final public function getStation(Station $station): JsonResponse
     {
-        return $station;
+        return response()->json(
+            $station,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -45,15 +62,21 @@ class StationController extends Controller
      * @method getStationsInCity()
      * @description Getter method to return stations in specific city.
      * @param City $city
-     * @return array
+     * @return JsonResponse
      */
-    final public function getStationsInCity(City $city): array
+    final public function getStationsInCity(City $city): JsonResponse
     {
-        $data = [
-            'city_stations' => Station::where('city', $city->name)->get()
-        ];
+        $data = [ 'stations' => Station::where('city', $city->name)->get() ];
 
-        return $data;
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -63,9 +86,9 @@ class StationController extends Controller
      *      Validates json input. If validation passes,
      *      create new station in database table/collection.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      */
-    final public function createStation(Request $request): object
+    final public function createStation(Request $request): JsonResponse
     {
         $attributes = $request->validate([
             'capacity' => ['required', 'integer'],
@@ -75,7 +98,17 @@ class StationController extends Controller
             'city' => ['required', 'string']
         ]);
 
-        return Station::create($attributes);
+        $newStation = Station::create($attributes);
+
+        return response()->json(
+            $newStation,
+            201,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -84,14 +117,22 @@ class StationController extends Controller
      * @description Setter method to update station in database.
      *      Get existing station then update it from all request attributes.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      */
-    final public function updateStation(Request $request): object
+    final public function updateStation(Request $request): JsonResponse
     {
         $station = Station::find($request->_id); // TODO validate input from request like in create bike!
         $station->update($request->all());
 
-        return $station;
+        return response()->json(
+            $station,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -100,13 +141,21 @@ class StationController extends Controller
      * @description Setter method to update station in database.
      *      Get existing station then update it from all request attributes.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      */
-    final public function deleteStation(Request $request): object
+    final public function deleteStation(Request $request): JsonResponse
     {
         $station = Station::find($request->_id); // TODO validate input from request like in create bike!
         $station->delete($request->_id);
 
-        return $station;
+        return  response()->json(
+            $station,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 }

@@ -9,11 +9,11 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 
 /**
- * Model for Bike.
+ * Model for ParkingZone.
  * Defines primary keys and the relations to other data models.
  * Enables/disables mass assigning columns in collections.
  */
-class Bike extends Eloquent
+class ParkingZone extends Eloquent
 {
     use HasFactory;
 
@@ -36,32 +36,20 @@ class Bike extends Eloquent
     protected $casts = [ "_id" => "string" ];
     protected $fillable = [
         'city',
-        'status',
-        'active',
-        'longitude',
-        'latitude',
-        'speed'
+        'sw_longitude',
+        'sw_latitude',
+        'ne_longitude',
+        'ne_latitude',
     ];
 
 
     /**
      * @method city()
-     * @description Relation mapping, a bike belong to a city.
+     * @description Relation mapping, a parking zone belong to a city.
      * @return BelongsTo
      */
     final public function city(): object
     {
         return $this->belongsTo(City::class, '_id', 'name');
-    }
-
-
-    /**
-     * @method travels()
-     * @description Relation mapping, a bike has many travels.
-     * @return HasMany
-     */
-    final public function travels(): object
-    {
-        return $this->hasMany(Travel::class, '_id');
     }
 }

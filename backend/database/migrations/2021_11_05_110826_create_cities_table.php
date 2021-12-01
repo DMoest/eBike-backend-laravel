@@ -15,6 +15,9 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $collection) {
 //            $collection->id('_id')->autoIncrement()->unique();
+            $collection->charset = 'utf8mb4';
+            $collection->collation = 'utf8mb4_unicode_ci';
+
             $collection->string('name');
             $collection->string('country');
             $collection->timestamps();

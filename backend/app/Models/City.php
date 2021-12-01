@@ -49,6 +49,17 @@ class City extends Eloquent
 
 
     /**
+     * @method parkingZones()
+     * @description Relation mapping, a city has many parking zones.
+     * @return object
+     */
+    final public function parkingZones(): object
+    {
+        return $this->hasMany(ParkingZone::class, '_id');
+    }
+
+
+    /**
      * @method stations()
      * @description Relation mapping, a city has many stations.
      * @return object
@@ -60,17 +71,6 @@ class City extends Eloquent
 
 
     /**
-     * @method users()
-     * @description Relation mapping, a city has many users.
-     * @return object
-     */
-    final public function users(): object
-    {
-        return $this->hasMany(User::class, '_id');
-    }
-
-
-    /**
      * @method travels()
      * @description Relation mapping, in a city much traveling is made.
      * @return object
@@ -78,5 +78,16 @@ class City extends Eloquent
     final public function travels(): object
     {
         return $this->hasMany(Travel::class, '_id');
+    }
+
+
+    /**
+     * @method users()
+     * @description Relation mapping, a city has many users.
+     * @return object
+     */
+    final public function users(): object
+    {
+        return $this->hasMany(User::class, '_id');
     }
 }

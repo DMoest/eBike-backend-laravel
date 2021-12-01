@@ -16,15 +16,19 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $collection) {
 //            $collection->id('_id')->autoIncrement()->unique();
+            $collection->charset = 'utf8mb4';
+            $collection->collation = 'utf8mb4_unicode_ci';
+
+            $collection->string('provider_id')->nullable();
             $collection->string('firstname');
             $collection->string('lastname');
-            $collection->string('adress');
-            $collection->string('postcode');
-            $collection->foreignId('city');
-            $collection->unique('phone');
+            $collection->string('adress')->nullable()->change();
+            $collection->string('postcode')->nullable()->change();
+            $collection->foreignId('city')->nullable()->change();
+            $collection->string('phone')->nullable()->change();
             $collection->unique('email');
             $collection->timestamp('email_verified_at')->nullable();
-            $collection->string('password');
+            $collection->string('password')->nullable(); // Null for creating new users depending on OAuth providers.
             $collection->string('payment_method');
             $collection->string('payment_status');
             $collection->rememberToken();

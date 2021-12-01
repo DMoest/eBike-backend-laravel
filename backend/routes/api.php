@@ -1,13 +1,19 @@
 <?php
 
+/**
+ * Declared namespaces in use.
+ */
+
 use App\Http\Controllers\TravelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ParkingZoneController;
 
 
 /*
@@ -30,7 +36,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * Index route.
  */
 Route::get('/', function () {
-    return json_encode([
+    return [
         'Index' => "/   (this route)",
         'GET All bikes' => "/bike",
         'GET Bike by bike_id' => "/bike/bike_id",
@@ -63,12 +69,20 @@ Route::get('/', function () {
         'POST Users route' => "/user",
         'PUT Users route' => "/user",
         'DELETE Users route' => "/user"
-    ]);
+    ];
 });
+
+
+///**
+// * Authentication Route.
+// */
+//Route::get('/auth/github', [AuthenticationController::class, 'redirectToProvider']);
+//Route::get('/auth/github/callback', [AuthenticationController::class, 'providerCallback']);
 
 
 /**
  * Bike routes.
+ * @description Routes are for handling database requests relevant to bikes. Full CRUD supported.
  */
 Route::get('/bike', [BikeController::class, 'getBikes']);
 Route::get('/bike/{bike:_id}', [BikeController::class, 'getBike']);
@@ -80,6 +94,7 @@ Route::delete('/bike', [BikeController::class, 'deleteBike']);
 
 /**
  * City routes.
+ * @description Routes are for handling database requests relevant to cities. Full CRUD supported.
  */
 Route::get('/city', [CityController::class, 'getCities']);
 Route::get('/city/{city:name}', [CityController::class, 'getCity']);
@@ -89,7 +104,20 @@ Route::delete('/city', [CityController::class, 'deleteCity']);
 
 
 /**
+ * Parking Zone routes.
+ * @description Routes are for handling database requests relevant to parking zones. Full CRUD supported.
+ */
+Route::get('/parking', [ParkingZoneController::class, 'getParingZones']);
+Route::get('/parking/{parking:_id}', [ParkingZoneController::class, 'getParingZone']);
+Route::get('/parking/city/{city:name}', [ParkingZoneController::class, 'getParkingZonesInCity']);
+Route::post('/parking', [ParkingZoneController::class, 'createParkingZone']);
+Route::put('/parking', [ParkingZoneController::class, 'updateParkingZone']);
+Route::delete('/parking', [ParkingZoneController::class, 'deleteParkingZone']);
+
+
+/**
  * Station routes.
+ * @description Routes are for handling database requests relevant to station. Full CRUD supported.
  */
 Route::get('/station', [StationController::class, 'getStations']);
 Route::get('/station/{station:_id}', [StationController::class, 'getStation']);
@@ -101,6 +129,7 @@ Route::delete('/station', [StationController::class, 'deleteStation']);
 
 /**
  * Travel Routes.
+ * @description Routes are for handling database requests relevant to travels. Full CRUD supported.
  */
 Route::get('/travel', [TravelController::class, 'getTravels']);
 Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
@@ -114,6 +143,7 @@ Route::delete('/travel', [TravelController::class, 'deleteTravel']);
 
 /**
  * User Routes.
+ * @description Routes are for handling database requests relevant to users. Full CRUD supported.
  */
 Route::get('/user', [UserController::class, 'getUsers']);
 Route::get('/user/{user:_id}', [UserController::class, 'getUser']);

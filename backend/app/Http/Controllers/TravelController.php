@@ -1,12 +1,16 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Http\Controllers;
-
 use App\Models\Bike;
 use App\Models\Travel;
 use App\Models\City;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Js;
 
 
 /**
@@ -22,15 +26,21 @@ class TravelController extends Controller
     /**
      * @method getTravels()
      * @description Getter method to request all travels from database.
-     * @return array
+     * @return JsonResponse
      */
-    final public function getTravels(): array
+    final public function getTravels(): JsonResponse
     {
-        $data = [
-            'travels' => Travel::with('city', 'bike')->get()
-        ];
+        $data = Travel::all();
 
-        return $data;
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -38,11 +48,19 @@ class TravelController extends Controller
      * @method getTravel()
      * @description Getter method to return specific travel from database.
      * @param Travel $travel
-     * @return object
+     * @return JsonResponse
      */
-    final public function getTravel(Travel $travel): object
+    final public function getTravel(Travel $travel): JsonResponse
     {
-        return $travel;
+        return response()->json(
+            $travel,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -50,15 +68,21 @@ class TravelController extends Controller
      * @method getTravelingInCity()
      * @description Getter method to return traveling in specific city.
      * @param City $city
-     * @return array
+     * @return JsonResponse
      */
-    final public function getTravelingInCity(City $city): array
+    final public function getTravelingInCity(City $city): JsonResponse
     {
-        $data = [
-            'city_travels' => Travel::where('city', $city->name)->get()
-        ];
+        $data = Travel::where('city', $city->name)->get();
 
-        return $data;
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -66,15 +90,21 @@ class TravelController extends Controller
      * @method getTravelingWithBike()
      * @description Getter method to return traveling with specific bike.
      * @param Bike $bike
-     * @return array
+     * @return JsonResponse
      */
-    final public function getTravelingWithBike(Bike $bike): array
+    final public function getTravelingWithBike(Bike $bike): JsonResponse
     {
-        $data = [
-            'bike_travels' => Travel::where('bike_id', $bike->_id)->get()
-        ];
+        $data = Travel::where('bike_id', $bike->_id)->get();
 
-        return $data;
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -82,15 +112,21 @@ class TravelController extends Controller
      * @method getTravelingByUser()
      * @description Getter method to return traveling in specific city.
      * @param User $user
-     * @return array
+     * @return JsonResponse
      */
-    final public function getTravelingByUser(User $user): array
+    final public function getTravelingByUser(User $user): JsonResponse
     {
-        $data = [
-            'user_travels' => Travel::where('user_id', $user->_id)->get()
-        ];
+        $data = Travel::where('user_id', $user->_id)->get();
 
-        return $data;
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -100,20 +136,30 @@ class TravelController extends Controller
      *      Validates json input. If validation passes,
      *      create new travel in database.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      *
-     * @todo Update the initialization of a new cravel with more parameters from input.
+     * @todo Update the initialization of a new travel with validation for more parameters from input.
      *
      */
-    final public function createTravel(Request $request): object
+    final public function createTravel(Request $request): JsonResponse
     {
         $request->validate([
-            'city_id' => ['Required', 'integer'],
-            'user_id' => ['Required', 'integer'],
-            'bike_id' => ['Required', 'integer']
+            'city' => ['Required'],
+            'user_id' => ['Required'],
+            'bike_id' => ['Required']
         ]);
 
-        return Travel::create($request->all());
+        $newTravel = Travel::create($request->all());
+
+        return response()->json(
+            $newTravel,
+            201,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -122,14 +168,22 @@ class TravelController extends Controller
      * @description Setter method to update travel in database.
      *      Get existing travel then update it from all request attributes.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      */
-    final public function updateTravel(Request $request): object
+    final public function updateTravel(Request $request): JsonResponse
     {
-        $user = Travel::find($request->_id);
-        $user->update($request->all());
+        $travel = Travel::find($request->_id);
+        $travel->update($request->all());
 
-        return $user;
+        return response()->json(
+            $travel,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -138,13 +192,21 @@ class TravelController extends Controller
      * @description Setter method to remove travel from database table/collection.
      *      Get existing travel then remove it from database table/collection.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
      */
-    final public function deleteTravel(Request $request): object
+    final public function deleteTravel(Request $request): JsonResponse
     {
         $travel = Travel::find($request->_id);
-        $travel->delete($travel);
+        $travel->delete($request->_id);
 
-        return $travel;
+        return response()->json(
+            $travel,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 }

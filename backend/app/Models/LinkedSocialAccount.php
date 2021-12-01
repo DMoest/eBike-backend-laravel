@@ -5,18 +5,19 @@
  */
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use Jenssegers\Mongodb\Relations\BelongsTo;
 
 
 /**
- * Model for Bike.
+ * Model for LinkedSocialAccount.
  * Defines primary keys and the relations to other data models.
  * Enables/disables mass assigning columns in collections.
  */
-class Bike extends Eloquent
+class LinkedSocialAccount extends Model
 {
     use HasFactory;
-
 
     /**
      * @description Models database connection.
@@ -31,37 +32,19 @@ class Bike extends Eloquent
      * Fillable are attributes that are mass assignable.
      * Cast are the attributes that should be type cast.
      */
-    protected $primaryKey = "_id";
-    protected $guarded = [ "_id" ];
-    protected $casts = [ "_id" => "string" ];
+//    protected $primaryKey = '_id';
+//    protected $guarded = ['_id'];
     protected $fillable = [
-        'city',
-        'status',
-        'active',
-        'longitude',
-        'latitude',
-        'speed'
+        'provider_name',
+        'provider_id',
     ];
 
 
     /**
-     * @method city()
-     * @description Relation mapping, a bike belong to a city.
      * @return BelongsTo
      */
-    final public function city(): object
+    public function user()
     {
-        return $this->belongsTo(City::class, '_id', 'name');
-    }
-
-
-    /**
-     * @method travels()
-     * @description Relation mapping, a bike has many travels.
-     * @return HasMany
-     */
-    final public function travels(): object
-    {
-        return $this->hasMany(Travel::class, '_id');
+        return $this->belongsTo(User::class, '_id');
     }
 }

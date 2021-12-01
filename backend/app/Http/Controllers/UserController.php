@@ -1,7 +1,10 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Http\Controllers;
-
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\City;
@@ -21,15 +24,23 @@ class UserController extends Controller
     /**
      * @method getUsers()
      * @description Getter method to request all users from database.
-     * @return array
+     * @return JsonResponse
      */
-    final public function getUsers(): array
+    final public function getUsers(): JsonResponse
     {
         $data = [
             'users' => User::all()
         ];
 
-        return $data;
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -37,11 +48,19 @@ class UserController extends Controller
      * @method getUser()
      * @description Getter method to return specific user from database.
      * @param User $user
-     * @return object
+     * @return JsonResponse
      */
-    final public function getUser(User $user): object
+    final public function getUser(User $user): JsonResponse
     {
-        return $user;
+        return response()->json(
+            $user,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -49,15 +68,21 @@ class UserController extends Controller
      * @method getUsersInCity()
      * @description Getter method to return bikes in specific city.
      * @param City $city
-     * @return array
+     * @return JsonResponse
      */
-    final public function getUsersInCity(City $city): array
+    final public function getUsersInCity(City $city): JsonResponse
     {
-        $data = [
-            'users' => User::where('city', $city->name)->get()
-        ];
+        $data = [ 'users' => User::where('city', $city->name)->get() ];
 
-        return $data;
+        return response()->json(
+            $data,
+            200,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -67,9 +92,11 @@ class UserController extends Controller
      *      Validates json input. If validation passes,
      *      Create New User in database.
      * @param Request $request
-     * @return object
+     * @return JsonResponse
+     *
+     * @todo Fix the validation of parameters that create a new user.
      */
-    final public function createUser(Request $request): object
+    final public function createUser(Request $request): JsonResponse
     {
 //        $attributes = $request->validate([
 //            'firstname' => ['required', 'min:2', 'max:255'],
@@ -84,7 +111,17 @@ class UserController extends Controller
 //            'payment_status' => ['required']
 //        ]);
 
-        return User::create($request->all());
+        $newUser = User::create($request->all());
+
+        return response()->json(
+            $newUser,
+            201,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -96,14 +133,22 @@ class UserController extends Controller
      *
      * @todo Make input validation from request like in create user. Some sort of dynamic way to include specified params to be validated.
      *
-     * @return object
+     * @return JsonResponse
      */
-    final public function updateUser(Request $request): object
+    final public function updateUser(Request $request): JsonResponse
     {
         $user = User::find($request->_id);
         $user->update($request->all());
 
-        return $user;
+        return response()->json(
+            $user,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 
 
@@ -115,13 +160,21 @@ class UserController extends Controller
      *
      * @todo Make input validation from request like in create user. Some sort of dynamic way to include specified params to be validated.
      *
-     * @return object
+     * @return JsonResponse
      */
-    final public function deleteUser(Request $request): object
+    final public function deleteUser(Request $request): JsonResponse
     {
         $user = User::find($request->_id);
         $user->delete($user);
 
-        return $user;
+        return response()->json(
+            $user,
+            204,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
     }
 }
