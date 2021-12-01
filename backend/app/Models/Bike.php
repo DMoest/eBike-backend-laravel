@@ -40,7 +40,8 @@ class Bike extends Eloquent
         'active',
         'longitude',
         'latitude',
-        'speed'
+        'speed',
+        'battery'
     ];
 
 

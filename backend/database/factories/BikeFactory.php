@@ -21,7 +21,8 @@ class BikeFactory extends Factory
             'active' => $this->faker->boolean(),
             'longitude' => $this->faker->longitude(),
             'latitude' => $this->faker->latitude(),
-            'speed' => 0
+            'speed' => 0,
+            'battery' => $this->faker->numberBetween(1, 100)
         ];
     }
 }

@@ -18,12 +18,14 @@ class CreateBikesTable extends Migration
             $collection->charset = 'utf8mb4';
             $collection->collation = 'utf8mb4_unicode_ci';
 
+
             $collection->string('city');
             $collection->string('status');
             $collection->boolean('active');
             $collection->decimal('longitude', 10, 7)->nullable();
             $collection->decimal('latitude', 11, 8)->nullable();
             $collection->integer('speed')->default(0);
+            $collection->integer('battery');
             $collection->timestamps();
         });
     }

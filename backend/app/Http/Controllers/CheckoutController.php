@@ -1,26 +1,36 @@
 <?php
 
+/**
+ * Declaration of the models namespace and use of other namespaces.
+ */
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Stripe\Stripe;
-use Stripe\Customer;
+// use Stripe\Customer;
 use Stripe\Charge;
 
+
+/**
+ * Checkout Controller for Stripe Payments.
+ */
 class CheckoutController extends Controller
 {
 
-    public function charge(Request $request)
+    /**
+     * @description Charge payment from user.
+     * @param Request $request
+     * @return string
+     */
+    final public function charge(Request $request)
     {
-
         try {
-            Stripe::setApiKey('sk_test_51JxuwuKh30a9IIAiHTQNSfkDL81LHFr0hyfbAC0mtj3w4ES7vO3BX0NrPBt9pCwbVRL1rPSPkcp4g8KPBcUZzq9F00FtttQb3F');
+            Stripe::setApiKey('STRIPE_API_KEY');
 
-            $charge = Charge::create(array(
+            $charge = Charge::create([
                 'amount' => $request->price,
                 'source' => $request->token,
                 'currency' => $request->currency
-            ));
+            ]);
 
             return 'Charge successful!';
         } catch (\Exception $ex) {
