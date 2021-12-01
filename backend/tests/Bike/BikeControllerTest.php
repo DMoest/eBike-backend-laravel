@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace  App\Tests;
 use App\Http\Controllers\BikeController;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use PHPUnit\Framework\TestCase;
 
 
@@ -19,6 +20,8 @@ use PHPUnit\Framework\TestCase;
  */
 class BikeControllerTest extends TestCase
 {
+    use DatabaseTransactions;
+
     protected object $bikeController;
 
 
@@ -27,6 +30,9 @@ class BikeControllerTest extends TestCase
      */
     final protected function setUp(): void
     {
+        factory(Bike::class, 2)->create();
+        factory(Bike::class)->create(['reads' => 10]);
+
         $this->bikeController = new BikeController();
     }
 

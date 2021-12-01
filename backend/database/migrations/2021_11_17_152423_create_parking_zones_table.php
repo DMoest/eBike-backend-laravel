@@ -13,9 +13,17 @@ class CreateParkingZonesTable extends Migration
      */
     public function up()
     {
-        Schema::create('parking_zones', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('parking_zones', function (Blueprint $collection) {
+            // $collection->id();
+
+            $collection->foreignId('city')->references('name')->on('cities');
+
+            $collection->decimal('sw_longitude', 10, 7);
+            $collection->decimal('sw_latitude', 11, 8);
+            $collection->decimal('ne_longitude', 10, 7);
+            $collection->decimal('ne_latitude', 11, 8);
+
+            $collection->timestamps();
         });
     }
 
