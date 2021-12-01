@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StationController;
+use App\Http\Controllers\CheckoutController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -119,3 +121,8 @@ Route::get('/user/city/{city:name}', [UserController::class, 'getUsersInCity']);
 Route::post('/user', [UserController::class, 'createUser']);
 Route::put('/user', [UserController::class, 'updateUser']);
 Route::delete('/user', [UserController::class, 'deleteUser']);
+
+/**
+ * Charge Routes.
+ */
+Route::post('/charge', [CheckoutController::class, 'charge']);
