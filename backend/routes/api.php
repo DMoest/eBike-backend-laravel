@@ -81,7 +81,7 @@ Route::get('/', function () {
 
 /**
  * Bike routes.
- * @description Routes are for handeling database requests relevant to bikes. Full CRUD supported.
+ * @description Routes are for handling database requests relevant to bikes. Full CRUD supported.
  */
 Route::get('/bike', [BikeController::class, 'getBikes']);
 Route::get('/bike/{bike:_id}', [BikeController::class, 'getBike']);
@@ -93,7 +93,7 @@ Route::delete('/bike', [BikeController::class, 'deleteBike']);
 
 /**
  * City routes.
- * @description Routes are for handeling database requests relevant to cities. Full CRUD supported.
+ * @description Routes are for handling database requests relevant to cities. Full CRUD supported.
  */
 Route::get('/city', [CityController::class, 'getCities']);
 Route::get('/city/{city:name}', [CityController::class, 'getCity']);
@@ -104,7 +104,7 @@ Route::delete('/city', [CityController::class, 'deleteCity']);
 
 /**
  * Parking Zone routes.
- * @description Routes are for handeling database requests relevant to parking zones. Full CRUD supported.
+ * @description Routes are for handling database requests relevant to parking zones. Full CRUD supported.
  */
 Route::get('/parking', [ParkingZoneController::class, 'getParingZones']);
 Route::get('/parking/{parking:_id}', [ParkingZoneController::class, 'getParingZone']);
@@ -116,7 +116,7 @@ Route::delete('/parking', [ParkingZoneController::class, 'deleteParkingZone']);
 
 /**
  * Station routes.
- * @description Routes are for handeling database requests relevant to station. Full CRUD supported.
+ * @description Routes are for handling database requests relevant to station. Full CRUD supported.
  */
 Route::get('/station', [StationController::class, 'getStations']);
 Route::get('/station/{station:_id}', [StationController::class, 'getStation']);
@@ -128,7 +128,7 @@ Route::delete('/station', [StationController::class, 'deleteStation']);
 
 /**
  * Travel Routes.
- * @description Routes are for handeling database requests relevant to travels. Full CRUD supported.
+ * @description Routes are for handling database requests relevant to travels. Full CRUD supported.
  */
 Route::get('/travel', [TravelController::class, 'getTravels']);
 Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
@@ -142,7 +142,7 @@ Route::delete('/travel', [TravelController::class, 'deleteTravel']);
 
 /**
  * User Routes.
- * @description Routes are for handeling database requests relevant to users. Full CRUD supported.
+ * @description Routes are for handling database requests relevant to users. Full CRUD supported.
  */
 Route::get('/user', [UserController::class, 'getUsers']);
 Route::get('/user/{user:_id}', [UserController::class, 'getUser']);
