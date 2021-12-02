@@ -11,7 +11,10 @@ declare(strict_types=1);
  */
 namespace App\Tests;
 use App\Models\City;
+use App\Models\ParkingZone;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 
 /**
@@ -19,6 +22,8 @@ use PHPUnit\Framework\TestCase;
  */
 class CityModelTest extends TestCase
 {
+    use HasFactory, ProphecyTrait;
+
     protected object $city;
 
 
@@ -59,5 +64,65 @@ class CityModelTest extends TestCase
         $this->assertTrue(method_exists($this->city, "stations"), "City Model Class does not have expected relation method for stations.");
         $this->assertTrue(method_exists($this->city, "travels"), "City Model Class does not have expected relation method for travels.");
         $this->assertTrue(method_exists($this->city, "users"), "City Model Class does not have expected relation method for users.");
+    }
+
+
+    /**
+     * @test
+     * @description Test if the City class model have a method for bikes relation.
+     */
+    final public function test_City_model_to_have_method_for_bikes_relation(): void
+    {
+        $city = $this->prophesize(City::class);
+        $city->bikes()->shouldBeCalled();
+        $city->reveal()->bikes();
+    }
+
+
+    /**
+     * @test
+     * @description Test if the City class model have a method for parking zones relation.
+     */
+    final public function test_City_model_to_have_method_for_Parking_zones_relation(): void
+    {
+        $city = $this->prophesize(City::class);
+        $city->parkingZones()->shouldBeCalled();
+        $city->reveal()->parkingZones();
+    }
+
+
+    /**
+     * @test
+     * @description Test if the City class model have a method for stations relation.
+     */
+    final public function test_City_model_to_have_method_for_stations_relation(): void
+    {
+        $city = $this->prophesize(City::class);
+        $city->stations()->shouldBeCalled();
+        $city->reveal()->stations();
+    }
+
+
+    /**
+     * @test
+     * @description Test if the City class model have a method for travels relation.
+     */
+    final public function test_City_model_to_have_method_for_travels_relation(): void
+    {
+        $city = $this->prophesize(City::class);
+        $city->travels()->shouldBeCalled();
+        $city->reveal()->travels();
+    }
+
+
+    /**
+     * @test
+     * @description Test if the City class model have a method for users relation.
+     */
+    final public function test_City_model_to_have_method_for_users_relation(): void
+    {
+        $city = $this->prophesize(City::class);
+        $city->users()->shouldBeCalled();
+        $city->reveal()->users();
     }
 }
