@@ -13,7 +13,6 @@ namespace App\Tests;
 use App\Models\Station;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 use PHPUnit\Framework\TestCase;
 
 

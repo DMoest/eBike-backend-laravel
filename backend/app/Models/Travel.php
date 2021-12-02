@@ -51,7 +51,7 @@ class Travel extends Eloquent
      * @description Relation mapping, a travel belong to a bike.
      * @return BelongsTo
      */
-    final public function bike(): object
+    public function bike(): object
     {
         return $this->belongsTo(Bike::class, '_id');
     }
@@ -62,7 +62,7 @@ class Travel extends Eloquent
      * @description Relation mapping, a travel belong to a city.
      * @return BelongsTo
      */
-    final public function city(): object
+    public function city(): object
     {
         return $this->belongsTo(City::class, '_id');
     }
@@ -73,7 +73,7 @@ class Travel extends Eloquent
      * @description Relation mapping, a travel belong to a user.
      * @return BelongsTo
      */
-    final public function user(): object
+    public function user(): object
     {
         return $this->belongsTo(User::class, '_id');
     }
