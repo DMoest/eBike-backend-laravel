@@ -15,4 +15,4 @@ RUN make clean-all &&\
     make install
 
 
-CMD php artisan serve --host 0.0.0.0
+CMD php artisan optimize && php artisan serve --host 0.0.0.0

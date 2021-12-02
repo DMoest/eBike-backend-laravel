@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Tests;
 use App\Models\Bike;
+use App\Models\City;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use PHPUnit\Framework\TestCase;
@@ -70,7 +71,7 @@ class BikeModelTest extends TestCase
     final public function test_Bike_model_to_have_method_for_city_relation(): void
     {
         $bike = $this->prophesize(Bike::class);
-        $bike->city()->shouldBeCalled();
+        $bike->city()->shouldBeCalled()->willReturn('city-object-response');
         $bike->reveal()->city();
     }
 
