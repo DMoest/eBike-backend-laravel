@@ -6,6 +6,7 @@ RUN curl -sS https://getcomposer.org/installer​ | php -- \
     apt-get install libssl-dev &&\
     apt-get install zip unzip &&\
     pecl install mongodb &&\
+    pecl install swoole &&\
     echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -14,5 +15,4 @@ COPY . .
 RUN make clean-all &&\
     make install
 
-
-CMD php artisan optimize && php artisan serve --host 0.0.0.0
+CMD php artisan optimize && php artisan octane:start --workers=4 --host 0.0.0.0
