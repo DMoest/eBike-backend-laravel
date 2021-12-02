@@ -22,6 +22,9 @@
         <testsuite name="Travel">
             <directory suffix="TravelModelTest.php">./tests/Travel</directory>
         </testsuite>
+        <testsuite name="User">
+            <directory suffix="UserModelTest.php">./tests/User</directory>
+        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
