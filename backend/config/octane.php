@@ -166,6 +166,30 @@ return [
             'name' => 'string:1000',
             'votes' => 'int',
         ],
+        'bikes' => [
+            '_id' => 'string:1000',
+            'city' => 'string',
+            'status' => 'string',
+            'active' => 'boolean',
+            'longitude' => 'decimal',
+            'latitude' => 'decmal',
+            'speed' => 'int',
+            'battery' => 'int'
+        ],
+        'travel' => [
+            '_id' => 'string:1000',
+            'city' => 'string',
+            'user_id' => 'string',
+            'bike_id' => 'string',
+            'stat_longitude' => 'decimal',
+            'start_latitude' => 'decimal',
+            'stop_longitude' => 'decimal',
+            'stop_latitude' => 'decimal',
+            'status' => 'string',
+            'price' => 'integer',
+            'created_at' => 'timestamp',
+            'updated_at' => 'timestamp'
+        ]
     ],
 
     /*
