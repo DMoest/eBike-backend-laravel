@@ -30,9 +30,6 @@ class BikeControllerTest extends TestCase
      */
     final protected function setUp(): void
     {
-        factory(Bike::class, 2)->create();
-        factory(Bike::class)->create(['reads' => 10]);
-
         $this->bikeController = new BikeController();
     }
 
