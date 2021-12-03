@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        \App\Models\User::factory(5)->create();
-        \App\Models\Bike::factory(25)->create();
+        \App\Models\User::factory(500)->create();
+        \App\Models\Bike::factory(500)->create();
         \App\Models\Station::factory(15)->create();
 
 
@@ -33,44 +33,33 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\City::create([
-//            'id' => 3,
-            'name' => 'Malmö',
-            'country' => 'Sverige'
-        ]);
-
-        \App\Models\City::create([
-//            'id' => 4,
-            'name' => 'Karlskrona',
-            'country' => 'Sverige'
-        ]);
-
-        \App\Models\City::create([
-//            'id' => 5,
-            'name' => 'Västerås',
-            'country' => 'Sverige'
-        ]);
-
-        \App\Models\City::create([
 //            'id' => 6,
             'name' => 'Umeå',
             'country' => 'Sverige'
         ]);
 
-
         \App\Models\ParkingZone::create([
             'city' => 'Umeå',
             'sw_latitude' => 63.824319,
             'sw_longitude' => 20.260667,
+            'se_latitude' => 63.825154,
+            'se_longitude' => 20.261633,
             'ne_latitude' => 63.824920,
-            'ne_longitude' => 20.263607
+            'ne_longitude' => 20.263607,
+            'nw_latitude' => 63.823985,
+            'nw_longitude' => 20.262695
         ]);
 
         \App\Models\ParkingZone::create([
             'city' => 'Umeå',
             'sw_latitude' => 63.826940,
             'sw_longitude' => 20.250028,
+            'se_latitude' => 63.82669390182269,
+            'se_longitude' => 20.25184653628282,
             'ne_latitude' => 63.828420,
-            'ne_longitude' => 20.253622
+            'ne_longitude' => 20.253622,
+            'nw_latitude' => 63.828800,
+            'nw_longitude' => 20.251750
         ]);
 
         \App\Models\ParkingZone::create([
