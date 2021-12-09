@@ -62,7 +62,7 @@ class User extends Eloquent implements Authenticatable
      * @description Eloquent Mutator method for hashing all passwords before saving them to database.
      * @param $password
      */
-    final public function setPasswordAttribute($password)
+    public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
     }
@@ -73,7 +73,7 @@ class User extends Eloquent implements Authenticatable
      * @description Relation mapping, a user belong to a city.
      * @return BelongsTo
      */
-    final public function city(): object
+    public function city(): object
     {
         return $this->belongsTo(City::class, '_id', 'name');
     }
@@ -84,7 +84,7 @@ class User extends Eloquent implements Authenticatable
      * @description Relation mapping, a user has many travels.
      * @return HasMany
      */
-    final public function travels(): object
+    public function travels(): object
     {
         return $this->hasMany(Travel::class, '_id');
     }
@@ -95,7 +95,7 @@ class User extends Eloquent implements Authenticatable
      * @description Relation mapping, a user can has many social accounts to login with.
      * @return HasMany
      */
-    final public function linkedSocialAccounts(): object
+    public function linkedSocialAccounts(): object
     {
         return $this->hasMany(LinkedSocialAccount::class);
     }

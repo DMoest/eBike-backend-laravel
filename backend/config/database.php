@@ -103,6 +103,14 @@ return [
                 'database' => env('DB_USERNAME')
             ],
         ],
+
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'url' => env('TESTING_DATABASE_URL'),
+            'database' => env('TESTING_DB_DATABASE', database_path('TESTING_DB_PATH')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
     ],
 
     /*

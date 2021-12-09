@@ -11,6 +11,9 @@ declare(strict_types=1);
  */
 namespace App\Tests;
 use App\Models\Bike;
+use App\Models\City;
+use Prophecy\PhpUnit\ProphecyTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use PHPUnit\Framework\TestCase;
 
 
@@ -19,6 +22,8 @@ use PHPUnit\Framework\TestCase;
  */
 class BikeModelTest extends TestCase
 {
+    use HasFactory, ProphecyTrait;
+
     protected object $bike;
 
 
@@ -56,5 +61,29 @@ class BikeModelTest extends TestCase
         /* Test existence of expected class methods */
         $this->assertTrue(method_exists($this->bike, "city"), "Bike Model Class does not have expected relation method for city.");
         $this->assertTrue(method_exists($this->bike, "travels"), "Bike Model Class does not have expected relation method for travels.");
+    }
+
+
+    /**
+     * @test
+     * @description Test if the Bike class model have a method for city relation.
+     */
+    final public function test_Bike_model_to_have_method_for_city_relation(): void
+    {
+        $bike = $this->prophesize(Bike::class);
+        $bike->city()->shouldBeCalled();
+        $bike->reveal()->city();
+    }
+
+
+    /**
+     * @test
+     * @description Test if the Bike class model have a method for travels relation.
+     */
+    final public function test_Bike_model_to_have_method_for_travels_relation(): void
+    {
+        $bike = $this->prophesize(Bike::class);
+        $bike->travels()->shouldBeCalled();
+        $bike->reveal()->travels();
     }
 }

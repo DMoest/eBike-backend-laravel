@@ -48,7 +48,7 @@ class ParkingZone extends Eloquent
      * @description Relation mapping, a parking zone belong to a city.
      * @return BelongsTo
      */
-    final public function city(): object
+    public function city(): object
     {
         return $this->belongsTo(City::class, '_id', 'name');
     }

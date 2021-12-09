@@ -50,7 +50,7 @@ class Bike extends Eloquent
      * @description Relation mapping, a bike belong to a city.
      * @return BelongsTo
      */
-    final public function city(): object
+    public function city(): object
     {
         return $this->belongsTo(City::class, '_id', 'name');
     }
@@ -61,7 +61,7 @@ class Bike extends Eloquent
      * @description Relation mapping, a bike has many travels.
      * @return HasMany
      */
-    final public function travels(): object
+    public function travels(): object
     {
         return $this->hasMany(Travel::class, '_id');
     }

@@ -50,7 +50,7 @@ class Station extends Eloquent
      * @description Relation mapping, a station belong to a city.
      * @return BelongsTo
      */
-    final public function city(): object
+    public function city(): object
     {
         return $this->belongsTo(City::class, '_id' );
     }

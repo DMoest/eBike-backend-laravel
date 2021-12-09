@@ -13,6 +13,18 @@
             <directory suffix="CityModelTest.php">./tests/City</directory>
             <directory suffix="CityControllerTest.php">./tests/City</directory>
         </testsuite>
+        <testsuite name="ParkingZone">
+            <directory suffix="ParkingZoneModelTest.php">./tests/ParkingZone</directory>
+        </testsuite>
+        <testsuite name="Station">
+            <directory suffix="StationModelTest.php">./tests/Station</directory>
+        </testsuite>
+        <testsuite name="Travel">
+            <directory suffix="TravelModelTest.php">./tests/Travel</directory>
+        </testsuite>
+        <testsuite name="User">
+            <directory suffix="UserModelTest.php">./tests/User</directory>
+        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
@@ -24,6 +36,7 @@
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
         <server name="DB_CONNECTION" value="mongodb"/>
+<!--        <server name="DB_CONNECTION" value="sqlite_testing"/>-->
         <!-- <server name="DB_DATABASE" value=":memory:"/> -->
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
