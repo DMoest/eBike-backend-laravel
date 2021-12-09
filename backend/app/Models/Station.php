@@ -39,7 +39,9 @@ class Station extends Eloquent
         'active',
         'adress',
         'postcode',
-        'city'
+        'city',
+        'latitude',
+        'longitude'
     ];
 
 

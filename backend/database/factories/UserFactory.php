@@ -19,7 +19,7 @@ class UserFactory extends Factory
             'lastname' => $this->faker->lastName(),
             'adress' => $this->faker->streetAddress(),
             'postcode' => $this->faker->postcode(),
-            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Malmö", "Karlskrona", "Umeå", "Västerås"]),
+            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Umeå"]),
             'phone' => $this->faker->unique()->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),

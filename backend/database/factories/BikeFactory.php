@@ -16,7 +16,7 @@ class BikeFactory extends Factory
     public function definition()
     {
         return [
-            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Malmö", "Karlskrona", "Umeå", "Västerås"]), // TODO FIX THIS!!!
+            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Umeå"]), // TODO FIX THIS!!!
             'status' => $this->faker->randomElement(["in_service", "in_repair", "broken", "lost", "out_of_service"]),
             'active' => $this->faker->boolean(),
             'longitude' => $this->faker->longitude(),
