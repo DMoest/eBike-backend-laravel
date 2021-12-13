@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Schema;
 class CreateBikesTable extends Migration
 {
     /**
+     * @description Migration database connection.
+     */
+    protected $connection = 'mysql';
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -14,9 +19,9 @@ class CreateBikesTable extends Migration
     public function up()
     {
         Schema::create('bikes', function (Blueprint $collection) {
-//            $collection->id('_id')->autoIncrement()->unique();
-            $collection->charset = 'utf8mb4';
-            $collection->collation = 'utf8mb4_unicode_ci';
+            $collection->id('_id')->unique();
+//            $collection->charset = 'utf8mb4';
+//            $collection->collation = 'utf8mb4_unicode_ci';
 
 
             $collection->string('city');
@@ -25,7 +30,7 @@ class CreateBikesTable extends Migration
             $collection->decimal('longitude', 10, 7)->nullable();
             $collection->decimal('latitude', 11, 8)->nullable();
             $collection->integer('speed')->default(0);
-            $collection->integer('battery');
+            $collection->integer('battery')->default(100);
             $collection->timestamps();
         });
     }

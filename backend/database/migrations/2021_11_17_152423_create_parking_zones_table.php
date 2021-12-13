@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Schema;
 class CreateParkingZonesTable extends Migration
 {
     /**
+     * @description Migration database connection.
+     */
+    protected $connection = 'mysql';
+
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -14,9 +20,8 @@ class CreateParkingZonesTable extends Migration
     public function up()
     {
         Schema::create('parking_zones', function (Blueprint $collection) {
-            // $collection->id();
-
-            $collection->foreignId('city')->references('name')->on('cities');
+            $collection->id('_id')->unique();
+            $collection->string('city');
 
             $collection->decimal('sw_longitude', 10, 7);
             $collection->decimal('sw_latitude', 11, 8);

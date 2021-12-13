@@ -7,15 +7,21 @@ use Illuminate\Support\Facades\Schema;
 class CreateChargesTable extends Migration
 {
     /**
+     * @description Migration database connection.
+     */
+    protected $connection = 'mysql';
+
+
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('charges', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('charges', function (Blueprint $collection) {
+            $collection->id('_id')->unique();
+            $collection->timestamps();
         });
     }
 

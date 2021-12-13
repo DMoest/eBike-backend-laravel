@@ -51,7 +51,7 @@ class CityModelTest extends TestCase
     final public function test_City_Model(): void
     {
         /* Test class attributes existence */
-        $this->assertObjectHasAttribute("database", $this->city);
+//        $this->assertObjectHasAttribute("database", $this->city);
         $this->assertObjectHasAttribute("primaryKey", $this->city);
         $this->assertObjectHasAttribute("guarded", $this->city);
         $this->assertObjectHasAttribute("casts", $this->city);

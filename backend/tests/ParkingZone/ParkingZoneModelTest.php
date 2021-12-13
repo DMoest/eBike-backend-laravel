@@ -51,7 +51,7 @@ class ParkingZoneModelTest extends TestCase
     final public function test_ParkingZone_Model(): void
     {
         /* Test class attributes existence */
-        $this->assertObjectHasAttribute("database", $this->parkingZone);
+//        $this->assertObjectHasAttribute("database", $this->parkingZone);
         $this->assertObjectHasAttribute("primaryKey", $this->parkingZone);
         $this->assertObjectHasAttribute("guarded", $this->parkingZone);
         $this->assertObjectHasAttribute("casts", $this->parkingZone);

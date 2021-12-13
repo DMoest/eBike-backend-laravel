@@ -4,8 +4,9 @@
  * Declaration of the models namespace and use of other namespaces.
  */
 namespace App\Models;
+use Illuminate\Database\Eloquent\Model as Eloquent; // MySQL
+//use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 
 /**
@@ -22,7 +23,7 @@ class Travel extends Eloquent
      * @description Models database connection.
      * @var string
      */
-    protected string $database = 'mongodb';
+    protected string $database = 'DB_CONNECTION';
 
 
     /**
@@ -64,7 +65,7 @@ class Travel extends Eloquent
      */
     public function city(): object
     {
-        return $this->belongsTo(City::class, '_id');
+        return $this->belongsTo(City::class, 'name');
     }
 
 

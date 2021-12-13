@@ -4,8 +4,9 @@
  * Declaration of the models namespace and use of other namespaces.
  */
 namespace App\Models;
+use Illuminate\Database\Eloquent\Model as Eloquent; // MySQL
+//use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 
 /**
@@ -13,7 +14,8 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
  * Defines primary keys and the relations to other data models.
  * Enables/disables mass assigning columns in collections.
  */
-class Bike extends Eloquent
+//class Bike extends Eloquent // MongoDB
+class Bike extends Eloquent // MySQL
 {
     use HasFactory;
 
@@ -22,7 +24,7 @@ class Bike extends Eloquent
      * @description Models database connection.
      * @var string
      */
-    protected string $database = 'mongodb';
+    protected string $database = 'DB_CONNECTION';
 
 
     /**

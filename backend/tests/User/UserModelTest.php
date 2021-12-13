@@ -51,7 +51,7 @@ class UserModelTest extends TestCase
     final public function test_User_Model(): void
     {
         /* Test class attributes existence */
-        $this->assertObjectHasAttribute("database", $this->user);
+//        $this->assertObjectHasAttribute("database", $this->user);
         $this->assertObjectHasAttribute("primaryKey", $this->user);
         $this->assertObjectHasAttribute("guarded", $this->user);
         $this->assertObjectHasAttribute("casts", $this->user);

@@ -51,7 +51,7 @@ class StationModelTest extends TestCase
     final public function test_Station_Model(): void
     {
         /* Test class attributes existence */
-        $this->assertObjectHasAttribute("database", $this->station);
+//        $this->assertObjectHasAttribute("database", $this->station);
         $this->assertObjectHasAttribute("primaryKey", $this->station);
         $this->assertObjectHasAttribute("guarded", $this->station);
         $this->assertObjectHasAttribute("casts", $this->station);

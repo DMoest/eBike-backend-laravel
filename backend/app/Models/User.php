@@ -6,11 +6,12 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Illuminate\Database\Eloquent\Model as Eloquent; // MySQL
+//use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
 use Illuminate\Auth\Authenticatable as AuthenticateTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Jenssegers\Mongodb\Relations\BelongsTo;
-use Jenssegers\Mongodb\Relations\HasMany;
+//use Jenssegers\Mongodb\Relations\BelongsTo;
+//use Jenssegers\Mongodb\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 
 
@@ -28,7 +29,7 @@ class User extends Eloquent implements Authenticatable
      * @description Models database connection.
      * @var string
      */
-    private string $database = 'mongodb';
+    private string $database = 'DB_CONNECTION';
 
 
     /**
@@ -75,7 +76,7 @@ class User extends Eloquent implements Authenticatable
      */
     public function city(): object
     {
-        return $this->belongsTo(City::class, '_id', 'name');
+        return $this->belongsTo(City::class, 'name');
     }
 
 

@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Schema;
 class CreateTravelTable extends Migration
 {
     /**
+     * @description Migration database connection.
+     */
+    protected $connection = 'mysql';
+
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -21,13 +27,13 @@ class CreateTravelTable extends Migration
     public function up()
     {
         Schema::create('travel', function (Blueprint $collection) {
-//            $collection->id('_id')->autoIncrement()->unique();
-            $collection->charset = 'utf8mb4';
-            $collection->collation = 'utf8mb4_unicode_ci';
+            $collection->id('_id')->unique();
+//            $collection->charset = 'utf8mb4';
+//            $collection->collation = 'utf8mb4_unicode_ci';
 
-            $collection->foreignId('city')->references('name')->on('cities');
-            $collection->foreignId('user_id')->references('_id')->on('users');
-            $collection->foreignId('bike_id')->references('_id')->on('bikes');
+            $collection->string('city');
+            $collection->string('user_id');
+            $collection->string('bike_id');
 
             $collection->decimal('start_longitude', 10, 7)->nullable();
             $collection->decimal('start_latitude', 11, 8)->nullable();

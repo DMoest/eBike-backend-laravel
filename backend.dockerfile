@@ -8,7 +8,8 @@ RUN apt-get update && \
       zip unzip \
       make \
       bash && \
-    pecl install mongodb
+    pecl install mongodb && \
+    docker-php-ext-enable mongodb
 
 COPY --from=composer:2.1.14 /usr/bin/composer /usr/bin/composer
 

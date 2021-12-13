@@ -51,7 +51,7 @@ class TravelModelTest extends TestCase
     final public function test_Travel_Model(): void
     {
         /* Test class attributes existence */
-        $this->assertObjectHasAttribute("database", $this->travel);
+//        $this->assertObjectHasAttribute("database", $this->travel);
         $this->assertObjectHasAttribute("primaryKey", $this->travel);
         $this->assertObjectHasAttribute("guarded", $this->travel);
         $this->assertObjectHasAttribute("casts", $this->travel);

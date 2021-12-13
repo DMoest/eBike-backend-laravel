@@ -166,7 +166,7 @@ return [
          * Package Service Providers:
          * MongoDB - Jenssegers Service Provider.
          */
-        Jenssegers\Mongodb\MongodbServiceProvider::class,
+//        Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         /*
          * Application Service Providers...

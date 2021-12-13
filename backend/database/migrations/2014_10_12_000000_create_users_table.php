@@ -8,31 +8,36 @@ use Illuminate\Support\Facades\Schema;
 class CreateUsersTable extends Migration
 {
     /**
+     * @description Migration database connection.
+     */
+    protected $connection = 'mysql';
+
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $collection) {
-//            $collection->id('_id')->autoIncrement()->unique();
-            $collection->charset = 'utf8mb4';
-            $collection->collation = 'utf8mb4_unicode_ci';
+        Schema::create('users', function (Blueprint $table) {
+            $table->id('_id')->unique();
+//            $table->charset = 'utf8mb4';
+//            $table->collation = 'utf8mb4_unicode_ci';
 
-            $collection->string('provider_id')->nullable();
-            $collection->string('firstname');
-            $collection->string('lastname');
-            $collection->string('adress')->nullable()->change();
-            $collection->string('postcode')->nullable()->change();
-            $collection->foreignId('city')->nullable()->change();
-            $collection->string('phone')->nullable()->change();
-            $collection->unique('email');
-            $collection->timestamp('email_verified_at')->nullable();
-            $collection->string('password')->nullable(); // Null for creating new users depending on OAuth providers.
-            $collection->string('payment_method');
-            $collection->string('payment_status');
-            $collection->rememberToken();
-            $collection->timestamps();
+            $table->string('city');
+            $table->string('provider_id')->nullable();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('adress')->nullable();
+            $table->string('postcode')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password')->nullable(); // Null for creating new users depending on OAuth providers.
+            $table->string('payment_method');
+            $table->string('payment_status');
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

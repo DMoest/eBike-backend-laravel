@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Schema;
 class CreateCitiesTable extends Migration
 {
     /**
+     * @description Migration database connection.
+     */
+    protected $connection = 'mysql';
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -14,9 +19,9 @@ class CreateCitiesTable extends Migration
     public function up()
     {
         Schema::create('cities', function (Blueprint $collection) {
-//            $collection->id('_id')->autoIncrement()->unique();
-            $collection->charset = 'utf8mb4';
-            $collection->collation = 'utf8mb4_unicode_ci';
+            $collection->id('_id')->unique();
+//            $collection->charset = 'utf8mb4';
+//            $collection->collation = 'utf8mb4_unicode_ci';
 
             $collection->string('name');
             $collection->string('country');
