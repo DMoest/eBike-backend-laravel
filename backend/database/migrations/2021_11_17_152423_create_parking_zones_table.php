@@ -25,8 +25,12 @@ class CreateParkingZonesTable extends Migration
 
             $collection->decimal('sw_longitude', 10, 7);
             $collection->decimal('sw_latitude', 11, 8);
+            $collection->decimal('se_longitude', 10, 7);
+            $collection->decimal('se_latitude', 11, 8);
             $collection->decimal('ne_longitude', 10, 7);
             $collection->decimal('ne_latitude', 11, 8);
+            $collection->decimal('nw_longitude', 10, 7);
+            $collection->decimal('nw_latitude', 11, 8);
 
             $collection->timestamps();
         });

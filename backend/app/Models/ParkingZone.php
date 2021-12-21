@@ -39,8 +39,12 @@ class ParkingZone extends Eloquent
         'city',
         'sw_longitude',
         'sw_latitude',
+        'se_longitude',
+        'se_latitude',
         'ne_longitude',
         'ne_latitude',
+        'nw_longitude',
+        'nw_latitude'
     ];
 
 
