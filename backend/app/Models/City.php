@@ -24,7 +24,7 @@ class City extends Eloquent // MySQL
      * @description Models database connection.
      * @var string
      */
-    protected string $database = 'DB_CONNECTION';
+    protected string $database = 'mysql';
 
 
     /**

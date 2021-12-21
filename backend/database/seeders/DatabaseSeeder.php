@@ -21,37 +21,37 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\City::create([
-//            'id' => 1,
+            '_id' => 1,
             'name' => 'Stockholm',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-//            'id' => 2,
+            '_id' => 2,
             'name' => 'Göteborg',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-//            'id' => 3,
+            '_id' => 3,
             'name' => 'Malmö',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-//            'id' => 4,
+            '_id' => 4,
             'name' => 'Karlskrona',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-//            'id' => 5,
+            '_id' => 5,
             'name' => 'Västerås',
             'country' => 'Sverige'
         ]);
 
         \App\Models\City::create([
-//            'id' => 6,
+            '_id' => 6,
             'name' => 'Umeå',
             'country' => 'Sverige'
         ]);

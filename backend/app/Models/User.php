@@ -29,7 +29,7 @@ class User extends Eloquent implements Authenticatable
      * @description Models database connection.
      * @var string
      */
-    private string $database = 'DB_CONNECTION';
+    private string $database = 'mysql';
 
 
     /**

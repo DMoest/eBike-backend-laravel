@@ -1,6 +1,6 @@
 FROM composer:2
 
-ENV COMPOSERUSER=laravel
-ENV COMPOSERGROUP=laravel
+ENV COMPOSERUSER=ebike
+ENV COMPOSERGROUP=ebike
 
 RUN adduser -g ${COMPOSERGROUP} -s /bin/sh -D ${COMPOSERUSER}

@@ -23,7 +23,7 @@ class Travel extends Eloquent
      * @description Models database connection.
      * @var string
      */
-    protected string $database = 'DB_CONNECTION';
+    protected string $database = 'mysql';
 
 
     /**
