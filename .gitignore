@@ -24,3 +24,4 @@ Homestead.json
 
 *.bin/
 */build/
+/mysql
