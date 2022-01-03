@@ -12,7 +12,7 @@ use Illuminate\Auth\Authenticatable as AuthenticateTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 //use Jenssegers\Mongodb\Relations\BelongsTo;
 //use Jenssegers\Mongodb\Relations\HasMany;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 
 /**
