@@ -54,43 +54,10 @@ class AuthenticationController extends Controller
 
 
 
-        if (!Auth::attempt($login)) {
-            return response()->json(
-                [
-                    'message' => 'Invalid Login Credentials'
-                ],
-                401,
-                [
-                    'content-type' => 'application/json;charset=UTF-8',
-                    'Charset' => 'utf-8'
-                ],
-                JSON_UNESCAPED_UNICODE
-            );
-        }
-
-        $accessToken = $user->createToken('authToken')->accessToken;
-
-        return response()->json(
-            [
-                'message' => 'Login Successful',
-                'user' => $user,
-                'access_token' => $accessToken,
-            ],
-            201,
-            [
-                'content-type' => 'application/json;charset=UTF-8',
-                'Charset' => 'utf-8'
-            ],
-            JSON_UNESCAPED_UNICODE
-        );
-
-//        try {
-//            Auth::attempt($login);
-//        } catch (Error $error) {
+//        if (!Auth::attempt($login)) {
 //            return response()->json(
 //                [
-//                    'message' => 'Invalid Login Credentials',
-//                    'error' => $error->getMessage()
+//                    'message' => 'Invalid Login Credentials'
 //                ],
 //                401,
 //                [
@@ -116,6 +83,39 @@ class AuthenticationController extends Controller
 //            ],
 //            JSON_UNESCAPED_UNICODE
 //        );
+
+        try {
+            Auth::attempt($login);
+        } catch (Error $error) {
+            return response()->json(
+                [
+                    'message' => 'Invalid Login Credentials',
+                    'error' => $error->getMessage()
+                ],
+                401,
+                [
+                    'content-type' => 'application/json;charset=UTF-8',
+                    'Charset' => 'utf-8'
+                ],
+                JSON_UNESCAPED_UNICODE
+            );
+        }
+
+        $accessToken = $user->createToken('authToken')->accessToken;
+
+        return response()->json(
+            [
+                'message' => 'Login Successful',
+                'user' => $user,
+                'access_token' => $accessToken,
+            ],
+            201,
+            [
+                'content-type' => 'application/json;charset=UTF-8',
+                'Charset' => 'utf-8'
+            ],
+            JSON_UNESCAPED_UNICODE
+        );
 
 
 
