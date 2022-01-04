@@ -27,8 +27,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+<<<<<<< HEAD
         if (! $this->app->routesAreCached()) {
             Passport::routes();
         }
+=======
+<<<<<<< Updated upstream
+        //
+=======
+        if (! $this->app->routesAreCached()) {
+            Passport::routes();
+            Passport::hashClientSecrets();
+        }
+>>>>>>> Stashed changes
+>>>>>>> daniel
     }
 }
