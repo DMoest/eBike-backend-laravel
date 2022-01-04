@@ -84,74 +84,86 @@ Route::get('/', function () {
  * Bike routes.
  * @description Routes are for handling database requests relevant to bikes. Full CRUD supported.
  */
-Route::get('/bike', [BikeController::class, 'getBikes']);
-Route::get('/bike/{bike:_id}', [BikeController::class, 'getBike']);
-Route::get('/bike/city/{city:name}', [BikeController::class, 'getBikesInCity']);
-Route::post('/bike', [BikeController::class, 'createBike']);
-Route::put('/bike', [BikeController::class, 'updateBike']);
-Route::delete('/bike', [BikeController::class, 'deleteBike']);
+Route::prefix('/bike')->group(function() {
+    Route::get('/', [BikeController::class, 'getBikes']);
+    Route::get('/{bike:_id}', [BikeController::class, 'getBike']);
+    Route::get('/city/{city:name}', [BikeController::class, 'getBikesInCity']);
+    Route::post('/', [BikeController::class, 'createBike']);
+    Route::put('/', [BikeController::class, 'updateBike']);
+    Route::delete('/', [BikeController::class, 'deleteBike']);
+});
 
 
 /**
  * City routes.
  * @description Routes are for handling database requests relevant to cities. Full CRUD supported.
  */
-Route::get('/city', [CityController::class, 'getCities']);
-Route::get('/city/{city:name}', [CityController::class, 'getCity']);
-Route::post('/city', [CityController::class, 'addCity']);
-Route::put('/city', [CityController::class, 'updateCity']);
-Route::delete('/city', [CityController::class, 'deleteCity']);
+Route::prefix('/city')->group(function() {
+    Route::get('/', [CityController::class, 'getCities']);
+    Route::get('/{city:name}', [CityController::class, 'getCity']);
+    Route::post('/', [CityController::class, 'addCity']);
+    Route::put('/', [CityController::class, 'updateCity']);
+    Route::delete('/', [CityController::class, 'deleteCity']);
+});
 
 
 /**
  * Parking Zone routes.
  * @description Routes are for handling database requests relevant to parking zones. Full CRUD supported.
  */
-Route::get('/parking', [ParkingZoneController::class, 'getParingZones']);
-Route::get('/parking/{parking:_id}', [ParkingZoneController::class, 'getParingZone']);
-Route::get('/parking/city/{city:name}', [ParkingZoneController::class, 'getParkingZonesInCity']);
-Route::post('/parking', [ParkingZoneController::class, 'createParkingZone']);
-Route::put('/parking', [ParkingZoneController::class, 'updateParkingZone']);
-Route::delete('/parking', [ParkingZoneController::class, 'deleteParkingZone']);
+Route::prefix('/parking')->group(function() {
+    Route::get('/', [ParkingZoneController::class, 'getParingZones']);
+    Route::get('/{parking:_id}', [ParkingZoneController::class, 'getParingZone']);
+    Route::get('/city/{city:name}', [ParkingZoneController::class, 'getParkingZonesInCity']);
+    Route::post('/', [ParkingZoneController::class, 'createParkingZone']);
+    Route::put('/', [ParkingZoneController::class, 'updateParkingZone']);
+    Route::delete('/', [ParkingZoneController::class, 'deleteParkingZone']);
+});
 
 
 /**
  * Station routes.
  * @description Routes are for handling database requests relevant to station. Full CRUD supported.
  */
-Route::get('/station', [StationController::class, 'getStations']);
-Route::get('/station/{station:_id}', [StationController::class, 'getStation']);
-Route::get('/station/city/{city:name}', [StationController::class, 'getStationsInCity']);
-Route::post('/station', [StationController::class, 'createStation']);
-Route::put('/station', [StationController::class, 'updateStation']);
-Route::delete('/station', [StationController::class, 'deleteStation']);
+Route::prefix('/station')->group(function() {
+    Route::get('/', [StationController::class, 'getStations']);
+    Route::get('/{station:_id}', [StationController::class, 'getStation']);
+    Route::get('/city/{city:name}', [StationController::class, 'getStationsInCity']);
+    Route::post('/', [StationController::class, 'createStation']);
+    Route::put('/', [StationController::class, 'updateStation']);
+    Route::delete('/', [StationController::class, 'deleteStation']);
+});
 
 
 /**
  * Travel Routes.
  * @description Routes are for handling database requests relevant to travels. Full CRUD supported.
  */
-Route::get('/travel', [TravelController::class, 'getTravels']);
-Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
-Route::get('/travel/city/{city:name}', [TravelController::class, 'getTravelingInCity']);
-Route::get('/travel/bike/{bike:_id}', [TravelController::class, 'getTravelingWithBike']);
-Route::get('/travel/user/{user:_id}', [TravelController::class, 'getTravelingByUser']);
-Route::post('/travel', [TravelController::class, 'createTravel']);
-Route::put('/travel', [TravelController::class, 'updateTravel']);
-Route::delete('/travel', [TravelController::class, 'deleteTravel']);
+Route::prefix('/travel')->group(function() {
+    Route::get('/', [TravelController::class, 'getTravels']);
+    Route::get('/{travel}', [TravelController::class, 'getTravels']);
+    Route::get('/city/{city:name}', [TravelController::class, 'getTravelingInCity']);
+    Route::get('/bike/{bike:_id}', [TravelController::class, 'getTravelingWithBike']);
+    Route::get('/user/{user:_id}', [TravelController::class, 'getTravelingByUser']);
+    Route::post('/', [TravelController::class, 'createTravel']);
+    Route::put('/', [TravelController::class, 'updateTravel']);
+    Route::delete('/', [TravelController::class, 'deleteTravel']);
+});
 
 
 /**
  * User Routes.
  * @description Routes are for handling database requests relevant to users. Full CRUD supported.
  */
-Route::get('/user', [UserController::class, 'getUsers']);
-Route::get('/user/{user:_id}', [UserController::class, 'getUser']);
-Route::get('/user/city/{city:name}', [UserController::class, 'getUsersInCity']);
-Route::post('/user/login', [AuthenticationController::class, 'login']);
-Route::post('/user', [UserController::class, 'createUser']);
-Route::put('/user', [UserController::class, 'updateUser']);
-Route::delete('/user', [UserController::class, 'deleteUser']);
+Route::prefix('/user')->group(function() {
+    Route::get('/', [UserController::class, 'getUsers']);
+    Route::get('/{user:_id}', [UserController::class, 'getUser']);
+    Route::get('/city/{city:name}', [UserController::class, 'getUsersInCity']);
+    Route::post('/login', [AuthenticationController::class, 'login']);
+    Route::post('/', [UserController::class, 'createUser']);
+    Route::put('/', [UserController::class, 'updateUser']);
+    Route::delete('/', [UserController::class, 'deleteUser']);
+});
 
 
 /**

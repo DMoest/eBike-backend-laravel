@@ -17,10 +17,3 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-
-
-/**
- * Authentication Route.
- */
-Route::get('/auth/github', [AuthenticationController::class, 'redirectToProvider']);
-Route::get('/auth/github/callback', [AuthenticationController::class, 'providerCallback']);
