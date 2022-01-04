@@ -148,9 +148,11 @@ Route::delete('/travel', [TravelController::class, 'deleteTravel']);
 Route::get('/user', [UserController::class, 'getUsers']);
 Route::get('/user/{user:_id}', [UserController::class, 'getUser']);
 Route::get('/user/city/{city:name}', [UserController::class, 'getUsersInCity']);
+Route::post('/user/login', [AuthenticationController::class, 'login']);
 Route::post('/user', [UserController::class, 'createUser']);
 Route::put('/user', [UserController::class, 'updateUser']);
 Route::delete('/user', [UserController::class, 'deleteUser']);
+
 
 /**
  * Charge Routes.
