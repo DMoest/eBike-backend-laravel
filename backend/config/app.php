@@ -162,11 +162,13 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers:
          * MongoDB - Jenssegers Service Provider.
          */
 //        Jenssegers\Mongodb\MongodbServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -176,7 +178,15 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+
+        /**
+         * Application Service Provider for Laravel Passport
+         */
+        Laravel\Passport\PassportServiceProvider::class,
+
     ],
+
 
     /*
     |--------------------------------------------------------------------------

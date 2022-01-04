@@ -27,9 +27,9 @@ use App\Http\Controllers\ParkingZoneController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 
 /**
@@ -73,16 +73,9 @@ Route::get('/', function () {
 });
 
 
-///**
-// * Authentication Route.
-// */
-//Route::get('/auth/github', [AuthenticationController::class, 'redirectToProvider']);
-//Route::get('/auth/github/callback', [AuthenticationController::class, 'providerCallback']);
-
-
 /**
- * Bike routes.
- * @description Routes are for handling database requests relevant to bikes. Full CRUD supported.
+ * @description Bike Routes are for handling database requests relevant to bikes.
+ *      Full CRUD supported for bikes in database.
  */
 Route::prefix('/bike')->group(function() {
     Route::get('/', [BikeController::class, 'getBikes']);
@@ -95,8 +88,8 @@ Route::prefix('/bike')->group(function() {
 
 
 /**
- * City routes.
- * @description Routes are for handling database requests relevant to cities. Full CRUD supported.
+ * @description City Routes are for handling database requests relevant to cities.
+ *      Full CRUD supported for cities in database.
  */
 Route::prefix('/city')->group(function() {
     Route::get('/', [CityController::class, 'getCities']);
@@ -108,8 +101,8 @@ Route::prefix('/city')->group(function() {
 
 
 /**
- * Parking Zone routes.
- * @description Routes are for handling database requests relevant to parking zones. Full CRUD supported.
+ * @description Parking Zone are for handling database requests relevant to parking zones.
+ *      Full CRUD supported for parking zones in database.
  */
 Route::prefix('/parking')->group(function() {
     Route::get('/', [ParkingZoneController::class, 'getParingZones']);
@@ -122,8 +115,8 @@ Route::prefix('/parking')->group(function() {
 
 
 /**
- * Station routes.
- * @description Routes are for handling database requests relevant to station. Full CRUD supported.
+ * @description Station Routes are for handling database requests relevant to station.
+ *      Full CRUD supported for all stations in database.
  */
 Route::prefix('/station')->group(function() {
     Route::get('/', [StationController::class, 'getStations']);
@@ -136,8 +129,9 @@ Route::prefix('/station')->group(function() {
 
 
 /**
- * Travel Routes.
- * @description Routes are for handling database requests relevant to travels. Full CRUD supported.
+ * @description Travel Routes are for handling database requests relevant to travels.
+ *      All user related routes are grouped under '/travel' route.
+ *      Full CRUD supported for travels table in database.
  */
 Route::prefix('/travel')->group(function() {
     Route::get('/', [TravelController::class, 'getTravels']);
@@ -152,17 +146,21 @@ Route::prefix('/travel')->group(function() {
 
 
 /**
- * User Routes.
- * @description Routes are for handling database requests relevant to users. Full CRUD supported.
+ * @description User Routes are for handling requests relevant to users.
+ *      All user related routes are grouped under '/user' route.
+ *      Full CRUD supported for users in the database.
+ *      Authentication supported for user login through AuthenticationController.
  */
 Route::prefix('/user')->group(function() {
     Route::get('/', [UserController::class, 'getUsers']);
     Route::get('/{user:_id}', [UserController::class, 'getUser']);
     Route::get('/city/{city:name}', [UserController::class, 'getUsersInCity']);
-    Route::post('/login', [AuthenticationController::class, 'login']);
     Route::post('/', [UserController::class, 'createUser']);
     Route::put('/', [UserController::class, 'updateUser']);
     Route::delete('/', [UserController::class, 'deleteUser']);
+
+    Route::post('/login', [AuthenticationController::class, 'login']);
+    Route::middleware('auth:api')->get('/', [UserController::class, 'getUsers']);
 });
 
 

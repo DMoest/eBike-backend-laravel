@@ -58,15 +58,15 @@ class User extends Eloquent implements Authenticatable
     protected $casts = [ 'email_verified_at' => 'datetime' ];
 
 
-    /**
-     * @method setPasswordAttribute()
-     * @description Eloquent Mutator method for hashing all passwords before saving them to database.
-     * @param $password
-     */
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
+//    /**
+//     * @method setPasswordAttribute()
+//     * @description Eloquent Mutator method for hashing all passwords before saving them to database.
+//     * @param $password
+//     */
+//    public function setPasswordAttribute($password)
+//    {
+//        $this->attributes['password'] = bcrypt($password);
+//    }
 
 
     /**
