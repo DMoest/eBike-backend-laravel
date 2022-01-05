@@ -1,41 +1,54 @@
-FROM php:8-fpm-alpine
+#
+# MySQL / SQLite Setup.
+#
+FROM php:8.0-cli
 
-RUN apk update && \
-    apk upgrade && \
-    apk add bash-completion \
-      php8-json \
-      php8-openssl \
-      php8-tokenizer \
-      php8-pdo \
-      php8-pdo_mysql \
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y  \
+      libssl-dev \
+      bash \
+      make \
+      curl \
       zip \
       unzip \
-      make && \
-    docker-php-ext-install mysqli pdo pdo_mysql
+    && docker-php-ext-install pdo pdo_mysql
 
-RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && alias composer='php /usr/bin/composer'
 
 WORKDIR /backend
 
 COPY ./* .
 
-RUN make clean-all install
+RUN composer clearcache \
+    && composer install \
+            --no-interaction \
+            --no-plugins \
+            --no-scripts \
+            --no-dev \
+            --prefer-dist \
+    && composer dump-autoload \
+    && php artisan optimize:clear
 
-CMD php artisan optimize:clear && \
-    php artisan serve --host 0.0.0.0 --port=8000
+CMD php artisan serve --host 0.0.0.0 --port=8000
 
 
+
+
+##
+## Mongo DB Setup.
+##
 #FROM php:8.0-cli
 #
 #RUN apt-get update && \
 #    apt-get upgrade -y && \
-#    apt-get install -y  \s
+#    apt-get install -y  \
 #      libssl-dev \
 #      zip unzip \
 #      make \
 #      curl \
 #      bash && \
-#    docker-php-ext-install mysqln pdo pdo-mysql && \
 #    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
 #    alias composer='php /usr/bin/composer'
 ##    pecl install mongodb && \

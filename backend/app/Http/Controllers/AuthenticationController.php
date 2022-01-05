@@ -121,4 +121,26 @@ class AuthenticationController extends Controller
 
 
     }
+
+
+    /**
+     * @description Function for local registration of OAuth client/user on the API.
+     *
+     * @param Request $request
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    final public function registerUser(Request $request) {
+
+        $data = [
+            'email' => $request['email'],
+            'password' => $request['password'],
+            'firstname' => $request['firstname'] || null,
+            'lastname' => $request['lastname'] || null,
+            'phone' => $request['phone'] || null,
+            'adress' => $request['adress'] || null,
+            'postcode' => $request['postcode'] || null
+        ];
+
+        return view('dashboard', $data);
+    }
 }
