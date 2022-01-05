@@ -160,7 +160,7 @@ Route::prefix('/user')->group(function() {
     Route::delete('/', [UserController::class, 'deleteUser']);
 
     Route::post('/login', [AuthenticationController::class, 'login']);
-//    Route::middleware('auth:api')->get('/', [UserController::class, 'getUsers']);
+//    Route::middleware('auth:api')->get('/clients', [UserController::class, 'getUsers']);
 });
 
 
