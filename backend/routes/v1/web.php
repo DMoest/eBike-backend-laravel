@@ -15,27 +15,29 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+
 Route::get('/', function() {
     return view('welcome');
 });
 
-Route::prefix('/dashboard')->group(function() {
-    Route::get('/', function() {
-        return view('dashboard');
-    });
 
-    Route::get('/clients', function(Request $request) {
+//Route::prefix('/dashboard')->group(function() {
+    Route::get('/dashboard', function() {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
+
+    Route::get('/dashboard/clients', function(Request $request) {
         return view('clients', [
             'clients' => $request->user()->clients
         ]);
     })->middleware(['auth'])->name('dashboard.clients');
-});
+//});
 
 
-Route::prefix('/user')->group(function() {
-    Route::get('/register', [AuthenticationController::class, 'registerUser']);
-    Route::get('/clients', [AuthenticationController::class, 'clients'])->middleware(['auth'])->name('user.registration');
-});
+//Route::prefix('/user')->group(function() {
+//    Route::get('/register', [AuthenticationController::class, 'registerUser']);
+//    Route::get('/clients', [AuthenticationController::class, 'clients'])->middleware(['auth'])->name('user.registration');
+//});
+
+
+require __DIR__.'/auth.php';

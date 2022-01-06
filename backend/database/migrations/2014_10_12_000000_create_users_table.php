@@ -33,9 +33,9 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable(); // Null for creating new users depending on OAuth providers.
-            $table->string('payment_method');
-            $table->string('payment_status');
+            $table->string('password')->nullable(); // Null for creating new users depending on third party OAuth providers.
+            $table->string('payment_method')->default('credit');
+            $table->string('payment_status')->default('unpaid');
             $table->rememberToken();
             $table->timestamps();
         });
