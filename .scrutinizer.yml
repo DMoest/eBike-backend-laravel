@@ -1,0 +1,30 @@
+imports:
+  - php
+
+filter:
+  excluded_paths: [build, vendor, database, tests]
+
+checks:
+  php: true
+
+build:
+  project_setup:
+    override:
+      - true
+  environment:
+    php:
+      version: 8.0
+  root_path: './backend/'
+
+  nodes:
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run
+    coverage:
+      tests:
+        override:
+          - command: make phpunit
+            coverage:
+              file: build/coverage.clover
+              format: clover
