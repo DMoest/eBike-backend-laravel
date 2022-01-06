@@ -62,6 +62,11 @@ Run the command and make sure the installation finnish correctly:
 ```
 make install
 ```
+Followed by
+```
+npm install
+```
+
 I case of anything not working as expected later when making requests to the API you might need to run:
 ```
 make clean-all install
@@ -76,10 +81,19 @@ Optimization only needs to be done once after first clone or new changes to the 
 Mainly Optimization needs to be done after a new route is added but in case of uncertain do it to be sure. 
 Then start the API server.
 ```
-php artisan optimize
+php artisan optimize:clear
 php artisan serve
 ```
 
+In case you are in development run
+```
+npm run dev
+```
+or
+```
+npm run watch
+```
+for compile of package files.
 <br>
 
 ### Make request calls to the API
@@ -99,8 +113,34 @@ php artisan route:list
 <br>
 
 ### Unit test the server
+
+There are two way of testing the API.
+
+First you can run the artisan command for unit testing only.
 ```
 php artisan test
+```
+the other way would be the better way since it runs a few other tests as well.
+```
+make test
+```
+
+<br>
+
+### Enable third party app development
+Register a user on route
+```
+http://localhost:8000/register
+```
+
+If already existing user exists, log in user to register new client on route
+```
+http://localhost:8000/login
+```
+
+Register new client for authentication with the API.
+```
+http://localhost:8000/dashboard/client
 ```
 
 <br>

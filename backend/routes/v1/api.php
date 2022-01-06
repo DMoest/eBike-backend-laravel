@@ -74,6 +74,23 @@ Route::get('/', function () {
 
 
 /**
+ * @description API Middlewares.
+ */
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user()->makeVisible([
+        'city',
+        'firstname',
+        'lastname',
+        'adress',
+        'postcode',
+        'email',
+        'payment_method',
+        'payment_status'
+    ]);
+});
+
+
+/**
  * @description Bike Routes are for handling database requests relevant to bikes.
  *      Full CRUD supported for bikes in database.
  */
@@ -151,7 +168,7 @@ Route::prefix('/travel')->group(function() {
  *      Full CRUD supported for users in the database.
  *      Authentication supported for user login through AuthenticationController.
  */
-Route::prefix('/user')->group(function() {
+Route::prefix('/user')->group(function () {
     Route::get('/', [UserController::class, 'getUsers']);
     Route::get('/{user:_id}', [UserController::class, 'getUser']);
     Route::get('/city/{city:name}', [UserController::class, 'getUsersInCity']);
@@ -159,7 +176,7 @@ Route::prefix('/user')->group(function() {
     Route::put('/', [UserController::class, 'updateUser']);
     Route::delete('/', [UserController::class, 'deleteUser']);
 
-    Route::post('/login', [AuthenticationController::class, 'login']);
+//    Route::post('/login', [AuthenticationController::class, 'login']);
 //    Route::middleware('auth:api')->get('/clients', [UserController::class, 'getUsers']);
 });
 

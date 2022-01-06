@@ -54,7 +54,19 @@ class User extends Eloquent implements Authenticatable
         'payment_method',
         'payment_status'
     ];
-    protected $hidden = [ 'password', 'remember_token' ];
+    protected $hidden = [
+//        'firstname',
+//        'lastname',
+        'email',
+//        'phone',
+//        'adress',
+//        'postcode',
+//        'city',
+        'password',
+        'payment_method',
+        'payment_status',
+        'remember_token'
+    ];
     protected $casts = [ 'email_verified_at' => 'datetime' ];
 
 
