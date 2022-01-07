@@ -36,7 +36,7 @@ jobs:
             cp backend/.env.test backend/.env
             cd backend
             php artisan key:generate
-            php artisan migrate:clear --seed
+            php artisan migrate:fresh --seed
             php artisan optimize:clear
 
       # Cache yarn dependencies
