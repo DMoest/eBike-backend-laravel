@@ -5,6 +5,8 @@
  */
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model as Eloquent; // MySQL
 //use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
@@ -83,7 +85,7 @@ class User extends Eloquent implements Authenticatable
      * @description Relation mapping, a user belong to a city.
      * @return BelongsTo
      */
-    public function city(): object
+    public function city(): BelongsTo
     {
         return $this->belongsTo(City::class, 'name');
     }
@@ -94,7 +96,7 @@ class User extends Eloquent implements Authenticatable
      * @description Relation mapping, a user has many travels.
      * @return HasMany
      */
-    public function travels(): object
+    public function travels(): HasMany
     {
         return $this->hasMany(Travel::class, '_id');
     }
@@ -105,7 +107,7 @@ class User extends Eloquent implements Authenticatable
      * @description Relation mapping, a user can has many social accounts to login with.
      * @return HasMany
      */
-    public function linkedSocialAccounts(): object
+    public function linkedSocialAccounts(): HasMany
     {
         return $this->hasMany(LinkedSocialAccount::class);
     }

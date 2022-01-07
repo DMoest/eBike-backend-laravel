@@ -14,9 +14,12 @@ build:
   environment:
     php:
       version: 8.0
+      compile_options: '--enable-sigchild --without-pear'
   root_path: './backend/'
 
   nodes:
+    before:
+      - command: make clean-all install
     analysis:
       tests:
         override:

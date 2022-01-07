@@ -196,8 +196,8 @@ class TravelController extends Controller
      */
     final public function deleteTravel(Request $request): JsonResponse
     {
-        $travel = Travel::find($request->_id);
-        $travel->delete($request->_id);
+        $travel = Travel::find($request['_id']);
+        $travel->delete($request['_id']);
 
         return response()->json(
             $travel,

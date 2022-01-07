@@ -7,6 +7,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Eloquent; // MySQL
 //use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -52,7 +54,7 @@ class Bike extends Eloquent // MySQL
      * @description Relation mapping, a bike belong to a city.
      * @return BelongsTo
      */
-    public function city(): object
+    public function city(): BelongsTo
     {
         return $this->belongsTo(City::class, '_id', 'name');
     }
@@ -63,7 +65,7 @@ class Bike extends Eloquent // MySQL
      * @description Relation mapping, a bike has many travels.
      * @return HasMany
      */
-    public function travels(): object
+    public function travels(): HasMany
     {
         return $this->hasMany(Travel::class, '_id');
     }
