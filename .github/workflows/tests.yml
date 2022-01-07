@@ -27,7 +27,7 @@ jobs:
 
       # Composer Install Dependencies
       - name: Run composer install
-        run: composer install -n --prefer-dist
+        run: cd backend && composer install -n --prefer-dist
         env:
             APP_ENV: testing
 
