@@ -62,16 +62,16 @@ class UserModelTest extends TestCase
     }
 
 
-    /**
-     * @test
-     * @description Test if the User class model have a method for set password attribute.
-     */
-    final public function test_user_model_to_have_method_for_setPasswordAttribute(): void
-    {
-        $user = $this->prophesize(User::class);
-        $user->setPasswordAttribute('superSäkertLösenord12321')->shouldBeCalled();
-        $user->reveal()->setPasswordAttribute('superSäkertLösenord12321');
-    }
+//    /**
+//     * @test
+//     * @description Test if the User class model have a method for set password attribute.
+//     */
+//    final public function test_user_model_to_have_method_for_setPasswordAttribute(): void
+//    {
+//        $user = $this->prophesize(User::class);
+//        $user->setPasswordAttribute('superSäkertLösenord12321')->shouldBeCalled();
+//        $user->reveal()->setPasswordAttribute('superSäkertLösenord12321');
+//    }
 
 
     /**
