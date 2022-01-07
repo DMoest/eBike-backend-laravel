@@ -34,8 +34,7 @@ jobs:
       # Prepare ENV file for Laravel Application
       - name: Prepare Laravel Application
         run: |
-            cp backend/.env.test backend/.env
-            cd backend
+            cp .env.example backend/.env
             php artisan key:generate
 
       # Runs a set of commands using the runners shell
