@@ -50,13 +50,11 @@ jobs:
           yarn
           yarn dev
 
-      # Run PHP Unit tests
-      - name: Run tests with PHP Unit
+      # Run Make PHP Unit tests
+      - name: Run all tests with 'make test'
         run: |
           cd backend
-          ./vendor/bin/phpunit
-        env:
-            APP_ENV: backend/env.test
+          make test
 
       # Store Build Log after container crashes
       - name: Upload artifacts
