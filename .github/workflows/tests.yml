@@ -34,8 +34,8 @@ jobs:
       # Prepare ENV file for Laravel Application
       - name: Prepare Laravel Application
         run: |
-            cp backend/.env.test backend/.env
-            cd backend
+            cp backend/.env.test backend/.env,
+            cd backend,
             php artisan key:generate
 
       # Cache yarn dependencies
