@@ -1,7 +1,5 @@
 # This is a basic workflow to help you get started with Actions
-
 name: CI
-
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
@@ -9,33 +7,29 @@ on:
     branches: [ tests ]
   pull_request:
     branches: [ tests ]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
       # Composer Install Dependencies
       - name: Run composer install
         run: cd backend && composer install -n --prefer-dist
         env:
-            APP_ENV: backend/.env.test
+            APP_ENV: testing
 
       # Prepare ENV file for Laravel Application
       - name: Prepare Laravel Application
         run: |
-            cp backend/.env.test backend/.env,
-            cd backend,
+            cp backend/.env.test backend/.env
+            cd backend
             php artisan key:generate
 
       # Cache yarn dependencies
@@ -47,16 +41,11 @@ jobs:
 
       # Install dependencies with yarn
       - name: Install dependencies with yarn
-        run: |
-          cd backend,
-          yarn,
-          yarn dev
+        run: cd backend && yarn && yarn dev
 
       # Run PHP Unit tests
       - name: Run tests with PHP Unit
-        run: |
-          cd backend,
-          make phpunit
+        run: backend/./vendor/bin/phpunit
         env:
             APP_ENV: backend/env.test
 
