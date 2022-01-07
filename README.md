@@ -1,3 +1,8 @@
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Den-geografiska-oredan/eBike-backend-laravel/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Den-geografiska-oredan/eBike-backend-laravel/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/Den-geografiska-oredan/eBike-backend-laravel/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Den-geografiska-oredan/eBike-backend-laravel/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/Den-geografiska-oredan/eBike-backend-laravel/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Den-geografiska-oredan/eBike-backend-laravel/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/Den-geografiska-oredan/eBike-backend-laravel/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)  
+
 # Backend Laravel
 
 This repository is the backend in the project eBike System. 
@@ -12,6 +17,31 @@ REST-API for third party application/plugins development.
 
 ## Application usage
 Make sure to have PHP version 8.x installed in the environment you intend to run the application.
+
+<br>
+
+
+
+### Install the application
+After cloning the repository make sure that all the application dependencies are installed correctly.
+Run the command and make sure the installation finnish correctly:
+```
+make install
+```
+Followed by
+```
+npm install
+```
+
+I case of anything not working as expected later when making requests to the API you might need to run:
+```
+make clean-all install
+```
+There could be a few cache files or unconfigured dependencies affecting the API:s performance.
+
+<br>
+
+
 
 ### Setup Database
 In case you want to run your application with MongDB as your datbase 
@@ -33,6 +63,8 @@ In case you wish to run any of the other preconfigured database types available 
 Make sure to uncomment the ```_id``` columns in the migrations since SQLite does not apply automatic id:s for data tables.
 
 <br>
+
+
 
 ### Seed fake data to the database
 In the factories files you find a setup to seed the database with fake data. 
@@ -56,24 +88,7 @@ php artisan migrate:fresh --seed
 
 <br>
 
-### Install the application
-After cloning the repository make sure that all the application dependencies are installed correctly.
-Run the command and make sure the installation finnish correctly:
-```
-make install
-```
-Followed by
-```
-npm install
-```
 
-I case of anything not working as expected later when making requests to the API you might need to run:
-```
-make clean-all install
-```
-There could be a few cache files or unconfigured dependencies affecting the API:s performance.
-
-<br>
 
 ### Start the server
 First make sure to optimize routes, models and other class related objects. 
@@ -104,6 +119,8 @@ http://<host adress>/api/<route add on>
 
 <br>
 
+
+
 ### View the available routes for the API
 To view all registered routes on the API you can use this command.
 ```
@@ -111,6 +128,8 @@ php artisan route:list
 ```
 
 <br>
+
+
 
 ### Unit test the server
 
@@ -126,6 +145,8 @@ make test
 ```
 
 <br>
+
+
 
 ### Enable third party app development
 Register a user on route
@@ -143,6 +164,7 @@ Register new client for authentication with the API.
 http://localhost:8000/dashboard/client
 ```
 
+<br>
 <br>
 <br>
 
