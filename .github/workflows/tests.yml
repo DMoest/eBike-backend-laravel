@@ -25,6 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      # APT Update
+      - name: APT update
+        run: |
+          apt-get update,
+          apt-get upgrade -y,
+          apt-get install -y make
+
       # Composer Install Dependencies
       - name: Run composer install
         run: cd backend && composer install -n --prefer-dist
@@ -56,7 +63,7 @@ jobs:
       - name: Run tests with PHP Unit
         run: |
           cd backend,
-          ./vendor/bin/phpunit
+          make phpunit
         env:
             APP_ENV: backend/env.test
 
