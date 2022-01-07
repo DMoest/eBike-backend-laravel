@@ -46,8 +46,14 @@ jobs:
             key: yarn-${{ hashFiles('yarn.lock') }}
 
       # Install dependencies with yarn
-      - name: Install dependencies with yar
+      - name: Install dependencies with yarn
         run: cd backend && yarn && yarn dev
+
+      # Run PHP Unit tests
+      - name: Run tests with PHP Unit
+        run: backend/./vendor/bin/phpunit
+        env:
+            APP_ENV: backend/env.test
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
