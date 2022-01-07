@@ -45,7 +45,7 @@ jobs:
 
       # Run PHP Unit tests
       - name: Run tests with PHP Unit
-        run: backend/./vendor/bin/phpunit
+        run: ./backend/vendor/bin/phpunit
         env:
             APP_ENV: backend/env.test
 
