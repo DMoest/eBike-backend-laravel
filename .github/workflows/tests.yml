@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # Make Clean All Install Dependencies
-      - name: Run Make command 'make clean-all install' for clean composer installation of dependencies.
+      - name: Make clean-all install for application dependencies
         run: |
           cd backend
           make clean-all install
@@ -31,28 +31,30 @@ jobs:
             APP_ENV: backend/env.test
 
       # Prepare ENV file for Laravel Application
-      - name: Prepare Laravel Application
+      - name: Prepare Laravel application
         run: |
             cp backend/.env.test backend/.env
             cd backend
             php artisan key:generate
+            php artisan migrate:clear --seed
+            php artisan optimize:clear
 
       # Cache yarn dependencies
-      - name: Cache Yarn dependencies
+      - name: Cache yarn dependencies
         uses: actions/cache@v1
         with:
             path: backend/node_modules
             key: yarn-${{ hashFiles('yarn.lock') }}
 
       # Install dependencies with yarn
-      - name: Install dependencies with Yarn
+      - name: Install dependencies with yarn
         run: |
           cd backend
           yarn
           yarn dev
 
-      # Run Make PHP Unit tests
-      - name: Run all tests with 'make test'
+      # Run Make tests
+      - name: Make tests - code standard, code duplication, php mess detection, static analysis, phpunit & validation
         run: |
           cd backend
           make test
