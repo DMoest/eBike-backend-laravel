@@ -25,18 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # APT Update
-      - name: APT update
-        run: |
-          apt-get update,
-          apt-get upgrade -y,
-          apt-get install -y make
-
       # Composer Install Dependencies
       - name: Run composer install
         run: cd backend && composer install -n --prefer-dist
         env:
-            APP_ENV: testing
+            APP_ENV: backend/.env.test
 
       # Prepare ENV file for Laravel Application
       - name: Prepare Laravel Application
