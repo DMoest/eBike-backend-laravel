@@ -3,11 +3,9 @@
 /**
  * Declared namespaces in use.
  */
-
 use App\Http\Controllers\TravelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
 use App\Http\Controllers\CityController;
@@ -36,40 +34,71 @@ use App\Http\Controllers\ParkingZoneController;
  * Index route.
  */
 Route::get('/', function () {
-    return [
-        'Index' => "/   (this route)",
-        'GET All bikes' => "/bike",
-        'GET Bike by bike_id' => "/bike/bike_id",
-        'GET All bikes in city by city_id' => "/bike/city/city_id",
-        'POST Create new bike' => "/bike",
-        'PUT Update bike by bike_id' => "/bike",
-        'DELETE Bikes by bike_id' => "/bike",
 
-        'GET All cities' => "/city",
-        'GET A city by city_id' => "/city/city_id",
-        'POST Add a city' => "/city",
-        'PUT Update a city by city_id' => "/city",
-        'DELETE A city by city_id' => "/city",
+    $data = [
+        "/" => "Routes Index (this route)",
 
-        'GET All stations' => "/station",
-        'GET A station by station_id' => "/station/station_id",
-        'GET All stations in city by city_id' => "/station/city/city_id",
-        'POST Add new station' => "/station",
-        'PUT Update a station by station_id' => "/station",
-        'DELETE A station by station_id' => "/station",
+        "*> BIKE ROUTES" => "------------------------------",
+        "/bike - GET Request" => "Return all bikes",
+        "/bike - POST Request" => "Create a new bike",
+        "/bike - PUT Request" => "Update a bike with bike_id",
+        "/bike - DELETE Request" => "Delete a bike with bike_id",
+        "/bike/bike_id - GET Request" => "Return a bike from bike_id",
+        "/bike/city/city_name - GET Request" => "Return all bikes in city from city_name",
 
-        'GET Travels route' => "/station",
-        'GET Travel route by travel ID' => "/station/station_id",
-        'POST Travels route' => "/station",
-        'PUT Travels route' => "/station",
-        'DELETE Travels route' => "/station",
+        "*> CHARGE ROUTES" => "------------------------------",
+        "/charge - POST Request" => "?",
 
-        'GET Users route' => "/user",
-        'GET User route' => "/user/user_id",
-        'POST Users route' => "/user",
-        'PUT Users route' => "/user",
-        'DELETE Users route' => "/user"
+        "*> CITY ROUTES" => "------------------------------",
+        "/city - GET Request" => "Return all cities",
+        "/city - POST Request" => "Create a new city",
+        "/city - PUT Request" => "Update a city by city_id",
+        "/city - DELETE Request" => "Delete a city by city_id",
+        "/city/city_name - GET Request" => " Return a specific city from city_name",
+
+        "*> PARKING ROUTES" => "------------------------------",
+        "/parking - GET Request" => "Return all parking zones",
+        "/parking - POST Request" => "Create a new Parking zone",
+        "/parking - PUT Request" => "Update a parking zones",
+        "/parking - DELETE Request" => "DELETE a parking zone",
+        "/parking/parking_id - GET Request" => "Return a parking zone from parking_id",
+        "/parking/city/city_name - GET Request" => "Return all parking zone in a city from city_name",
+
+        "*> STATION ROUTES" => "------------------------------",
+        "/station - GET Request" => "Return all stations",
+        "/station - POST Request" => "Create a new station",
+        "/station - PUT Request" => "Update an existing station with station_id",
+        "/station - DELETE Request" => "Delete a station with station_id",
+        "/station/station_id - GET Request" => "Return a station from station_id",
+        "/station/city/city_name" => "GET Request - Return all stations in city from city_name",
+
+        "*> TRAVEL ROUTES" => "------------------------------",
+        "/travel - GET Request" => "Return all travels",
+        "/travel - POST Request" => "Create a new travel",
+        "/travel - PUT Request" => "Update a travel",
+        "/travel - DELETE Request" => "Delete a travel",
+        "/travel/travel_id - GET Request" => "Return a travel from travel_id",
+        "/travel/city/city_name - GET Request" => "Return all travels in a city from city_name",
+        "/travel/bike/bike_id - GET Request" => "Return all travels made by a specific bike from bike_id",
+        "/travel/user/bike_id - GET Request" => "Return all travels made by a specific user with user_id",
+
+        "*> USER ROUTES" => "------------------------------",
+        "/user - GET Request" => "Return all users",
+        "/user - POST Request" => "Create a new users",
+        "/user - PUT Request" => "Update a user",
+        "/user - DELETE Request" => "Delete a user",
+        "/user\/user_id - GET Request" => "Return a user from user_id"
     ];
+
+    return response()->json(
+        $data,
+        200,
+        [
+            'content-type' => 'application/json;charset=UTF-8',
+            'Charset' => 'utf-8'
+        ],
+        JSON_UNESCAPED_UNICODE
+        );
 });
 
 
@@ -102,6 +131,12 @@ Route::prefix('/bike')->group(function() {
     Route::put('/', [BikeController::class, 'updateBike']);
     Route::delete('/', [BikeController::class, 'deleteBike']);
 });
+
+
+/**
+ * Charge Routes.
+ */
+Route::post('/charge', [CheckoutController::class, 'charge']);
 
 
 /**
@@ -179,9 +214,3 @@ Route::prefix('/user')->group(function () {
 //    Route::post('/login', [AuthenticationController::class, 'login']);
 //    Route::middleware('auth:api')->get('/clients', [UserController::class, 'getUsers']);
 });
-
-
-/**
- * Charge Routes.
- */
-Route::post('/charge', [CheckoutController::class, 'charge']);
