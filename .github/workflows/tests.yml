@@ -21,13 +21,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      # Composer Install Dependencies
-      - name: Run composer install
+
+      # Make Clean All Install Dependencies
+      - name: Run Make command 'make clean-all install' for clean composer installation of dependencies.
         run: |
           cd backend
-          composer install -n --prefer-dist
+          make clean-all install
         env:
-            APP_ENV: testing
+            APP_ENV: backend/env.test
 
       # Prepare ENV file for Laravel Application
       - name: Prepare Laravel Application
@@ -37,14 +38,14 @@ jobs:
             php artisan key:generate
 
       # Cache yarn dependencies
-      - name: Cache yarn dependencies
+      - name: Cache Yarn dependencies
         uses: actions/cache@v1
         with:
             path: backend/node_modules
             key: yarn-${{ hashFiles('yarn.lock') }}
 
       # Install dependencies with yarn
-      - name: Install dependencies with yarn
+      - name: Install dependencies with Yarn
         run: |
           cd backend
           yarn
