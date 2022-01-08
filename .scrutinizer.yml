@@ -29,7 +29,7 @@ build:
     coverage:
       tests:
         override:
-          - command: touch build/coverage.clover && make phpunit
+          - command: make test
             coverage:
               file: build/coverage.clover
               format: clover

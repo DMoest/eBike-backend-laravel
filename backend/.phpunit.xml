@@ -2,35 +2,47 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
-         colors="true"
->
+         colors="true">
+
     <testsuites>
         <testsuite name="Bike">
             <directory suffix="BikeModelTest.php">./tests/Bike</directory>
             <directory suffix="BikeControllerTest.php">./tests/Bike</directory>
         </testsuite>
+
         <testsuite name="City">
             <directory suffix="CityModelTest.php">./tests/City</directory>
             <directory suffix="CityControllerTest.php">./tests/City</directory>
         </testsuite>
+
         <testsuite name="ParkingZone">
             <directory suffix="ParkingZoneModelTest.php">./tests/ParkingZone</directory>
         </testsuite>
+
         <testsuite name="Station">
             <directory suffix="StationModelTest.php">./tests/Station</directory>
         </testsuite>
+
         <testsuite name="Travel">
             <directory suffix="TravelModelTest.php">./tests/Travel</directory>
         </testsuite>
+
         <testsuite name="User">
             <directory suffix="UserModelTest.php">./tests/User</directory>
         </testsuite>
     </testsuites>
+
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./app</directory>
         </include>
+
+        <report>
+            <clover outputFile="./build/coverage.clover"/>
+            <html outputDirectory="build/coverage" lowUpperBound="35" highLowerBound="70"/>
+        </report>
     </coverage>
+
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
