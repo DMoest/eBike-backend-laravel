@@ -17,8 +17,6 @@ build:
   root_path: './backend/'
 
   nodes:
-    before:
-      - command: make clean-all install
     analysis:
       tests:
         override:
