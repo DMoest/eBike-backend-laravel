@@ -13,8 +13,7 @@ build:
       - true
   environment:
     php:
-      version: 8.0
-      compile_options: '--enable-sigchild --without-pear'
+      version: 8.0.9
   root_path: './backend/'
 
   nodes:

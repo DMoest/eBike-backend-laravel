@@ -7,6 +7,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model as Eloquent; // MySQL
 //use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -42,9 +43,9 @@ class City extends Eloquent // MySQL
     /**
      * @method bikes()
      * @description Relation mapping, a city has many bikes.
-     * @return object
+     * @return HasMany
      */
-    public function bikes(): object
+    public function bikes(): HasMany
     {
         return $this->hasMany(Bike::class, '_id');
     }
@@ -53,9 +54,9 @@ class City extends Eloquent // MySQL
     /**
      * @method parkingZones()
      * @description Relation mapping, a city has many parking zones.
-     * @return object
+     * @return HasMany
      */
-    public function parkingZones(): object
+    public function parkingZones(): HasMany
     {
         return $this->hasMany(ParkingZone::class, '_id');
     }
@@ -64,9 +65,9 @@ class City extends Eloquent // MySQL
     /**
      * @method stations()
      * @description Relation mapping, a city has many stations.
-     * @return object
+     * @return HasMany
      */
-    public function stations(): object
+    public function stations(): HasMany
     {
         return $this->hasMany(Station::class,'_id');
     }
@@ -75,9 +76,9 @@ class City extends Eloquent // MySQL
     /**
      * @method travels()
      * @description Relation mapping, in a city much traveling is made.
-     * @return object
+     * @return HasMany
      */
-    public function travels(): object
+    public function travels(): HasMany
     {
         return $this->hasMany(Travel::class, '_id');
     }
@@ -86,9 +87,9 @@ class City extends Eloquent // MySQL
     /**
      * @method users()
      * @description Relation mapping, a city has many users.
-     * @return object
+     * @return HasMany
      */
-    public function users(): object
+    public function users(): HasMany
     {
         return $this->hasMany(User::class, '_id');
     }
