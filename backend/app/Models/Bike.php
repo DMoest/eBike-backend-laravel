@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * Defines primary keys and the relations to other data models.
  * Enables/disables mass assigning columns in collections.
  */
-//class Bike extends Eloquent // MongoDB
 class Bike extends Eloquent // MySQL
 {
     use HasFactory;
@@ -47,6 +46,13 @@ class Bike extends Eloquent // MySQL
         'speed',
         'battery'
     ];
+
+
+    final public function scopeCity($query)
+    {
+
+    }
+
 
 
     /**
