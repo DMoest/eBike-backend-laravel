@@ -47,6 +47,18 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'api_admin' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+
+        'api_user' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
 
 
@@ -73,6 +85,11 @@ return [
             'model' => App\Models\User::class,
         ],
 
+//        'admins' => [
+//            'driver' => 'eloquent',
+//            'model' => App\Models\AdminUser::class,
+//        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -97,6 +114,13 @@ return [
 
     'passwords' => [
         'users' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'admin' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
