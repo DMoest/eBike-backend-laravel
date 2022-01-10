@@ -210,36 +210,20 @@ Route::middleware(['auth:api', 'scopes:user'])->prefix('/')->group(function() {
     Route::get('/bike', [BikeController::class, 'getBikes']);
     Route::get('/bike/{bike:_id}', [BikeController::class, 'getBike']);
     Route::get('/bike/city/{city:name}', [BikeController::class, 'getBikesInCity']);
-//    Route::post('/bike', [BikeController::class, 'createBike']);
-//    Route::put('/bike', [BikeController::class, 'updateBike']);
-//    Route::delete('/bike', [BikeController::class, 'deleteBike']);
-
 
     Route::post('/charge', [CheckoutController::class, 'charge']);
 
 
     Route::get('/city', [CityController::class, 'getCities']);
     Route::get('/city/{city:name}', [CityController::class, 'getCity']);
-//    Route::post('/city', [CityController::class, 'addCity']);
-//    Route::put('/city', [CityController::class, 'updateCity']);
-//    Route::delete('/city', [CityController::class, 'deleteCity']);
-
 
     Route::get('/parking', [ParkingZoneController::class, 'getParingZones']);
     Route::get('/parking/{parking:_id}', [ParkingZoneController::class, 'getParingZone']);
     Route::get('/parking/city/{city:name}', [ParkingZoneController::class, 'getParkingZonesInCity']);
-//    Route::post('/', [ParkingZoneController::class, 'createParkingZone']);
-//    Route::put('/', [ParkingZoneController::class, 'updateParkingZone']);
-//    Route::delete('/', [ParkingZoneController::class, 'deleteParkingZone']);
-
 
     Route::get('/station', [StationController::class, 'getStations']);
     Route::get('/station/{station:_id}', [StationController::class, 'getStation']);
     Route::get('/station/city/{city:name}', [StationController::class, 'getStationsInCity']);
-//    Route::post('/station', [StationController::class, 'createStation']);
-//    Route::put('/station', [StationController::class, 'updateStation']);
-//    Route::delete('/station', [StationController::class, 'deleteStation']);
-
 
     /**
      * @description Travel Routes are for handling database requests relevant to travels.
@@ -247,13 +231,9 @@ Route::middleware(['auth:api', 'scopes:user'])->prefix('/')->group(function() {
      *      Limited CRUD supported for travels table in database.
      */
     Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
-    Route::get('/travel/city/{city:name}', [TravelController::class, 'getTravelingInCity']);
-    Route::get('/travel/bike/{bike:_id}', [TravelController::class, 'getTravelingWithBike']);
     Route::get('/travel/user/{user:_id}', [TravelController::class, 'getTravelingByUser']);
     Route::post('/travel', [TravelController::class, 'createTravel']);
     Route::put('/travel', [TravelController::class, 'updateTravel']);
-//    Route::get('/travel', [TravelController::class, 'getTravels']);
-//    Route::delete('/', [TravelController::class, 'deleteTravel']);
 
 
     /**
@@ -265,9 +245,6 @@ Route::middleware(['auth:api', 'scopes:user'])->prefix('/')->group(function() {
     Route::get('/user/{user:_id}', [UserController::class, 'getUser']);
     Route::get('/user/city/{city:name}', [UserController::class, 'getUsersInCity']);
     Route::put('/user', [UserController::class, 'updateUser']);
-//    Route::get('/user', [UserController::class, 'getUsers']);
-//    Route::post('/user', [UserController::class, 'createUser']);
-//    Route::delete('/user', [UserController::class, 'deleteUser']);
 });
 
 
