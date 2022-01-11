@@ -40,7 +40,7 @@ class GithubLoginController extends Controller
         $user = User::where('provider_id', $githubUser->getId())->first();
         $lastname = null;
 
-        if ($userName > 1) {
+        if (count($userName) > 1) {
             $lastname = $userName[1];
         }
 
