@@ -38,6 +38,11 @@ class GithubLoginController extends Controller
         $githubUser = Socialite::driver('github')->user();
         $userName = explode(' ', $githubUser->name);
         $user = User::where('provider_id', $githubUser->getId())->first();
+        $lastname = null;
+
+        if ($userName > 1) {
+            $lastname = $userName[1];
+        }
 
         /**
          * If user does not exits in database, create a new user.
@@ -48,7 +53,7 @@ class GithubLoginController extends Controller
             $user = User::create([
                 '_id' => $githubUser->getId(),
                 'firstname' => $userName[0],
-                'lastname' => $userName[1] || null,
+                'lastname' => $lastname,
                 'email' => $githubUser->getEmail(),
                 'country' => $githubUser->user['location'],
                 'created_at' => now(),
