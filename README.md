@@ -6,9 +6,6 @@
 
 
 # Backend Laravel
-
-Version: 1.6.2
-
 This repository is the backend in the project eBike System.
 The backend is intended to serve data to several parts that include admin webb-app,
 customer webb-app, customer mobile-/webb-app, the bike control system application & a
@@ -171,6 +168,19 @@ For more information on working with [data and databases in Laravel 8](https://l
 <br>
 
 
+
+### Routes to make request calls to the API
+If you intend to continue development of the API or develop third party applications that interact with this API you need to know what routes are available.
+For a better view of what routes the API have to offer use the command:
+```
+php artisan route:list
+```
+<i>Here you will find all the routes that have been registered meaning there are cache files generated to include them.</i>
+
+<br>
+
+
+
 ### Start the API locally
 First make sure to optimize cache files, routes, models and other class related objects in use of Laravel.
 Optimization should be done on first startup after install and configuration but can also be helpful on changes to the application that require a restart.
@@ -221,16 +231,6 @@ docker-compose up nginx
 
 <br>
 
-
-### Routes to make request calls to the API
-If you intend to continue to develop or develop third party applications to interact with this API you need to know what routes are available.
-For a better view of what routes the API have to offer use the command:
-```
-php artisan route:list
-```
-<i>Here you will find all the routes that have been registered meaning there are cache files generated to include them.</i>
-
-<br>
 
 
 ### Testing the API

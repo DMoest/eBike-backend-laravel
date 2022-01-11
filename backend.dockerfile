@@ -19,7 +19,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /backend
 
-COPY ./* ./
+COPY . /
 
 RUN composer clearcache \
     && composer install \
@@ -60,7 +60,7 @@ CMD php artisan serve --host 0.0.0.0 --port=8000
 #
 #WORKDIR /backend
 #
-#COPY ./* .
+#COPY . /
 #
 #RUN export PATH=$PATH":/usr/bin" && \
 ##    chmod +x /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini && \

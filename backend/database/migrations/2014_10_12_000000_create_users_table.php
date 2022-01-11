@@ -12,6 +12,7 @@ class CreateUsersTable extends Migration
      */
     protected $connection = 'mysql';
 
+
     /**
      * Run the migrations.
      *
@@ -24,16 +25,16 @@ class CreateUsersTable extends Migration
 //            $table->charset = 'utf8mb4';
 //            $table->collation = 'utf8mb4_unicode_ci';
 
-            $table->string('city');
-            $table->string('provider_id')->nullable();
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('email')->unique();
+            $table->string('phone')->nullable();
             $table->string('adress')->nullable();
             $table->string('postcode')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('email')->unique();
+            $table->string('city')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable(); // Null for creating new users depending on third party OAuth providers.
+            $table->string('provider_id')->nullable(); // OAuth provider
             $table->string('payment_method')->default('credit');
             $table->string('payment_status')->default('unpaid');
             $table->rememberToken();

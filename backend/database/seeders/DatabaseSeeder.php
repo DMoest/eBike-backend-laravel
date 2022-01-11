@@ -19,10 +19,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::factory(100)->create();
+        Bike::factory(1000)->create();
+        Station::factory(75)->create();
 
-        User::factory(250)->create();
-        Bike::factory(250)->create();
-        Station::factory(50)->create();
 
         City::create([
             '_id' => 1,
