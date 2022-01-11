@@ -15,8 +15,16 @@
             <directory suffix="CityControllerTest.php">./tests/City</directory>
         </testsuite>
 
+        <testsuite name="User Registration">
+            <directory suffix="UserTest.php">./tests/Feature</directory>
+        </testsuite>
+
         <testsuite name="ParkingZone">
             <directory suffix="ParkingZoneModelTest.php">./tests/ParkingZone</directory>
+        </testsuite>
+
+        <testsuite name="Router">
+            <directory suffix="RouterTest.php">./tests/Router</directory>
         </testsuite>
 
         <testsuite name="Station">

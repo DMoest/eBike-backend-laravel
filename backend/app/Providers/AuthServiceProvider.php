@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Providers;
-
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
 use Mockery\Generator\StringManipulation\Pass\Pass;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -33,6 +33,12 @@ class AuthServiceProvider extends ServiceProvider
 
 //            Passport::loadKeysFrom(__DIR__.'/../secrets/oauth');
 //            Passport::hashClientSecrets();
+
+            Passport::tokensCan([
+                'application' => 'Perform administrative opperations/tasks to create, read, update and delete information. This client is intended for use with third party application development to be integrated with the E-Bike system.',
+                'admin' => 'Perform administrative tasks to create, read, update and delete information in the E-Bike system.',
+                'user' => 'Retrieve information associated with your user account in the E-Bike system.',
+            ]);
         }
     }
 }

@@ -1,6 +1,6 @@
 #
 # MySQL / SQLite Setup.
-#
+# ---------------------
 FROM php:8.0-cli
 
 RUN apt-get update \
@@ -19,7 +19,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 WORKDIR /backend
 
-COPY ./* .
+COPY . /
 
 RUN composer clearcache \
     && composer install \
@@ -29,10 +29,12 @@ RUN composer clearcache \
             --no-dev \
             --prefer-dist \
     && composer dump-autoload \
+    && php artisan passport:install --force \
+    && php artisan passport:keys --force \
+    && php artisan vendor:publish --tag=passport-config \
     && php artisan optimize:clear
 
 CMD php artisan serve --host 0.0.0.0 --port=8000
-
 
 
 
@@ -58,7 +60,7 @@ CMD php artisan serve --host 0.0.0.0 --port=8000
 #
 #WORKDIR /backend
 #
-#COPY ./* .
+#COPY . /
 #
 #RUN export PATH=$PATH":/usr/bin" && \
 ##    chmod +x /usr/local/etc/php/conf.d/docker-php-ext-sodium.ini && \

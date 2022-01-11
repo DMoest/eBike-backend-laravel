@@ -6,9 +6,6 @@
 
 
 # Backend Laravel
-
-Version: 1.6.2
-
 This repository is the backend in the project eBike System.
 The backend is intended to serve data to several parts that include admin webb-app,
 customer webb-app, customer mobile-/webb-app, the bike control system application & a
@@ -222,8 +219,9 @@ docker-compose up nginx
 <br>
 
 
+
 ### Routes to make request calls to the API
-If you intend to continue to develop or develop third party applications to interact with this API you need to know what routes are available.
+If you intend to continue development of the API or develop third party applications that interact with this API you need to know what routes are available.
 For a better view of what routes the API have to offer use the command:
 ```
 php artisan route:list
@@ -231,6 +229,58 @@ php artisan route:list
 <i>Here you will find all the routes that have been registered meaning there are cache files generated to include them.</i>
 
 <br>
+
+
+### Start the API locally
+First make sure to optimize cache files, routes, models and other class related objects in use of Laravel.
+Optimization should be done on first startup after install and configuration but can also be helpful on changes to the application that require a restart.
+Mainly optimizations  are done to clear old and then generate new cache files used by Laravel for a better performing API on startup.
+For example, while in development after a new route is created you should restart the API to generate these files to include the cache files.
+We consider this to be a good time to execute an optimization and then restart the API.
+```
+php artisan optimize:clear
+```
+
+After optimization have been executed you can start the API.
+```
+php artisan serve
+```
+
+<br>
+
+
+### Run the API in a Docker container
+For a more stable and secure environment to test run or possibly put this application into production we have created dockerfiles to build images from.
+As it is understood that running applications with large amounts of code from unknown developers could potentially become a problem, with docker you do not have to worry.
+This is a containerized environment that will not affect you local system.
+
+First we strongly recommend that all parts of the [ebike system](https://github.com/Den-geografiska-oredan/eBike-system)
+to be run with ```docker compose``` using the [docker-compose.yml file](https://github.com/Den-geografiska-oredan/eBike-system/blob/master/docker-compose.yml)
+we have provided in the main repository for the ebike system.
+
+Second you need to build the image to be able to run the container, use the docker compose build command for the API:
+```
+docker-compose build ebike_backend
+```
+In case you need to rebuild the container without docker cache files from previous build use:
+```
+docker-compose build --no-cache ebike_backend
+```
+
+Third thing to know there are two ways of spinning this API up with docker compose.
+
+You could run only the backend container which will open the API container up to ```port 8000``` for interactions with the API.
+```
+docker compose up ebike_backend
+```
+
+Alternatively you can run the API through a ```Nginx``` server container. This will run a number of containers acting as a webserver server.
+```
+docker-compose up nginx
+```
+
+<br>
+
 
 
 ### Testing the API

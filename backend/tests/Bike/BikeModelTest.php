@@ -11,7 +11,6 @@ declare(strict_types=1);
  */
 namespace App\Tests;
 use App\Models\Bike;
-use App\Models\City;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use PHPUnit\Framework\TestCase;

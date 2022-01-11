@@ -4,17 +4,18 @@
  * Declaration of the models namespace and use of other namespaces.
  */
 namespace App\Models;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model as Eloquent; // MySQL
-//use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
 use Illuminate\Auth\Authenticatable as AuthenticateTrait;
-use Illuminate\Contracts\Auth\Authenticatable;
-//use Jenssegers\Mongodb\Relations\BelongsTo;
-//use Jenssegers\Mongodb\Relations\HasMany;
-use Laravel\Passport\HasApiTokens;
+//use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
+//use Jenssegers\Mongodb\Relations\BelongsTo; // MongoDB
+//use Jenssegers\Mongodb\Relations\HasMany; // MongoDB
 
 
 /**
@@ -42,7 +43,18 @@ class User extends Eloquent implements Authenticatable
      * Hidden are the attributes that should be hidden for serialization.
      */
     protected $primaryKey = '_id';
-    protected $guarded = ['_id', 'provider_id'];
+    protected $guarded = [
+        '_id',
+        'provider_id',
+        'email',
+        'phone',
+        'adress',
+        'postcode',
+        'password',
+        'payment_method',
+        'payment_status'
+    ];
+
     protected $fillable = [
         'provider_id',
         'firstname',
@@ -56,28 +68,24 @@ class User extends Eloquent implements Authenticatable
         'payment_method',
         'payment_status'
     ];
+
     protected $hidden = [
-//        'email',
-//        'phone',
-//        'adress',
-//        'postcode',
-//        'payment_method',
-//        'payment_status',
         'password',
         'remember_token'
     ];
+
     protected $casts = [ 'email_verified_at' => 'datetime' ];
 
 
-//    /**
-//     * @method setPasswordAttribute()
-//     * @description Eloquent Mutator method for hashing all passwords before saving them to database.
-//     * @param $password
-//     */
-//    public function setPasswordAttribute($password)
-//    {
-//        $this->attributes['password'] = bcrypt($password);
-//    }
+    /**
+     * @method setPasswordAttribute()
+     * @description Eloquent Mutator method for hashing all passwords before saving them to database.
+     * @param $password
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 
 
     /**
@@ -99,16 +107,5 @@ class User extends Eloquent implements Authenticatable
     public function travels(): HasMany
     {
         return $this->hasMany(Travel::class, '_id');
-    }
-
-
-    /**
-     * @method linkedSocialAccounts()
-     * @description Relation mapping, a user can has many social accounts to login with.
-     * @return HasMany
-     */
-    public function linkedSocialAccounts(): HasMany
-    {
-        return $this->hasMany(LinkedSocialAccount::class);
     }
 }

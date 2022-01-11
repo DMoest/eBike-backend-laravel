@@ -13,26 +13,39 @@
                     <p>Here are a list of your clients:</p>
                     @foreach($clients as $client)
                         <div class="py-3 text-gray-900">
-                            <h3 class="text-lg text-gray-500">{{ $client->name }}</h3>
-                            <p><b>Client ID:</b>{{ $client->id }}</p>
-                            <p><b>Client Redirect: </b>{{ $client->redirect  }}</p>
-                            <p><b>Client Secret: </b>{{ $client->secret }}</p>
+                            <h3 class="text-lg text-gray-500">{{ $client->name }} </h3>
+                            <p><b>Client ID: </b>{{ $client->id }} </p>
+{{--                            <p><b>Client Name: </b>{{ $client->name }} </p>--}}
+                            <p><b>Client Redirect: </b>{{ $client->redirect  }} </p>
+                            <p><b>Client Secret: </b>{{ $client->secret }} </p>
+{{--                            <p><b>Client Provider:</b>{{ $client->provider }} </p>--}}
+                            <br>
+                            <p><b>Registered with User ID: </b>{{ $client->user_id }} </p>
+                            <p><b>Created: </b>{{ $client->created_at }} </p>
+                            <p><b>Updated: </b>{{ $client->updated_at }} </p>
+
+                            <br>
+
+                            <!-- Development Object Info -->
+{{--                            <pre>{{ $client }}</pre>--}}
+
                         </div>
                     @endforeach
                 </div>
                 <div class="mt-3 p-6 bg-white border-b border-gray-200">
                     <form action="/oauth/clients" method="POST">
-                        <div>
+                        <h2 class="text-xl mb-4"><b>Register new client</b></h2>
+                        <div class="mt-2">
                             <x-label for="name">Name</x-label>
-                            <x-input type="text" name="name" placeholder="Client Name"></x-input>
+                            <x-input class="w-full sm:w-1/2" type="text" name="name" placeholder="Client Name"></x-input>
                         </div>
                         <div class="mt-2">
                             <x-label for="redirect">Redirect</x-label>
-                            <x-input type="text" name="redirect" placeholder="https://my-url.com/callback"></x-input>
+                            <x-input class="w-full sm:w-1/2" type="text" name="redirect" placeholder="https://my-url.com/callback"></x-input>
                         </div>
-                        <div class="mt-3">
+                        <div class="mt-6">
                             @csrf
-                            <x-button type="submit">Create Client</x-button>
+                            <x-button class="w-full sm:w-1/2" type="submit"><p class="w-full py-2 text-center">Create Client<p></p></x-button>
                         </div>
                     </form>
                 </div>

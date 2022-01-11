@@ -52,6 +52,17 @@ class UserController extends Controller
      */
     final public function getUser(User $user): JsonResponse
     {
+        $user->makeVisible([
+            'city',
+            'firstname',
+            'lastname',
+            'adress',
+            'postcode',
+            'email',
+            'payment_method',
+            'payment_status'
+        ]);
+
         return response()->json(
             $user,
             200,
