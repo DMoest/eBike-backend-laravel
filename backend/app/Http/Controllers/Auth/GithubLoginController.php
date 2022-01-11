@@ -48,7 +48,7 @@ class GithubLoginController extends Controller
             $user = User::create([
                 '_id' => $githubUser->getId(),
                 'firstname' => $userName[0],
-                'lastname' => $userName[1],
+                'lastname' => $userName[1] || null,
                 'email' => $githubUser->getEmail(),
                 'country' => $githubUser->user['location'],
                 'created_at' => now(),
