@@ -38,8 +38,8 @@ class Bike extends Eloquent // MySQL
     protected $guarded = [ "_id" ];
     protected $casts = [ "_id" => "string" ];
     protected $fillable = [
-        'city',
-        'status',
+        'bike_id',
+        'pakring_id',
         'active',
         'longitude',
         'latitude',
@@ -74,5 +74,16 @@ class Bike extends Eloquent // MySQL
     public function travels(): HasMany
     {
         return $this->hasMany(Travel::class, '_id');
+    }
+
+
+    /**
+     * @method parking()
+     * @description Relation mapping, a bike belong to a city.
+     * @return BelongsTo
+     */
+    public function parking(): BelongsTo
+    {
+        return $this->belongsTo(Bike::class, '_id');
     }
 }

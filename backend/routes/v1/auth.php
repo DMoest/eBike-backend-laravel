@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 /**
  * GitHub Authentication Routes
  */
-Route::get('/login/github', [GitHubLoginController::class, 'redirectToGithub']);
-Route::get('/login/github/callback', [GitHubLoginController::class, 'githubCallback']);
+Route::prefix('/login')->group(function() {
+    Route::get('/mobile/github', [GitHubLoginController::class, 'redirectToGithub']);
+    Route::get('/mobile/github/callback', [GitHubLoginController::class, 'githubCallback']);
+
+    Route::get('/webb/github', [GitHubLoginController::class, 'redirectToGithub']);
+    Route::get('/webb/github/callback', [GitHubLoginController::class, 'githubCallback']);
+});
 
 
 

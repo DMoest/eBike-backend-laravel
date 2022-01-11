@@ -41,6 +41,7 @@ class CreateTravelTable extends Migration
             $collection->decimal('stop_latitude', 11, 8)->nullable();
 
             $collection->string('status')->default('active');
+            $collection->string('payment_status')->default('unpaid');
             $collection->integer('price')->default(10);
             $collection->timestamps();
         });

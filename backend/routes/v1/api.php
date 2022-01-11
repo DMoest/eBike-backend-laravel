@@ -213,7 +213,6 @@ Route::middleware(['auth:api', 'scopes:user'])->prefix('/')->group(function() {
 
     Route::post('/charge', [CheckoutController::class, 'charge']);
 
-
     Route::get('/city', [CityController::class, 'getCities']);
     Route::get('/city/{city:name}', [CityController::class, 'getCity']);
 
@@ -301,20 +300,3 @@ Route::middleware(['auth:api', 'scopes:admin'])->prefix('/admin')->group(functio
     Route::put('/user', [UserController::class, 'updateUser']);
     Route::delete('/user', [UserController::class, 'deleteUser']);
 });
-
-
-/**
- * @description API Middlewares.
- */
-//Route::middleware(['auth:api', 'scopes:user'])->get('/user', function (Request $request) {
-//    return $request->user()->makeVisible([
-//        'city',
-//        'firstname',
-//        'lastname',
-//        'adress',
-//        'postcode',
-//        'email',
-//        'payment_method',
-//        'payment_status'
-//    ]);
-//});

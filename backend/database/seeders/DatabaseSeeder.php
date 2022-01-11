@@ -6,6 +6,7 @@ use App\Models\Bike;
 use App\Models\City;
 use App\Models\ParkingZone;
 use App\Models\Station;
+use App\Models\Travel;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -131,6 +132,67 @@ class DatabaseSeeder extends Seeder
             'ne_longitude' => 11.976917,
             'nw_latitude' => 57.698467,
             'nw_longitude' => 11.976917
+        ]);
+
+
+        Travel::create([
+            'city' => "Umeå",
+            'user_id' => 1,
+            'bike_id' => 1,
+            'status' => "active",
+            'updated_at' => now(),
+            'created_at' => now(),
+            'price' => 50,
+            'start_longitude' => 20.24606820235114,
+            'start_latitude' => 63.829359941030646,
+            'stop_longitude' => 20.24814734997325,
+            'stop_latitude' => 63.81873924052044,
+            'payment_status' => "paid"
+        ]);
+
+        Travel::create([
+            'city' => "Umeå",
+            'user_id' => 2,
+            'bike_id' => 2,
+            'status' => "active",
+            'updated_at' => now(),
+            'created_at' => now(),
+            'price' => 50,
+            'start_longitude' => 20.24606820235114,
+            'start_latitude' => 63.829359941030646,
+            'stop_longitude' => 20.24814734997325,
+            'stop_latitude' => 63.81873924052044,
+            'payment_status' => "paid"
+        ]);
+
+        Travel::create([
+            'city' => "Umeå",
+            'user_id' => 3,
+            'bike_id' => 3,
+            'status' => "active",
+            'updated_at' => now(),
+            'created_at' => now(),
+            'price' => 50,
+            'start_longitude' => 20.24606820235114,
+            'start_latitude' => 63.829359941030646,
+            'stop_longitude' => 20.24814734997325,
+            'stop_latitude' => 63.81873924052044,
+            'payment_status' => "unpaid"
+        ]);
+
+        Travel::create([
+            'city' => "Umeå",
+            'user_id' => 4,
+            'bike_id' => 4,
+            'status' => "active",
+            'updated_at' => now(),
+            'created_at' => now(),
+            'price' => 50,
+            'start_longitude' => 20.24606820235114,
+            'start_latitude' => 63.829359941030646,
+            'stop_longitude' => 20.24814734997325,
+            'stop_latitude' => 63.81873924052044,
+            'payment_status' => "unpaid"
         ]);
     }
 }
