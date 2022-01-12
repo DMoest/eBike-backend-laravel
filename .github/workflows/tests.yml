@@ -33,7 +33,7 @@ jobs:
       # Prepare ENV file for Laravel Application
       - name: Prepare Laravel application
         run: |
-            cp backend/.env.test backend/.env
+            cp backend/.env.testing backend/.env
             cd backend
             php artisan key:generate
             php artisan optimize:clear
