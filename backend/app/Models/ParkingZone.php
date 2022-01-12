@@ -36,7 +36,7 @@ class ParkingZone extends Eloquent
      */
     protected $primaryKey = "_id";
     protected $guarded = [ "_id" ];
-    protected $casts = [ "_id" => "string" ];
+    protected $casts = [ "_id" => "integer" ];
     protected $fillable = [
         'city',
         'sw_longitude',

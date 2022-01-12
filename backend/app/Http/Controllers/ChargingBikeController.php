@@ -5,26 +5,26 @@
  */
 namespace App\Http\Controllers;
 use App\Models\Bike;
-use App\Models\ParkedBike;
+use App\Models\ChargingBike;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 
 /**
- * @description Controller for getting & setting parked bikes.
+ * @description Controller for getting & setting chargeing bikes.
  */
-class ParkedBikeController extends Controller
+class ChargingBikeController extends Controller
 {
     /**
-     * @method getBikesParkedInZone()
-     * @description Getter method to return bikes at specific parking zone.
+     * @method getBikesChargingAtStation()
+     * @description Getter method to return bikes at specific charging station.
      *
      * @param ParkedBike $parkedBike
      * @return JsonResponse
      */
-    final public function getBikesParkedInZone(ParkedBike $parkedBike): JsonResponse
+    final public function getBikesChargingAtStation(ChargingBike $chargingBike): JsonResponse
     {
-        $data = [ 'parked_bikes' => Bike::where('_id', $parkedBike->bike_id)->get() ];
+        $data = ['charging_bikes' => Bike::where('_id', $chargingBike->bike_id)->get()];
 
         return response()->json(
             $data,
@@ -39,22 +39,22 @@ class ParkedBikeController extends Controller
 
 
     /**
-     * @method parkBikesInParkingZone()
-     * @description Setter method to create/park a bike. Request must contain the json attributes
-     *      'bike_id', 'parking_id' and 'status' to create a parked bike.
+     * @method chargeBikeAtStation()
+     * @description Setter method to create/charge a bike. Request must contain the json attributes
+     *      'bike_id', 'station_id' and 'status' to create a parked bike.
      *
      * @param Request $request
      * @return JsonResponse
      */
-    final public function parkBikesInParkingZone(Request $request): JsonResponse
+    final public function chargeBikeAtStation(Request $request): JsonResponse
     {
         $request->validate([
             'bike_id' => ['Required', 'integer'],
-            'parking_id' => ['Required', 'integer'],
-            'status' => ['Required', 'string']
+            'station_id' => ['Required', 'integer'],
+            'status' => ['Required', 'string'],
         ]);
 
-        $parkedBike = ParkedBike::create($request->all());
+        $parkedBike = ChargingBike::create($request->all());
 
         return response()->json(
             $parkedBike,
@@ -69,16 +69,16 @@ class ParkedBikeController extends Controller
 
 
     /**
-     * @method updateParkBikeAtParkingZone()
-     * @description Setter method to update a parked bike. Request must contain the keys
-     *      'bike_id', 'parking_id' and 'status' to create a parked bike.
+     * @method updateChargingBikeAtStation()
+     * @description Setter method to update a charging bike. Request must contain the keys
+     *      'bike_id', 'station_id' and 'status' to create a parked bike.
      *
      * @param Request $request
      * @return JsonResponse
      */
-    final public function updateParkBikeAtParkingZone(Request $request): JsonResponse
+    final public function updateChargingBikeAtStation(Request $request): JsonResponse
     {
-        $parkedBike = ParkedBike::find($request->_id);
+        $parkedBike = ChargingBike::find($request->_id);
         $parkedBike->update($request->all());
 
         return response()->json(
@@ -94,16 +94,16 @@ class ParkedBikeController extends Controller
 
 
     /**
-     * @method deleteParkedBikeAtParkingZone()
-     * @description Setter method to delete a parked bike. Request must contain the keys
-     *      'bike_id', 'parking_id' and 'status' to create a parked bike.
+     * @method deleteChargingBikeAtStation()
+     * @description Setter method to delete a charging bike. Request must contain the keys
+     *      'bike_id', 'station_id' and 'status' to create a parked bike.
      *
      * @param Request $request
      * @return JsonResponse
      */
-    final public function deleteParkedBikeAtParkingZone(Request $request): JsonResponse
+    final public function deleteChargingBikeAtStation(Request $request): JsonResponse
     {
-        $parkedBike = ParkedBike::find($request->_id);
+        $parkedBike = ChargingBike::find($request->_id);
         $parkedBike->delete($request->_id);
 
         return response()->json(

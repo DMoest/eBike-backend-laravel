@@ -4,9 +4,9 @@
  * Declared namespaces in use.
  */
 
+use App\Http\Controllers\ChargingBikeController;
 use App\Http\Controllers\ParkedBikeController;
 use App\Http\Controllers\TravelController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BikeController;
@@ -30,95 +30,6 @@ use App\Http\Controllers\ParkingZoneController;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-
-
-
-
-
-
-
-
-
-//Route::prefix('/bike')->group(function() {
-//    Route::get('/', [BikeController::class, 'getBikes']);
-//    Route::get('/{bike:_id}', [BikeController::class, 'getBike']);
-//    Route::get('/city/{city:name}', [BikeController::class, 'getBikesInCity']);
-//    Route::post('/', [BikeController::class, 'createBike']);
-//    Route::put('/', [BikeController::class, 'updateBike']);
-//    Route::delete('/', [BikeController::class, 'deleteBike']);
-//});
-//
-//
-
-//Route::post('/charge', [CheckoutController::class, 'charge']);
-//
-//
-
-//Route::prefix('/city')->group(function() {
-//    Route::get('/', [CityController::class, 'getCities']);
-//    Route::get('/{city:name}', [CityController::class, 'getCity']);
-//    Route::post('/', [CityController::class, 'addCity']);
-//    Route::put('/', [CityController::class, 'updateCity']);
-//    Route::delete('/', [CityController::class, 'deleteCity']);
-//});
-//
-//
-
-//Route::prefix('/parking')->group(function() {
-//    Route::get('/', [ParkingZoneController::class, 'getParkingZones']);
-//    Route::get('/{parking:_id}', [ParkingZoneController::class, 'getParkingZone']);
-//    Route::get('/city/{city:name}', [ParkingZoneController::class, 'getParkingZonesInCity']);
-//    Route::post('/', [ParkingZoneController::class, 'createParkingZone']);
-//    Route::put('/', [ParkingZoneController::class, 'updateParkingZone']);
-//    Route::delete('/', [ParkingZoneController::class, 'deleteParkingZone']);
-//});
-//
-//
-
-//Route::middleware(['auth:api', 'scopes:user'])->prefix('/station')->group(function() {
-//    Route::get('/', [StationController::class, 'getStations']);
-//    Route::get('/{station:_id}', [StationController::class, 'getStation']);
-//    Route::get('/city/{city:name}', [StationController::class, 'getStationsInCity']);
-//    Route::post('/', [StationController::class, 'createStation']);
-//    Route::put('/', [StationController::class, 'updateStation']);
-//    Route::delete('/', [StationController::class, 'deleteStation']);
-//});
-//
-//
-
-//Route::prefix('/travel')->group(function() {
-//    Route::get('/', [TravelController::class, 'getTravels']);
-//    Route::get('/{travel}', [TravelController::class, 'getTravels']);
-//    Route::get('/city/{city:name}', [TravelController::class, 'getTravelingInCity']);
-//    Route::get('/bike/{bike:_id}', [TravelController::class, 'getTravelingWithBike']);
-//    Route::get('/user/{user:_id}', [TravelController::class, 'getTravelingByUser']);
-//    Route::post('/', [TravelController::class, 'createTravel']);
-//    Route::put('/', [TravelController::class, 'updateTravel']);
-//    Route::delete('/', [TravelController::class, 'deleteTravel']);
-//});
-//
-//
-///**
-// * @description User Routes are for handling requests relevant to users.
-// *      All user related routes are grouped under '/user' route.
-// *      Full CRUD supported for users in the database.
-// *      Authentication supported for user login through AuthenticationController.
-// */
-//Route::middleware(['auth:api', 'scopes:user'])->prefix('/user')->group(function () {
-//    Route::get('/', [UserController::class, 'getUsers']);
-//    Route::get('/{user:_id}', [UserController::class, 'getUser']);
-//    Route::get('/city/{city:name}', [UserController::class, 'getUsersInCity']);
-//    Route::post('/', [UserController::class, 'createUser']);
-//    Route::put('/', [UserController::class, 'updateUser']);
-//    Route::delete('/', [UserController::class, 'deleteUser']);
-//});
-
-
-
-
-
-
-
 
 
 
@@ -303,12 +214,16 @@ use App\Http\Controllers\ParkingZoneController;
     Route::delete('/parking/bikes', [ParkedBikeController::class, 'deleteParkedBikeAtParkingZone']);
 
 
-    Route::get('/station/station', [StationController::class, 'getStations']);
+    Route::get('/station', [StationController::class, 'getStations']);
     Route::get('/station/{station:_id}', [StationController::class, 'getStation']);
-    Route::get('/station/city/{city:name}', [StationController::class, 'getStationsInCity']);
     Route::post('/station', [StationController::class, 'createStation']);
     Route::put('/station', [StationController::class, 'updateStation']);
     Route::delete('/station', [StationController::class, 'deleteStation']);
+    Route::get('/station/city/{city:name}', [StationController::class, 'getStationsInCity']);
+    Route::get('/station/bikes/{station:_id}', [ChargingBikeController::class, 'getBikesChargingAtStation']);
+    Route::post('/station/bikes', [ChargingBikeController::class, 'chargeBikeAtStation']);
+    Route::put('/station/bikes', [ChargingBikeController::class, 'updateChargingBikeAtStation']);
+    Route::delete('/station/bikes', [ChargingBikeController::class, 'deleteChargingBikeAtStation']);
 
 
     Route::get('/travel', [TravelController::class, 'getTravels']);

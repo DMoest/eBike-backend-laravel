@@ -86,4 +86,15 @@ class Bike extends Eloquent // MySQL
     {
         return $this->hasMany(ParkedBike::class, '_id');
     }
+
+
+    /**
+     * @method charging()
+     * @description Relation mapping, a bike belong to a city.
+     * @return HasMany
+     */
+    public function charging(): HasMany
+    {
+        return $this->hasMany(ChargingBike::class, '_id');
+    }
 }

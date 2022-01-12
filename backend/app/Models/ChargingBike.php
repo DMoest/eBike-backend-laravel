@@ -7,12 +7,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
- * @description Model for parked bikes at parking zone.
+ * @description Model for charging bike a charging station.
  */
-class ParkedBike extends Model
+class ChargingBike extends Model
 {
     use HasFactory;
 
@@ -33,20 +34,20 @@ class ParkedBike extends Model
     protected $guarded = [
         '_id',
 //        'bike_id',
-//        'parking_id',
+//        'station_id',
 //        'status'
     ];
 
     protected $fillable = [
         'bike_id',
-        'parking_id',
+        'station_id',
         'status'
     ];
 
 
     /**
      * @method bikes()
-     * @description Relation mapping, a parked bike belongs to a bike.
+     * @description Relation mapping, a charging bike belongs to a bike.
      * @return BelongsTo
      */
     public function bikes(): BelongsTo
@@ -56,12 +57,23 @@ class ParkedBike extends Model
 
 
     /**
-     * @method parking()
-     * @description Relation mapping, a parked bike belongs to a parking.
+     * @method station()
+     * @description Relation mapping, a charging bikes belongs to station.
      * @return BelongsTo
      */
-    public function parking(): BelongsTo
+    public function station(): BelongsTo
     {
-        return $this->belongsTo(ParkingZone::class, '_id');
+        return $this->belongsTo(Station::class, '_id');
+    }
+
+
+    /**
+     * @method chargingBike()
+     * @description Relation mapping, a parking zone has many chargingBike.
+     * @return HasMany
+     */
+    public function chargingBike(): HasMany
+    {
+        return $this->hasMany(ChargingBike::class, '_id');
     }
 }
