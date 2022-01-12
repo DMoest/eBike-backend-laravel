@@ -30,10 +30,22 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'github' => [
-        'client_id' => env('GITHUB_CLIENT_ID'),
-        'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => env('GITHUB_REDIRECT')
+    'github_user_mobile' => [
+        'client_id' => env('USER_MOBILE_GITHUB_CLIENT_ID'),
+        'client_secret' => env('USER_MOBILE_GITHUB_CLIENT_SECRET'),
+        'redirect' => env('USER_MOBILE_GITHUB_REDIRECT_URL')
+    ],
+
+    'github_user_web' => [
+        'client_id' => env('USER_WEB_GITHUB_CLIENT_ID'),
+        'client_secret' => env('USER_WEB_GITHUB_CLIENT_SECRET'),
+        'redirect' => env('USER_WEB_GITHUB_REDIRECT_URL')
+    ],
+
+    'github_admin' => [
+        'client_id' => env('ADMIN_GITHUB_CLIENT_ID'),
+        'client_secret' => env('ADMIN_GITHUB_CLIENT_SECRET'),
+        'redirect' => env('ADMIN_GITHUB_REDIRECT')
     ],
 
     'google' => [

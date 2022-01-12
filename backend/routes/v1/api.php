@@ -244,3 +244,11 @@ Route::middleware(['auth:api', 'scopes:admin'])->prefix('/admin')->group(functio
     Route::put('/user', [UserController::class, 'updateUser']);
     Route::delete('/user', [UserController::class, 'deleteUser']);
 });
+
+
+Route::prefix('/simulation')->group(function () {
+    Route::get('/user');
+    Route::get('/bike');
+    Route::get('/station');
+    Route::get('/parking');
+});
