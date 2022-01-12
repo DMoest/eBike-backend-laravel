@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent; // MySQL
 //use Jenssegers\Mongodb\Eloquent\Model as Eloquent; // MongoDB
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 /**
@@ -57,5 +58,16 @@ class ParkingZone extends Eloquent
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class, '_id', 'name');
+    }
+
+
+    /**
+     * @method parkedBike()
+     * @description Relation mapping, a parking zone has many parkedBike.
+     * @return HasMany
+     */
+    public function parkedBike(): HasMany
+    {
+        return $this->hasMany(ParkedBike::class, '_id');
     }
 }

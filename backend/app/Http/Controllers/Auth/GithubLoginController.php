@@ -11,9 +11,13 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
+
+/**
+ * @description Authentication controller for GitHub login. Uses
+ *
+ */
 class GithubLoginController extends Controller
 {
-
     /**
      * @description Redirects user to GitHub provider for authentication.
      *
@@ -44,12 +48,11 @@ class GithubLoginController extends Controller
             $lastname = $userName[1];
         }
 
+
         /**
          * If user does not exits in database, create a new user.
          */
         if (!$user) {
-            echo "Create User.";
-
             $user = User::create([
                 '_id' => $githubUser->getId(),
                 'firstname' => $userName[0],

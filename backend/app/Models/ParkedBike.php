@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class BikeParking extends Model
+
+class ParkedBike extends Model
 {
     use HasFactory;
 
@@ -23,18 +25,29 @@ class BikeParking extends Model
      * Cast are the attributes that should be type cast.
      */
     protected $primaryKey = '_id';
-    protected $guarded = ['_id'];
-    protected $casts = [ 'name' => 'string' ];
-    protected $fillable = [ 'name', 'country' ];
+    protected $guarded = [
+        '_id',
+    ];
+
+//    protected $casts = [
+//        'bike_id' => 'integer',
+//        'parking_id' => 'integer'
+//    ];
+
+    protected $fillable = [
+        'bike_id',
+        'parking_id',
+        'status'
+    ];
 
 
     /**
      * @method bikes()
      * @description Relation mapping, a city has many bikes.
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function bikes(): HasMany
+    public function bikes(): BelongsTo
     {
-        return $this->hasMany(Bike::class, '_id');
+        return $this->belongsTo(Bike::class, '_id');
     }
 }

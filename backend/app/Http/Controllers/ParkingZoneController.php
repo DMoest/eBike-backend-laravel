@@ -17,11 +17,11 @@ use Illuminate\Http\Request;
 class ParkingZoneController extends Controller
 {
     /**
-     * @method getParingZones()
+     * @method getParkingZones()
      * @description Getter method to request all paring zones from database.
      * @return JsonResponse
      */
-    final public function getParingZones(): JsonResponse
+    final public function getParkingZones(): JsonResponse
     {
         $data = [ 'parking_zones' => ParkingZone::all() ];
 

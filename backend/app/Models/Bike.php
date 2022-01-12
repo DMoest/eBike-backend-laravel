@@ -80,10 +80,10 @@ class Bike extends Eloquent // MySQL
     /**
      * @method parking()
      * @description Relation mapping, a bike belong to a city.
-     * @return BelongsTo
+     * @return HasMany
      */
-    public function parking(): BelongsTo
+    public function parking(): HasMany
     {
-        return $this->belongsTo(Bike::class, '_id');
+        return $this->hasMany(ParkedBike::class, '_id');
     }
 }

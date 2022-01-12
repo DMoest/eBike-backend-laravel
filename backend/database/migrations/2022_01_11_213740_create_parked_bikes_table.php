@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBikeParkingsTable extends Migration
+class CreateParkedBikesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateBikeParkingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bike_parkings', function (Blueprint $table) {
-            $table->id('_id');
-            $table->integer('bike_id');
-            $table->integer('parking_id');
+        Schema::create('parked_bikes', function (Blueprint $table) {
+            $table->id('_id')->unique()->autoIncrement();
+            $table->foreignId('bike_id');
+            $table->foreignId('parking_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateBikeParkingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bike_parkings');
+        Schema::dropIfExists('parked_bikes');
     }
 }
