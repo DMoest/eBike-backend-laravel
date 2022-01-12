@@ -39,70 +39,70 @@ use App\Http\Controllers\ParkingZoneController;
 // *      Full CRUD supported for users in the database.
 // *      Authentication supported for user login through AuthenticationController.
 // */
-//Route::middleware(['auth:api', 'scopes:user'])->prefix('/')->group(function() {
-//
-//    /**
-//     * @description User Bike Routes for handling database requests relevant to bikes.
-//     *      Limited CRUD supported for bikes in database.
-//     */
-//    Route::get('/bike', [BikeController::class, 'getBikes']);
-//    Route::get('/bike/{bike:_id}', [BikeController::class, 'getBike']);
-//    Route::get('/bike/city/{city:name}', [BikeController::class, 'getBikesInCity']);
-//
-//
-//    /**
-//     * @description Charge Routes.
-//     */
-//    Route::post('/charge', [CheckoutController::class, 'charge']);
-//
-//
-//    /**
-//     * @description City Routes are for handling database requests relevant to cities.
-//     *      Limited CRUD supported for cities in database.
-//     */
-//    Route::get('/city', [CityController::class, 'getCities']);
-//    Route::get('/city/{city:name}', [CityController::class, 'getCity']);
-//
-//
-//    /**
-//     * @description Parking Zone are for handling database requests relevant to parking zones.
-//     *      Limited CRUD supported for parking zones in database.
-//     */
-//    Route::get('/parking', [ParkingZoneController::class, 'getParkingZones']);
-//    Route::get('/parking/{parking:_id}', [ParkingZoneController::class, 'getParkingZone']);
-//    Route::get('/parking/city/{city:name}', [ParkingZoneController::class, 'getParkingZonesInCity']);
-//
-//
-//    /**
-//     * @description Station Routes are for handling database requests relevant to station.
-//     *      Limited CRUD supported for all stations in database.
-//     */
-//    Route::get('/station', [StationController::class, 'getStations']);
-//    Route::get('/station/{station:_id}', [StationController::class, 'getStation']);
-//    Route::get('/station/city/{city:name}', [StationController::class, 'getStationsInCity']);
-//
-//
-//    /**
-//     * @description Travel Routes are for handling database requests relevant to travels.
-//     *      All user related routes are grouped under '/travel' route.
-//     *      Limited CRUD supported for travels table in database.
-//     */
-//    Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
-//    Route::get('/travel/user/{user:_id}', [TravelController::class, 'getTravelingByUser']);
-//    Route::post('/travel', [TravelController::class, 'createTravel']);
-//    Route::put('/travel', [TravelController::class, 'updateTravel']);
-//
-//
-//    /**
-//    * @description User Routes are for handling requests relevant to users.
-//    *      All user related routes are grouped under '/user' route.
-//    *      Limited CRUD supported for user in the database.
-//    *      Authentication supported for user login through AuthenticationController.
-//    */
-//    Route::get('/user/{user:_id}', [UserController::class, 'getUser']);
-//    Route::get('/user/city/{city:name}', [UserController::class, 'getUsersInCity']);
-//    Route::put('/user', [UserController::class, 'updateUser']);
-//});
+Route::middleware(['auth:api', 'scopes:user'])->prefix('/')->group(function() {
+
+    /**
+     * @description User Bike Routes for handling database requests relevant to bikes.
+     *      Limited CRUD supported for bikes in database.
+     */
+    Route::get('/bike', [BikeController::class, 'getBikes']);
+    Route::get('/bike/{bike:_id}', [BikeController::class, 'getBike']);
+    Route::get('/bike/city/{city:name}', [BikeController::class, 'getBikesInCity']);
+
+
+    /**
+     * @description Charge Routes.
+     */
+    Route::post('/charge', [CheckoutController::class, 'charge']);
+
+
+    /**
+     * @description City Routes are for handling database requests relevant to cities.
+     *      Limited CRUD supported for cities in database.
+     */
+    Route::get('/city', [CityController::class, 'getCities']);
+    Route::get('/city/{city:name}', [CityController::class, 'getCity']);
+
+
+    /**
+     * @description Parking Zone are for handling database requests relevant to parking zones.
+     *      Limited CRUD supported for parking zones in database.
+     */
+    Route::get('/parking', [ParkingZoneController::class, 'getParkingZones']);
+    Route::get('/parking/{parking:_id}', [ParkingZoneController::class, 'getParkingZone']);
+    Route::get('/parking/city/{city:name}', [ParkingZoneController::class, 'getParkingZonesInCity']);
+
+
+    /**
+     * @description Station Routes are for handling database requests relevant to station.
+     *      Limited CRUD supported for all stations in database.
+     */
+    Route::get('/station', [StationController::class, 'getStations']);
+    Route::get('/station/{station:_id}', [StationController::class, 'getStation']);
+    Route::get('/station/city/{city:name}', [StationController::class, 'getStationsInCity']);
+
+
+    /**
+     * @description Travel Routes are for handling database requests relevant to travels.
+     *      All user related routes are grouped under '/travel' route.
+     *      Limited CRUD supported for travels table in database.
+     */
+    Route::get('/travel/{travel}', [TravelController::class, 'getTravels']);
+    Route::get('/travel/user/{user:_id}', [TravelController::class, 'getTravelingByUser']);
+    Route::post('/travel', [TravelController::class, 'createTravel']);
+    Route::put('/travel', [TravelController::class, 'updateTravel']);
+
+
+    /**
+    * @description User Routes are for handling requests relevant to users.
+    *      All user related routes are grouped under '/user' route.
+    *      Limited CRUD supported for user in the database.
+    *      Authentication supported for user login through AuthenticationController.
+    */
+    Route::get('/user/{user:_id}', [UserController::class, 'getUser']);
+    Route::get('/user/city/{city:name}', [UserController::class, 'getUsersInCity']);
+    Route::put('/user', [UserController::class, 'updateUser']);
+});
 
 
 
@@ -112,7 +112,7 @@ use App\Http\Controllers\ParkingZoneController;
  *      Full CRUD supported for users in the database.
  *      Authentication supported for user login through AuthenticationController.
  */
-//Route::middleware(['auth:api', 'scopes:admin'])->prefix('/admin')->group(function() {
+Route::middleware(['auth:api', 'scopes:admin'])->prefix('/admin')->group(function() {
     /**
      * @description Developer Index route.
      */
@@ -243,4 +243,4 @@ use App\Http\Controllers\ParkingZoneController;
     Route::post('/user/', [UserController::class, 'createUser']);
     Route::put('/user', [UserController::class, 'updateUser']);
     Route::delete('/user', [UserController::class, 'deleteUser']);
-//});
+});
