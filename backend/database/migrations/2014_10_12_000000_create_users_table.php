@@ -37,6 +37,7 @@ class CreateUsersTable extends Migration
             $table->string('provider_id')->nullable(); // OAuth provider
             $table->string('payment_method')->default('credit');
             $table->string('payment_status')->default('unpaid');
+            $table->string('userClass')->default('User');
             $table->rememberToken();
             $table->timestamps();
         });

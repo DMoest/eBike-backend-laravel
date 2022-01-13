@@ -17,14 +17,16 @@ use Illuminate\Support\Facades\Route;
  * GitHub Authentication Routes
  */
 Route::prefix('/login')->group(function() {
-    Route::get('/user/mobile/github', [GitHubLoginController::class, 'mobileUserRedirectToGithub']);
-    Route::get('/user/mobile/github/callback', [GitHubLoginController::class, 'mobileUserGithubCallback']);
+    Route::get('/user/mobile/github', [GitHubLoginController::class, 'redirectToGithub']);
+//    Route::get('/user/mobile/github/callback', [GitHubLoginController::class, 'githubCallback']);
 
-    Route::get('/user/web/github', [GitHubLoginController::class, 'webUserRedirectToGithub']);
-    Route::get('/user/web/github/callback', [GitHubLoginController::class, 'webUserGithubCallback']);
+    Route::get('/user/web/github', [GitHubLoginController::class, 'redirectToGithub']);
+//    Route::get('/user/web/github/callback', [GitHubLoginController::class, 'githubCallback']);
 
-    Route::get('/admin/web/github', [GitHubLoginController::class, 'adminRedirectToGithub']);
-    Route::get('/admin/web/github/callback', [GitHubLoginController::class, 'adminGithubCallback']);
+    Route::get('/admin/web/github', [GitHubLoginController::class, 'redirectToGithub']);
+//    Route::get('/admin/web/github/callback', [GitHubLoginController::class, 'githubCallback']);
+
+    Route::get('/github/callback', [GitHubLoginController::class, 'githubCallback']);
 });
 
 

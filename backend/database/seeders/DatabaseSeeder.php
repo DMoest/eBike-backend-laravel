@@ -9,6 +9,7 @@ use App\Models\Station;
 use App\Models\Travel;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 
 class DatabaseSeeder extends Seeder

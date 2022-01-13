@@ -28,6 +28,7 @@ class UserFactory extends Factory
             'payment_method' => $this->faker->randomElement(['monthly', 'credit']),
             'payment_status' => $this->faker->randomElement(['paid', 'unpaid']),
             'remember_token' => Str::random(10),
+            'userClass' => 'User'
         ];
     }
 

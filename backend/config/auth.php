@@ -39,24 +39,24 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'Users',
         ],
 
         'api' => [
             'driver' => 'passport',
-            'provider' => 'users',
+            'provider' => 'Users',
             'hash' => false,
         ],
 
         'api_admin' => [
-            'driver' => 'passport',
-            'provider' => 'users',
+            'driver' => 'socialite',
+            'provider' => 'Users',
             'hash' => false,
         ],
 
         'api_user' => [
-            'driver' => 'passport',
-            'provider' => 'users',
+            'driver' => 'socialite',
+            'provider' => 'Users',
             'hash' => false,
         ],
     ],
@@ -80,7 +80,7 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'Users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],

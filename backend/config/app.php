@@ -177,7 +177,7 @@ return [
          * Application Service Provider for Laravel Passport
          */
         Laravel\Passport\PassportServiceProvider::class,
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Package Service Providers:

@@ -18,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
+
     /**
      * Register any authentication / authorization services.
      *
@@ -35,9 +36,9 @@ class AuthServiceProvider extends ServiceProvider
 //            Passport::hashClientSecrets();
 
             Passport::tokensCan([
-                'application' => 'Perform administrative opperations/tasks to create, read, update and delete information. This client is intended for use with third party application development to be integrated with the E-Bike system.',
-                'admin' => 'Perform administrative tasks to create, read, update and delete information in the E-Bike system.',
-                'user' => 'Retrieve information associated with your user account in the E-Bike system.',
+                'Application' => 'Perform administrative opperations/tasks to create, read, update and delete information. This client is intended for use with third party application development to be integrated with the E-Bike system.',
+                'Admin' => 'Perform administrative tasks to create, read, update and delete information in the E-Bike system.',
+                'User' => 'Retrieve information associated with your user account in the E-Bike system.',
             ]);
         }
     }
