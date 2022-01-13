@@ -90,7 +90,7 @@ class GithubLoginController extends Controller
             return redirect($redirectURLs['web'] . '?' .
                 '_id=' . $userAttributes['_id'] . '&' .
                 'userClass=' . $userAttributes['userClass'] . '&' .
-                'token=' . $userAttributes['remember_token']);
+                'token=' . $userAttributes['remember_token'], 302);
 
         } elseif ($previousURL == $requestURLs[2]) {
             if (!$user) {
@@ -103,7 +103,7 @@ class GithubLoginController extends Controller
             return redirect($redirectURLs['userMobile'] . '?' .
                 '_id=' . $userAttributes['_id'] . '&' .
                 'userClass=' . $userAttributes['userClass'] . '&' .
-                'token=' . $userAttributes['remember_token']);
+                'token=' . $userAttributes['remember_token'], 302);
         }
 
         if (!$user) {
@@ -116,7 +116,7 @@ class GithubLoginController extends Controller
         return redirect($redirectURLs['web'] . '?' .
             '_id=' . $userAttributes['_id'] . '&' .
             'userClass=' . $userAttributes['userClass'] . '&' .
-            'token=' . $userAttributes['remember_token']);
+            'token=' . $userAttributes['remember_token'], 302);
     }
 
 
