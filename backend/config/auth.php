@@ -42,20 +42,20 @@ return [
             'provider' => 'users',
         ],
 
-        'api' => [
-            'driver' => 'passport',
-            'provider' => 'users',
-            'hash' => false,
-        ],
+//        'api' => [
+//            'driver' => 'passport',
+//            'provider' => 'users',
+//            'hash' => false,
+//        ],
 
         'api_admin' => [
-            'driver' => 'socialite',
+            'driver' => 'github',
             'provider' => 'users',
             'hash' => false,
         ],
 
         'api_user' => [
-            'driver' => 'socialite',
+            'driver' => 'github',
             'provider' => 'users',
             'hash' => false,
         ],
@@ -81,6 +81,11 @@ return [
 
     'providers' => [
         'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],

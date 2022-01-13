@@ -24,9 +24,24 @@ class GithubLoginController extends Controller
      *
      * @return RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
      */
-    final public function redirectToGithub()
+    final public function redirectUserToGithub()
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver('github')
+            ->scopes(['read:api_user', 'user'])
+            ->redirect();
+    }
+
+
+    /**
+     * @description Redirects user to GitHub provider for authentication.
+     *
+     * @return RedirectResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    final public function redirectAdminToGithub()
+    {
+        return Socialite::driver('github')
+            ->scopes(['read:api_admin', 'admin'])
+            ->redirect();
     }
 
 
@@ -43,11 +58,19 @@ class GithubLoginController extends Controller
         $githubUser = Socialite::driver('github')->user();
         $session = session()->all();
         $previousURL = $session['_previous']['url'];
+
         $requestURLs = [
             'http://localhost:8000/login/admin/web/github',
             'http://localhost:8000/login/user/web/github',
             'http://localhost:8000/login/user/mobile/github'
         ];
+
+        $redirectURLs = [
+            'userMobile' => 'http://localhost:8001/index.html#/',
+            'userWeb' => 'http://localhost:3000/user',
+            'adminWeb' => 'http://localhost:3000/admin'
+        ];
+
         $userName = explode(' ', $githubUser->name);
         $user = User::where('provider_id', $githubUser->getId())->first();
         $lastname = null;
@@ -63,7 +86,7 @@ class GithubLoginController extends Controller
 
             Auth::login($user, true);
 
-            return redirect('http://localhost:3000/admin');
+            return redirect($redirectURLs['adminWeb']);
 
         } elseif ($previousURL == $requestURLs[2]) {
             if (!$user) {
@@ -72,7 +95,7 @@ class GithubLoginController extends Controller
 
             Auth::login($user, true);
 
-            return redirect('http://localhost:8001/index.html#/');
+            return redirect($redirectURLs['userMobile'])->withCookie($cookie);
 
         }
 
@@ -82,11 +105,17 @@ class GithubLoginController extends Controller
 
         Auth::login($user, true);
 
-        return redirect('http://localhost:3000/user');
-
+        return redirect($redirectURLs['userWeb']);
     }
 
 
+    /**
+     * @description Create a admin user.
+     * @param $githubUser
+     * @param $userName
+     * @param $lastname
+     * @return mixed
+     */
     final public function createAdmin($githubUser, $userName, $lastname) {
         return User::create([
             '_id' => $githubUser->getId(),
@@ -104,6 +133,14 @@ class GithubLoginController extends Controller
         ]);
     }
 
+
+    /**
+     * @description Create a normal user.
+     * @param $githubUser
+     * @param $userName
+     * @param $lastname
+     * @return mixed
+     */
     final public function createUser($githubUser, $userName, $lastname) {
         return User::create([
             '_id' => $githubUser->getId(),
