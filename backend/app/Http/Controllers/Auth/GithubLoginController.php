@@ -4,6 +4,7 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use http\Env\Response;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -67,12 +68,11 @@ class GithubLoginController extends Controller
 
         $redirectURLs = [
             'userMobile' => 'http://localhost:8001/index.html#/',
-            'userWeb' => 'http://localhost:3000/user',
-            'adminWeb' => 'http://localhost:3000/admin'
+            'web' => 'http://localhost:3000/'
         ];
 
-        $userName = explode(' ', $githubUser->name);
         $user = User::where('provider_id', $githubUser->getId())->first();
+        $userName = explode(' ', $githubUser->name);
         $lastname = null;
 
         if (count($userName) > 1) {
@@ -84,28 +84,39 @@ class GithubLoginController extends Controller
                 $user = $this->createAdmin($githubUser, $userName, $lastname);
             }
 
+            $userAttributes = $user->getAttributes();
             Auth::login($user, true);
 
-            return redirect($redirectURLs['adminWeb']);
+            return redirect($redirectURLs['web'] . '?' .
+                '_id=' . $userAttributes['_id'] . '&' .
+                'userClass=' . $userAttributes['userClass'] . '&' .
+                'token=' . $userAttributes['remember_token']);
 
         } elseif ($previousURL == $requestURLs[2]) {
             if (!$user) {
                 $user = $this->createUser($githubUser, $userName, $lastname);
             }
 
+            $userAttributes = $user->getAttributes();
             Auth::login($user, true);
 
-            return redirect($redirectURLs['userMobile'])->withCookie($cookie);
-
+            return redirect($redirectURLs['userMobile'] . '?' .
+                '_id=' . $userAttributes['_id'] . '&' .
+                'userClass=' . $userAttributes['userClass'] . '&' .
+                'token=' . $userAttributes['remember_token']);
         }
 
         if (!$user) {
             $user = $this->createUser($githubUser, $userName, $lastname);
         }
 
+        $userAttributes = $user->getAttributes();
         Auth::login($user, true);
 
-        return redirect($redirectURLs['userWeb']);
+        return redirect($redirectURLs['web'] . '?' .
+            '_id=' . $userAttributes['_id'] . '&' .
+            'userClass=' . $userAttributes['userClass'] . '&' .
+            'token=' . $userAttributes['remember_token']);
     }
 
 
@@ -129,7 +140,8 @@ class GithubLoginController extends Controller
             'adress' => null,
             'postcode' => null,
             'city' => null,
-            'userClass' => 'Admin'
+            'userClass' => 'admin',
+            'remember_token' => $githubUser->token
         ]);
     }
 
@@ -154,7 +166,8 @@ class GithubLoginController extends Controller
             'adress' => null,
             'postcode' => null,
             'city' => null,
-            'userClass' => 'User'
+            'userClass' => 'user',
+            'remember_token' => $githubUser->token
         ]);
     }
 }

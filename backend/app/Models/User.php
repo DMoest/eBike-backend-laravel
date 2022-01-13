@@ -66,7 +66,8 @@ class User extends Eloquent implements Authenticatable
         'email',
         'password',
         'payment_method',
-        'payment_status'
+        'payment_status',
+        'userClass'
     ];
 
     protected $hidden = [
