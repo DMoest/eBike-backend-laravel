@@ -174,13 +174,14 @@ return [
 
 
         /**
-         * Application Service Provider for Laravel Passport
+         * Application Service Providers for Authentication...
          */
         Laravel\Passport\PassportServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
 
+
         /*
-         * Package Service Providers:
+         * Application Service Providers for MongoDB...
          * MongoDB - Jenssegers Service Provider.
          */
 //        Jenssegers\Mongodb\MongodbServiceProvider::class,
