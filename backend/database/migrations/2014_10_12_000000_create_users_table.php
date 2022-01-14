@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('_id')->unique();
+            $table->id('_id')->unique()->increment();
 //            $table->charset = 'utf8mb4';
 //            $table->collation = 'utf8mb4_unicode_ci';
 
@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable(); // Null for creating new users depending on third party OAuth providers.
             $table->string('provider_id')->nullable(); // OAuth provider
             $table->string('payment_method')->default('credit');
-            $table->string('payment_status')->default('unpaid');
+            $table->string('payment_status')->default('0');
             $table->string('userClass');
             $table->rememberToken();
             $table->timestamps();

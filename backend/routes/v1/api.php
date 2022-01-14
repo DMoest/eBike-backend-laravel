@@ -39,7 +39,8 @@ use App\Http\Controllers\ParkingZoneController;
  *      Full CRUD supported for users in the database.
  *      Authentication supported for user login through AuthenticationController.
  */
-Route::middleware(['auth:api', 'scopes:api_user'])->prefix('/')->group(function() {
+//Route::middleware(['auth:api', 'scopes:api_user'])->prefix('/')->group(function() {
+Route::prefix('/')->group(function() {
 
     /**
      * @description User Bike Routes for handling database requests relevant to bikes.
@@ -112,7 +113,8 @@ Route::middleware(['auth:api', 'scopes:api_user'])->prefix('/')->group(function(
  *      Full CRUD supported for users in the database.
  *      Authentication supported for user login through AuthenticationController.
  */
-Route::middleware(['auth:api_admin', 'scopes:api_admin'])->prefix('/admin')->group(function() {
+//Route::middleware(['auth:api_admin', 'scopes:api_admin'])->prefix('/admin')->group(function() {
+Route::prefix('/admin')->group(function() {
     /**
      * @description Developer Index route.
      */
@@ -163,7 +165,7 @@ Route::middleware(['auth:api_admin', 'scopes:api_admin'])->prefix('/admin')->gro
             "/travel/travel_id - GET Request" => "Return a travel from travel_id",
             "/travel/city/city_name - GET Request" => "Return all travels in a city from city_name",
             "/travel/bike/bike_id - GET Request" => "Return all travels made by a specific bike from bike_id",
-            "/travel/user/bike_id - GET Request" => "Return all travels made by a specific user with user_id",
+            "/travel/user/user_id - GET Request" => "Return all travels made by a specific user with user_id",
 
             "*> USER ROUTES" => "------------------------------",
             "/user - GET Request" => "Return all users",
@@ -244,6 +246,7 @@ Route::middleware(['auth:api_admin', 'scopes:api_admin'])->prefix('/admin')->gro
     Route::put('/user', [UserController::class, 'updateUser']);
     Route::delete('/user', [UserController::class, 'deleteUser']);
 });
+
 
 
 /**

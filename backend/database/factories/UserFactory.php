@@ -15,18 +15,17 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            '_id' => $this->faker->unique()->randomNumber(),
             'firstname' => $this->faker->firstName(),
             'lastname' => $this->faker->lastName(),
             'adress' => $this->faker->streetAddress(),
             'postcode' => $this->faker->postcode(),
-            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Malmö", "Karlskrona", "Umeå", "Västerås"]),
+            'city' => $this->faker->randomElement(["Stockholm", "Göteborg", "Umeå"]),
             'phone' => $this->faker->unique()->phoneNumber(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => 'testauth',
-            'payment_method' => $this->faker->randomElement(['monthly', 'credit']),
-            'payment_status' => $this->faker->randomElement(['paid', 'unpaid']),
+            'payment_method' => 'monthly',
+            'payment_status' => 'paid',
             'remember_token' => Str::random(10),
             'userClass' => 'User'
         ];

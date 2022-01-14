@@ -4,8 +4,11 @@
  * Declaration of the controllers namespace and use of other namespaces.
  */
 namespace App\Http\Controllers;
+use GuzzleHttp\Exception\InvalidArgumentException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
@@ -125,7 +128,7 @@ class AuthenticationController extends Controller
      * @description Function for local registration of OAuth client/user on the API.
      *
      * @param Request $request
-     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     final public function registerUser(Request $request) {
 
@@ -136,9 +139,56 @@ class AuthenticationController extends Controller
             'lastname' => $request['lastname'] || null,
             'phone' => $request['phone'] || null,
             'adress' => $request['adress'] || null,
-            'postcode' => $request['postcode'] || null
+            'postcode' => $request['postcode'] || null,
+            'userClass' => $request['userStatus'] || null,
+            'payment_status' => $request['payment_status'] || null,
+            'payment_method' => $request['payment_method'] || null
         ];
 
-        return view('dashboard', $data);
+        return view('clients', $data);
+    }
+
+
+    /**
+     * @description Method for requesting access code to generate token from.
+     * @param Request $request
+     * @return mixed
+     */
+    final public function requestAccessCode(Request $request) {
+
+        $request->session()->put('state', $state = Str::random(40));
+
+        $query = http_build_query([
+            'client_id' => $request->client_id,
+            'redirect_uri' => $request->redirect_uri,
+            'response_type' => 'code',
+            'scope' => 'admin',
+            'state' => $state,
+        ]);
+
+        return redirect('http://localhost:8000/oauth/authorize?'.$query);
+    }
+
+
+    final public function convertCodesToAccessToken(Request $request) {
+        $state = $request->session()->pull('state');
+
+        throw_unless(
+            strlen($state) > 0 && $state === $request->state,
+            InvalidArgumentException::class
+        );
+
+        $http = new GuzzleHttp\Client;
+        $response = $http->post('http://localhost:8000/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'authorization_code',
+                'client_id' => $request->client_id,
+                'client_secret' => $request->client_secret,
+                'redirect_uri' => 'http://localhost:8000/callback',
+                'code' => $request->code,
+            ],
+        ]);
+
+        return json_decode((string) $response->getBody(), true);
     }
 }

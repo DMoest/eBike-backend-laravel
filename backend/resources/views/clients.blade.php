@@ -25,13 +25,17 @@
                             <p><b>Updated: </b>{{ $client->updated_at }} </p>
 
                             <br>
-
-                            <!-- Development Object Info -->
-{{--                            <pre>{{ $client }}</pre>--}}
-
                         </div>
                     @endforeach
                 </div>
+
+
+                <form action="/oauth/authorize?client_id={{ $client->id }}&response_type=code&redirect_uri={{ $client->redirect }}&scope=api_admin&state={{ Str::random(40) }}" method="get" class="block m-4">
+                    @csrf
+                    <button class="w-1/2 p-2 bg-gray-800 text-white rounded" type="submit">Authorize Frontend Client</button>
+                </form>
+
+
                 <div class="mt-3 p-6 bg-white border-b border-gray-200">
                     <form action="/oauth/clients" method="POST">
                         <h2 class="text-xl mb-4"><b>Register new client</b></h2>
