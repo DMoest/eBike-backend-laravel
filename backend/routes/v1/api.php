@@ -39,7 +39,8 @@ use App\Http\Controllers\ParkingZoneController;
  *      Full CRUD supported for users in the database.
  *      Authentication supported for user login through AuthenticationController.
  */
-Route::middleware(['auth:api', 'scopes:api_user'])->prefix('/')->group(function() {
+Route::prefix('/')->group(function() {
+//Route::middleware(['auth:api', 'scopes:api_user'])->prefix('/')->group(function() {
 
     /**
      * @description User Bike Routes for handling database requests relevant to bikes.
@@ -112,7 +113,8 @@ Route::middleware(['auth:api', 'scopes:api_user'])->prefix('/')->group(function(
  *      Full CRUD supported for users in the database.
  *      Authentication supported for user login through AuthenticationController.
  */
-Route::middleware(['auth:api_admin', 'scopes:api_admin'])->prefix('/admin')->group(function() {
+Route::prefix('/admin')->group(function() {
+//Route::middleware(['auth:api_admin', 'scopes:api_admin'])->prefix('/admin')->group(function() {
     /**
      * @description Developer Index route.
      */

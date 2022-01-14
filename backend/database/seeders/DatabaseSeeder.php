@@ -65,14 +65,14 @@ class DatabaseSeeder extends Seeder
 
         ParkingZone::create([
             'city' => 'Umeå',
-            'sw_latitude' => 63.824319,
-            'sw_longitude' => 20.260667,
-            'se_latitude' => 63.824319,
-            'se_longitude' => 20.260667,
-            'ne_latitude' => 63.824920,
-            'ne_longitude' => 20.263607,
-            'nw_latitude' => 63.824920,
-            'nw_longitude' => 20.263607
+            'sw_latitude' => 63.825501,
+            'sw_longitude' => 20.255077,
+            'se_latitude' => 63.825501,
+            'se_longitude' => 20.263314,
+            'ne_latitude' => 63.828028,
+            'ne_longitude' => 20.263314,
+            'nw_latitude' => 63.828028,
+            'nw_longitude' => 20.255077
         ]);
 
         ParkingZone::create([
